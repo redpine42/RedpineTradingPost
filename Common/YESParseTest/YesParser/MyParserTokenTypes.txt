@@ -1,0 +1,138 @@
+// $ANTLR 2.7.7 (20060930): Yes.g -> MyParserTokenTypes.txt$
+MyParser    // output token vocab name
+MBDEMOTRADING="MBDemoTrading"=4
+FOREXACCT="ForexAcct"=5
+EQUITYACCT="EquityAcct"=6
+SIMULATETRADING="SimulateTrading"=7
+TIMEZONE="TimeZone"=8
+MAXTRADES="MaxTrades"=9
+NUMCANDLEMINUTES="NumCandleMinutes"=10
+LOGPATH="LogPath"=11
+LOGL1DATA="LogL1Data"=12
+CURRENCYPAIR="YesTLPair"=13
+VOLATILITYBREAKOUTWITHIMPROVEDEXIT="VolatilityBreakOutWImprovedExit"=14
+TRENDLINEWITHIMPROVEDEXIT="TrendLineWImprovedExit"=15
+DYNAMICDEFINITION="DynamicDefinition"=16
+ROCWITHIMPROVEDEXIT="ROCWImprovedExit"=17
+SYMBOL="Symbol"=18
+STARTTRADETIME="StartTradeTime"=19
+ENDTRADETIME="EndTradeTime"=20
+FIRSTENTRYSIGNALTIME="FirstEntrySignalTime"=21
+CANDLESTICKVALUE="CandleSickValue"=22
+FIRSTTRENDLINETIME="FirstTrendLineTime"=23
+SECONDTRENDLINETIME="SecondTrendLineTime"=24
+PIPSTOPLOSS="PipsStopLoss"=25
+STOPLOSS="StopLoss"=26
+TRAILONECESTOPLOSSTRIGGER="TrailOnceStopLossTrigger"=27
+TRAILONCESTOPLOSS="TrailOnceStopLoss"=28
+TAKEPROFIT="TakeProfit"=29
+PIPSPRECISION="PIPSPrecision"=30
+PIPSTRAIL="PIPSTrail"=31
+NUMBARS="NumBarsEvaluate"=32
+BACKFILEDATAFILE="BackFillDataFile"=33
+DEFAULTLOTSIZE="DefaultLotSize"=34
+TRENDLINEOPENPOSITION="TrendLineOpenPosition"=35
+MAXDRAWDOWN="MaxDrawDown"=36
+PERCENTRISK="PercentRisk"=37
+MAXDRAWDOWNPIPS="MaxDrawdownPips"=38
+NUMBERTRADES="NumberTrades"=39
+NUMBERWINS="NumberWins"=40
+MAXDRAWDOWNMSA="MaxDrawDownMSA"=41
+MAXHISTDRAWDOWN="MaxHistDrawDown"=42
+CURRENTEQUITY="CurrentEquity"=43
+MARGINPERCENTAGE="MarginPercentage"=44
+MAXDDPERCENT="MaxDDPercent"=45
+TLCROSSTRADING="TLCrossTrading"=46
+REVERSETRADING="ReverseTrading"=47
+TL1BARS="TL1Bars"=48
+TL2BARS="TL2Bars"=49
+STOCHBARS="StochBars"=50
+RSIBARS="RSIBars"=51
+EMABARS="EMABars"=52
+ATRMULT="ATRMult"=53
+ATRBARS="ATRBars"=54
+ENTRYATRBARS="EntryATRBars"=55
+ADXBARS="ADXBars"=56
+PLUSDIBARS="PlusDIBars"=57
+MINUSDIBARS="MinusDIBars"=58
+TIMEEXIT="TimeExit"=59
+MMSTP="mmstp"=60
+PTLIM="ptlim"=61
+STPA="stpa"=62
+STPB="stpb"=63
+PTGA="ptga"=64
+ROCBARS="ROCBars"=65
+ROCCOUNT="ROCCount"=66
+STDROCBARS="StdROCBars"=67
+SLOPEBARS="SlopeBars"=68
+TLENDTIME="TLEndTime"=69
+SPREADPRICING="SpreadPricing"=70
+MARKETPRICING="MarketPricing"=71
+MARKETTPLIMITPRICING="MarketTPLimitPricing"=72
+PIPSTAKEPROFIT="PipsTakeProfit"=73
+HALFBARPRICING="HalfBarLimitPrice"=74
+MATCHBIDPRICING="MatchBidLimitPricing"=75
+VOLATILITYBREAKOUTENTRYRULE="VolatilityBreakoutEntryRule"=76
+TURTLEBREAKOUTENTRYRULE="TurtleBreakoutEntryRule"=77
+TRIPPLEMVAENTRYRULE="TrippleMVAEntryRule"=78
+EMASCALPENTRYRULE="EMAScalpEntryRule"=79
+TLSCALPENTRYRULE="TLScalpEntryRule"=80
+TLSCALP2ENTRYRULE="TLScalp2EntryRule"=81
+ADXENTRYRULE="ADXEntry"=82
+FIVMINUTEENTRYRULE="FiveMinuteEntryRule"=83
+INVERTTRADE="InvertTrade"=84
+BARSFAST="BarsFast"=85
+BARSMEDIUM="BarsMedium"=86
+BARSSLOW="BarsSlow"=87
+IMPROVEDEXITRULE="ImprovedExitRule"=88
+FIXEDEXITRULE="FixedExitRule"=89
+EXITEXITRULE="ExitExitRule"=90
+OPENORDERCHASE="OpenOrderChase"=91
+CLOSEORDERCHASE="CloseOrderChase"=92
+TPSLCLOSEMONITOR="TPSLCloseMonitor"=93
+NEWLINE=94
+ASSIGN("=")=95
+ID("an identifer")=96
+INT("an integer value")=97
+FLOAT("a floating point value")=98
+STRING_LITERAL("a string literal")=99
+LCURLY("{")=100
+RCURLY("}")=101
+COLON(":")=102
+LITERAL_TRUE="TRUE"=103
+LITERAL_FALSE="FALSE"=104
+LITERAL_True="True"=105
+LITERAL_False="False"=106
+LITERAL_true="true"=107
+LITERAL_false="false"=108
+SEMI(";")=109
+QUESTION("?")=110
+LPAREN("(")=111
+RPAREN(")")=112
+LBRACK("[")=113
+RBRACK("]")=114
+OR("|")=115
+XOR("^")=116
+AND("&")=117
+COMMA(",")=118
+DOT(".")=119
+NOT("!")=120
+LT_("<")=121
+LSHIFT("<<")=122
+GT(">")=123
+RSHIFT(">>")=124
+DIV("/")=125
+PLUS("+")=126
+MINUS("-")=127
+TILDE("~")=128
+STAR("*")=129
+MOD("%")=130
+SCOPEOP("::")=131
+WS_("white space")=132
+PREPROC_DIRECTIVE("a preprocessor directive")=133
+SL_COMMENT("a comment")=134
+ML_COMMENT("a comment")=135
+CHAR_LITERAL("a character literal")=136
+ESC("an escape sequence")=137
+VOCAB("an escaped character value")=138
+DIGIT("a digit")=139
