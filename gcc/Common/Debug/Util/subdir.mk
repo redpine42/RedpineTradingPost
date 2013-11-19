@@ -5,18 +5,15 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../Util/Conversions.cpp \
-../Util/DataPrepUtil.cpp \
-../Util/TimeZone.cpp 
+../Util/DataPrepUtil.cpp 
 
 OBJS += \
 ./Util/Conversions.o \
-./Util/DataPrepUtil.o \
-./Util/TimeZone.o 
+./Util/DataPrepUtil.o 
 
 CPP_DEPS += \
 ./Util/Conversions.d \
-./Util/DataPrepUtil.d \
-./Util/TimeZone.d 
+./Util/DataPrepUtil.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

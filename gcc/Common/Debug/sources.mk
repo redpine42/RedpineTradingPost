@@ -24,9 +24,7 @@ C_UPPER_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Util \
-MySQLLayer \
 Metrics \
 DataTypes \
-YESParseTest \
-YESParseTest/YesParser \
+MySQLLayer \
 

@@ -8,8 +8,6 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include YESParseTest/YesParser/subdir.mk
--include YESParseTest/subdir.mk
 -include Util/subdir.mk
 -include MySQLLayer/subdir.mk
 -include Metrics/subdir.mk
