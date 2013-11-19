@@ -3,7 +3,8 @@ RedpineTradingPost
 
 Automated Trading Platform.
 
-1.  Initial realease will be work done in visual studio C++ against MBS Trading SDK.  Currently configured for Forex.  Working system.
+Initial realease will be work done in visual studio C++ against MBS Trading SDK.  Currently configured for Forex.  Working system.
+
 The project was done in Microsoft Visual Studio C++.  The interface to MB Trading was done through COM.  
 The trading interface should be FIX since this is a common interface in the community.
 
@@ -23,3 +24,10 @@ RSS is probably the most useful, Not sure I want to crawl html web pages.
 Now that you have the info, you have to use a semantic reasoned to figure out what it means http://en.wikipedia.org/wiki/Semantic_reasoner.  
 Probably a better route is to look at NLP tools.  
 IBM Watson used a combination of hadoop and UIMA http://en.wikipedia.org/wiki/UIMA.
+
+
+Design Decisions
+1.  Date/Time Standardize on Boost package for basic C++ funcionality
+2.  ActiveMQ publishing tick events
+3.  Hibernate for persistance layer (system will have a mix of C++ and Java)
+4.  Need to decide.  FIX build or reuse?
