@@ -17,10 +17,6 @@ struct CandleData;
 #define map_h
 #endif
 
-#ifndef CorrSlopeMetric_h
-#include "CorrSlopeMetric.h"
-#endif
-
 class MetricsCache
 {
 public:

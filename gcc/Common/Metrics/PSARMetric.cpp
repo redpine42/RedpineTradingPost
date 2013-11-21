@@ -1,7 +1,7 @@
 #include "ATRMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getPSAR(const double acceleration, const double maximum, CandleData * data, long numSticks)
 {

@@ -1,7 +1,7 @@
 #include "MinusDIMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getMinusDI(const unsigned int size, CandleData * data, long numSticks)
 {

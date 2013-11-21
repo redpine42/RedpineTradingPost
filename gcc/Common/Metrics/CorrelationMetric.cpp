@@ -2,7 +2,7 @@
 #include "CandleData.h"
 #include "MeanMetric.h"
 #include "math.h"
-
+#include <string.h>
 
 double * getAllCorrelation(double * data1, double * data2, const unsigned int dataSize, const unsigned int bars)
 {

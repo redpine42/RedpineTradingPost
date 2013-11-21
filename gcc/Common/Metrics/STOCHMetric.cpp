@@ -1,7 +1,7 @@
 #include "STOCHMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getStochK(const unsigned int kSize, const unsigned int dSize, CandleData * data, long numSticks)
 {

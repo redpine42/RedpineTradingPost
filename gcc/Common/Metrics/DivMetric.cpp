@@ -1,6 +1,7 @@
 #include "DivMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 double * getAllDivision(double * leftData, double * rightData, const unsigned int arraySize)
 {

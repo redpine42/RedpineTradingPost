@@ -1,7 +1,7 @@
 #include "PlusDIMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getPlusDI(const unsigned int size, CandleData * data, long numSticks)
 {

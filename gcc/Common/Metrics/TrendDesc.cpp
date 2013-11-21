@@ -1,5 +1,6 @@
 #include "TrendDesc.h"
 #include "CandleData.h"
+#include <string.h>
 
 TrendDesc * getTrendDescriptions(long numSticks, unsigned int lookBack, CandleData * data)
 {

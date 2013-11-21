@@ -1,6 +1,7 @@
 #include "MaxMin.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 double getMax(const int unsigned size, CandleData * data, long numSticks)
 {

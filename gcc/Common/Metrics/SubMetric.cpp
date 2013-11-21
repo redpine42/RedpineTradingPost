@@ -1,6 +1,7 @@
 #include "SubMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 double * getAllSubtaction(double * leftData, double * rightData, const unsigned int arraySize)
 {

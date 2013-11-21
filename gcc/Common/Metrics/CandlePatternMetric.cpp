@@ -1,7 +1,7 @@
 #include "CandlePatternMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 int getPattern(CandlePatterns pattern, CandleData * data, long numSticks)
 {

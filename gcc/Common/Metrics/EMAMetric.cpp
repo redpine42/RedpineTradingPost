@@ -1,7 +1,7 @@
 #include "EMAMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getEMA(const unsigned int size, CandleData * data, long numSticks)
 {

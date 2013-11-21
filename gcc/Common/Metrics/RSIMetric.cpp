@@ -1,7 +1,7 @@
 #include "RSIMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getRSI(const unsigned int size, CandleData * data, long numSticks)
 {

@@ -3,7 +3,7 @@
 #include "ta_libc.h"
 
 #include <iostream>
-
+#include <string.h>
 
 bool MACD3DropExit(CandleData * data, long numSticks)
 {

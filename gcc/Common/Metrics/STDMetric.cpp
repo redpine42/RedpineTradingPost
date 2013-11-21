@@ -2,6 +2,7 @@
 #include "CandleData.h"
 #include "ta_libc.h"
 #include "SlopeMetric.h"
+#include <string.h>
 
 double getSTD(const unsigned int size, CandleData * data, long numSticks)
 {

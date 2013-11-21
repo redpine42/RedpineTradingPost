@@ -1,7 +1,7 @@
 #include "MVAMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getMVA(const unsigned int size, CandleData * data, long numSticks)
 {

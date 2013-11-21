@@ -1,6 +1,7 @@
 #include "VarMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 double * getAllVar(double * data, const int unsigned size, const unsigned int arraySize)
 {

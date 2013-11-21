@@ -5,6 +5,7 @@
 #include "Ultosc.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 double getULTOSC(const unsigned int period1, const unsigned int period2, const unsigned int period3, CandleData * data, long numSticks)
 {

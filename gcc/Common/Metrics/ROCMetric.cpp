@@ -1,7 +1,7 @@
 #include "ROCMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getROC(const unsigned int size, CandleData * data, long numSticks)
 {

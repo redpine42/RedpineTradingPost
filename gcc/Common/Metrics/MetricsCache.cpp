@@ -5,12 +5,10 @@
 #include "MVAMetric.h"
 #include "SlopeMetric.h"
 #include "RSIMetric.h"
-#include "StochMetric.h"
 #include "MomentumMetric.h"
 #include "ROCMetric.h"
 #include "MinusDIMetric.h"
 #include "PlusDIMetric.h"
-#include "StochRSIMetric.h"
 #include "WilliamsRMetric.h"
 #include "CCIMetric.h"
 #include "STDMetric.h"
@@ -369,41 +367,6 @@ double * MetricsCache::getTrendLine(CandleData * data, long numSticks)
 
 
 
-double * MetricsCache::getStoch(int bars, CandleData * data, long numSticks)
-{
-	double * ret = 0;
-	MetricMapIter iter;
-	iter = stochMap_.find(bars);
-	if(iter == stochMap_.end())
-	{
-		stochMap_[bars] = getAllStochK(bars,5, data, numSticks);
-		ret = stochMap_[bars];
-	}
-	else
-	{
-		ret = (*iter).second;
-	}
-	return ret;
-}
-
-void MetricsCache::getStochRSI(int rsiBars,int kBars, double *& kData, double *& dData, CandleData * data, long numSticks)
-{
-	int key = rsiBars * 1000;
-	key +=  kBars;
-	MetricMapIter iter;
-	iter = stochKrsiMap_.find(key);
-	if(iter == stochKrsiMap_.end())
-	{
-		getAllStochRSI(rsiBars, kBars, 5,kData, dData, data, numSticks);
-		stochKrsiMap_[key] = kData;
-		stochDrsiMap_[key]= dData;
-	}
-	else
-	{
-		kData = (*iter).second;
-		dData = stochDrsiMap_[key];
-	}
-}
 
 double * MetricsCache::getRegressionSTD(int bars, double optInNbDev, CandleData * data, long numSticks)
 {

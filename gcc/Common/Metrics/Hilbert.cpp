@@ -1,6 +1,7 @@
 #include "Hilbert.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 int isTrendMode(CandleData * data, long numSticks)
 {

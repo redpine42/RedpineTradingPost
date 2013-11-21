@@ -1,6 +1,7 @@
 #include "STOCHRSIMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
+#include <string.h>
 
 void getStochRSI(const int unsigned period,
 				 const int unsigned kSize, 

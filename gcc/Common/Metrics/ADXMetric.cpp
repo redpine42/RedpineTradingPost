@@ -1,7 +1,7 @@
 #include "ADXMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getADX(const int unsigned size, CandleData * data, long numSticks)
 {

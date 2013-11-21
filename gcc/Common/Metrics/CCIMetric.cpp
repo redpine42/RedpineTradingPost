@@ -1,7 +1,7 @@
 #include "CCIMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getCCI(const unsigned int size, CandleData * data, long numSticks)
 {
