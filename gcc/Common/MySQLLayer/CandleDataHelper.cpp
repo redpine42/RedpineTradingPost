@@ -1,6 +1,5 @@
 #include "CandleDataHelper.h"
 #include "CandleDataManipulation.h"
-#include "TimeZone.h"
 #include "RandNum.h"
 #include "SymbolHelper.h"
 #include <iostream>
@@ -230,12 +229,14 @@ void CandleDataHelper::correctForYearRollover(unsigned long & curDate)
 void CandleDataHelper::correctForEndOfWeek(unsigned long & curDate, unsigned long & curTime)
 {
 	// skip to sunday
-	if(TimeZone::instance()->isFriday(TimeZone::instance()->getDateStr(curDate)) && curTime > 64800)
+/*	if(TimeZone::instance()->isFriday(TimeZone::instance()->getDateStr(curDate)) && curTime > 64800)
 	{
 		curTime = 64800;
 		curDate += 2;
 		correctForYearRollover(curDate);
 	}
+	*/
+	// TODO:  Do we need this function.  Used for data prep in data mining program
 }
 
 unsigned int CandleDataHelper::countGap(CandleData * prevData, CandleData * curData)

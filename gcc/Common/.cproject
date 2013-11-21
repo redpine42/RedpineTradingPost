@@ -33,6 +33,9 @@
 								<option id="gnu.cpp.compiler.option.include.paths.1205990676" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/usr/local/include/ta-lib"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/DataTypes}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/Util}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/Metrics}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/include/mysql"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.93817361" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

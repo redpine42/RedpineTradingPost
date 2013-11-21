@@ -1,7 +1,6 @@
 #ifndef CursorData_h
 #define CursorData_h
 
-#include <winsock.h>
 #include <mysql.h>
 
 

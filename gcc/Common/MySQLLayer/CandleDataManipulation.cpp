@@ -4,12 +4,12 @@
 #include "Conversions.h"
 #include "L1Data.h"
 #include "SymbolHelper.h"
-#include "TimeZone.h"
 #include "CandleDataHelper.h"
 
 #include <iostream>
 #include <strstream>
 #include <fstream>
+#include <stdlib.h>
 
 CandleDataManipulation * CandleDataManipulation::instance_ = 0;
 
