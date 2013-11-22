@@ -15,7 +15,6 @@
 #include <mysql.h>
 #include <pthread.h>
 
-pthread_mutex_t hMutex;
 
 
 class MySQLLayer
@@ -33,6 +32,7 @@ public:
 	CursorData * selectData(std::string & selectStr);
 
 private:
+	pthread_mutex_t hMutex;
     static MySQLLayer * instance_;
 	virtual ~MySQLLayer(void);
 
