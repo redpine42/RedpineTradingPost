@@ -1,5 +1,6 @@
 #include "PurchaseData.h"
 #include "TimeZone.h"
+#include <iostream>
 
 std::ostream & operator<<(std::ostream& ostrm, const PurchaseData& data)
 {
