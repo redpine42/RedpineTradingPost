@@ -1,5 +1,5 @@
 #pragma once
-
+#include "CursorData.h"
 #ifndef string_h
 #include <string>
 #define string_h

@@ -1,5 +1,6 @@
 // TimeZone.h: interface for the TimeZone class.
 //
+// Works with times in current time zone
 //////////////////////////////////////////////////////////////////////
 
 #ifndef TimeZone_h
@@ -54,7 +55,7 @@ private:
 	TimeZone();
 
 	TimeZoneEnum timeZone_;
-	static short offset_;
+	static long offset_;
 };
 
 #endif 

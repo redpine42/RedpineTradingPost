@@ -1,7 +1,7 @@
 #include "ATRMetric.h"
 #include "CandleData.h"
 #include "ta_libc.h"
-
+#include <string.h>
 
 double getATR(const unsigned int size, CandleData * data, long numSticks)
 {

@@ -2,12 +2,6 @@
 //
 //////////////////////////////////////////////////////////////////////
 //
-#define VC_EXTRALEAN
-#define _WIN32_WINNT 0x0600
-
-#include <afxwin.h>         // MFC core and standard components
-#include <afxdisp.h>        // MFC Automation classes
-
 #include <strstream>
 #include <iomanip>
 
@@ -17,12 +11,16 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "Time.h"
+#include "boost/date_time.hpp"
+#include "boost/date_time/c_local_time_adjustor.hpp"
+#include "boost/date_time/date_clock_device.hpp"
+using namespace boost::posix_time;
+
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 TimeZone * TimeZone::instance_ = 0;
-short TimeZone::offset_ = 0;
+long TimeZone::offset_ = 0;
 
 TimeZone::TimeZone()
 {
@@ -40,19 +38,14 @@ TimeZone * TimeZone::instance()
 	if(0 == instance_)
 	{
 		instance_ = new TimeZone();
-		time_t ltime;
-		time(&ltime);
 
-		tm* tstruct = localtime(&ltime);
-		
-		long adj = 0;
-		std::string tzName = _tzname[0];
-		if(tstruct->tm_isdst)
-		{
-			tzName = _tzname[1];
-			adj = _dstbias;
-		}
-		offset_ = (_timezone + adj)/3600;
+	    typedef boost::date_time::c_local_adjustor<ptime> local_adj;
+
+	    const ptime utc_now = second_clock::universal_time();
+	    const ptime now = local_adj::utc_to_local(utc_now);
+
+	    boost::posix_time::time_duration pOffset = (now - utc_now);
+	    offset_ =  pOffset.total_seconds();
 	}
 	return instance_;
 }
@@ -94,8 +87,6 @@ std::string TimeZone::formatTZ(long seconds)
 
 long TimeZone::convertToSecondsGMT(long seconds)
 {
-	long gmtSeconds = seconds;
-
 	seconds += (offset_ * 3600);
 	if(seconds >= 86400)
 	{
@@ -108,15 +99,15 @@ long TimeZone::convertToSecondsGMT(long seconds)
 	return seconds;
 }
 
+// Input time - since epoch
 long TimeZone::getSecondsGMT(double time)
 {
-	COleDateTime datetime = COleDateTime(time);
+    using boost::date_time::c_local_adjustor;
+    using boost::posix_time::from_time_t;
+    using boost::posix_time::ptime;
 
-    long timeVal = datetime.GetSecond();
-    timeVal += 3600*datetime.GetHour();
-    timeVal += 60*datetime.GetMinute();
-
-	return timeVal;
+    ptime timeVal = c_local_adjustor<ptime>::utc_to_local(from_time_t(time));
+    return timeVal.time_of_day().total_seconds();
 }
 
 long TimeZone::getSecondsGMT()
@@ -128,99 +119,31 @@ long TimeZone::getSecondsGMT()
 	int seconds = tstruct->tm_sec;
 	int minutes = tstruct->tm_min;
 	int hours = tstruct->tm_hour;
-	int dayOfWeek = tstruct->tm_wday;
 
 	return (hours * 3600) + (minutes * 60) + seconds;
 }
+
 bool TimeZone::isFriday(std::string & date)
 {
-	COleDateTime datetime;
-	datetime = COleDateTime::GetCurrentTime();
-
-	size_t pos = 0;
-
-	pos = date.find('/');
-	size_t firstPos = pos;
-	std::string monthStr = date.substr(0,pos);
-	pos = date.find('/', pos+1);
-	std::string dayStr = date.substr(firstPos+1, pos-(firstPos+1));
-	std::string yearStr = date.substr(pos+1);
-
-	int month = atoi(monthStr.c_str());
-	int day = atoi(dayStr.c_str());
-	int year = atoi(yearStr.c_str());
-
-	datetime.SetDate(year,month,day);
-	int dayOfWeek = datetime.GetDayOfWeek();
-	return dayOfWeek == 6;
+	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
+	return datetime.day_of_week() == boost::gregorian::Friday;
 }
 
 bool TimeZone::isSaturday(std::string & date)
 {
-	COleDateTime datetime;
-	datetime = COleDateTime::GetCurrentTime();
-
-	size_t pos = 0;
-
-	pos = date.find('/');
-	size_t firstPos = pos;
-	std::string monthStr = date.substr(0,pos);
-	pos = date.find('/', pos+1);
-	std::string dayStr = date.substr(firstPos+1, pos-(firstPos+1));
-	std::string yearStr = date.substr(pos+1);
-
-	int month = atoi(monthStr.c_str());
-	int day = atoi(dayStr.c_str());
-	int year = atoi(yearStr.c_str());
-
-	datetime.SetDate(year,month,day);
-	int dayOfWeek = datetime.GetDayOfWeek();
-	return dayOfWeek == 7;
+	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
+	return datetime.day_of_week() == boost::gregorian::Saturday;
 }
 
 bool TimeZone::isSunday(std::string & date)
 {
-	COleDateTime datetime;
-	datetime = COleDateTime::GetCurrentTime();
-
-	size_t pos = 0;
-
-	pos = date.find('/');
-	size_t firstPos = pos;
-	std::string monthStr = date.substr(0,pos);
-	pos = date.find('/', pos+1);
-	std::string dayStr = date.substr(firstPos+1, pos-(firstPos+1));
-	std::string yearStr = date.substr(pos+1);
-
-	int month = atoi(monthStr.c_str());
-	int day = atoi(dayStr.c_str());
-	int year = atoi(yearStr.c_str());
-
-	datetime.SetDate(year,month,day);
-	int dayOfWeek = datetime.GetDayOfWeek();
-	return dayOfWeek == 1;
+	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
+	return datetime.day_of_week() == boost::gregorian::Sunday;
 }
 bool TimeZone::isMonday(std::string & date)
 {
-	COleDateTime datetime;
-	datetime = COleDateTime::GetCurrentTime();
-
-	size_t pos = 0;
-
-	pos = date.find('/');
-	size_t firstPos = pos;
-	std::string monthStr = date.substr(0,pos);
-	pos = date.find('/', pos+1);
-	std::string dayStr = date.substr(firstPos+1, pos-(firstPos+1));
-	std::string yearStr = date.substr(pos+1);
-
-	int month = atoi(monthStr.c_str());
-	int day = atoi(dayStr.c_str());
-	int year = atoi(yearStr.c_str());
-
-	datetime.SetDate(year,month,day);
-	int dayOfWeek = datetime.GetDayOfWeek();
-	return dayOfWeek == 2;
+	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
+	return datetime.day_of_week() == boost::gregorian::Monday;
 }
 
 long TimeZone::getSecondsLocal()
@@ -238,21 +161,16 @@ long TimeZone::getSecondsLocal()
 
 double TimeZone::getUSecondsLocal()
 {
-    struct _timeb tstruct;
-    _ftime_s( &tstruct ); 
-
-	double uTime = getSecondsLocal();
-	return uTime + ((double)tstruct.millitm/1000.0);
+    return boost::posix_time::second_clock::local_time().time_of_day().fractional_seconds();
 }
 
 // local time Julian Date
 long TimeZone::getCurrentJDate()
 {
-	COleDateTime datetime;
-	datetime = COleDateTime::GetCurrentTime();
+	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
 
-	long jDate = datetime.GetYear() * 1000;
-	jDate += datetime.GetDayOfYear();
+	long jDate = datetime.year() * 1000;
+	jDate += datetime.day_number();
 
 	return jDate;
 }
@@ -263,13 +181,16 @@ std::string TimeZone::getDate(double date)
 	return getDateStr(jDate);
 }
 
+// Input date - since epoch
 long TimeZone::getJDate(double date)
 {
-	COleDateTime datetime = COleDateTime(date);
-	long jDate = datetime.GetYear() * 1000;
-	jDate += datetime.GetDayOfYear();
+   using boost::date_time::c_local_adjustor;
+   using boost::posix_time::from_time_t;
+   using boost::posix_time::ptime;
 
-	return jDate;
+   ptime timeVal = c_local_adjustor<ptime>::utc_to_local(from_time_t(date));
+   return timeVal.date().year() * 1000 + timeVal.date().day_of_year();
+
 }
 
 
@@ -509,7 +430,6 @@ std::string TimeZone::timeZoneStr(TimeZoneEnum TZ)
 
 long TimeZone::stringToSecondsGMT(const std::string time)
 {
-	long lTime = 0;
 	size_t pos = 0;
 
 	pos = time.find(':');
