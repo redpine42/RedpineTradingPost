@@ -12,11 +12,10 @@
 
 #include <fstream>
 
-#include <winsock.h>
 #include <mysql.h>
+#include <pthread.h>
 
-struct st_mysql;
-struct CursorData;
+pthread_mutex_t hMutex;
 
 
 class MySQLLayer
@@ -32,7 +31,6 @@ public:
 
 	bool insertData(std::string & insertStr);
 	CursorData * selectData(std::string & selectStr);
-	static HANDLE hMutex; 
 
 private:
     static MySQLLayer * instance_;

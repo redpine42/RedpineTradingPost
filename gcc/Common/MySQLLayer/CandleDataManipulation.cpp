@@ -5,6 +5,7 @@
 #include "L1Data.h"
 #include "SymbolHelper.h"
 #include "CandleDataHelper.h"
+#include "TimeZone.h"
 
 #include <iostream>
 #include <strstream>

@@ -6,6 +6,8 @@
 #include "DataEnums.h"
 #include "TimeZone.h"
 
+#include <stdlib.h>
+
 L2DataManipulation * L2DataManipulation::instance_ = 0;
 
 L2DataManipulation * L2DataManipulation::instance()

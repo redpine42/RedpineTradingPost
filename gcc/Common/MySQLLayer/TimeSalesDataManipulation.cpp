@@ -4,6 +4,8 @@
 #include "Conversions.h"
 #include "TimeSalesData.h"
  
+#include <stdlib.h>
+
 TimeSalesDataManipulation * TimeSalesDataManipulation::instance_ = 0;
 
 TimeSalesDataManipulation * TimeSalesDataManipulation::instance()

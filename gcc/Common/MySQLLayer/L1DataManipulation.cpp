@@ -4,6 +4,8 @@
 #include "Conversions.h"
 #include "L1Data.h"
  
+#include <stdlib.h>
+
 L1DataManipulation * L1DataManipulation::instance_ = 0;
 
 L1DataManipulation * L1DataManipulation::instance()

@@ -1,8 +1,6 @@
-#ifndef CursorData_h
-#define CursorData_h
+#pragma once
 
 #include <mysql.h>
-
 
 struct CursorData
 {
@@ -16,4 +14,3 @@ struct CursorData
 
 };
 
-#endif;

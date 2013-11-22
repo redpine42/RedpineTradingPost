@@ -1,15 +1,13 @@
 #include "MySQLLayer.h"
 #include <iostream>
-#include <winsock.h>
 #include <mysql.h>
 #include <map>
 #include "CursorData.h"
 #include "Conversions.h"
 
+#include <stdlib.h>
+
 MySQLLayer * MySQLLayer::instance_ = new MySQLLayer();
-HANDLE MySQLLayer::hMutex= CreateMutex (NULL,    // no security attributes 
-										   FALSE,   // initially not owned 
-										   "MutexToProtectCriticalSection");    // name of mutex 
 
 
 MySQLLayer * MySQLLayer::instance()
@@ -78,19 +76,17 @@ void MySQLLayer::commit()
 
 bool MySQLLayer::insertData(std::string & insertStr)
 {
-    DWORD dwWaitResult; 
-    dwWaitResult = WaitForSingleObject(hMutex,                 // handle of mutex
-                                       5000L);                 // five-second time-out interval
+	pthread_mutex_lock(&hMutex);
 	int result = mysql_query( mysql_, insertStr.c_str());
     if (result)
     {
 		errorLog_ << "Fail resutlt: " << Conversions::getStrFromInt(result) << std::endl;
 		errorLog_ << "Query: " << insertStr << std::endl;
-	    ReleaseMutex(hMutex);
+		pthread_mutex_unlock(&hMutex);
         return false;
 	   
     }
-	ReleaseMutex(hMutex);
+    pthread_mutex_unlock(&hMutex);
     return true;
 }
 
