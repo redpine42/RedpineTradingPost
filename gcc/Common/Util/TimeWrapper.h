@@ -3,15 +3,15 @@
 // Works with times in current time zone
 //////////////////////////////////////////////////////////////////////
 
-#ifndef TimeZone_h
-#define TimeZone_h
+#ifndef TimeWrapper_h
+#define TimeWrapper_h
 
 #ifndef string_h
 #include <string>
 #define string_h
 #endif
 
-class TimeZone  
+class TimeWrapper
 {
 public:
 	enum TimeZoneEnum 
@@ -21,9 +21,9 @@ public:
 		EST,
 	};
 
-	static TimeZone * instance();
+	static TimeWrapper * instance();
 
-	virtual ~TimeZone();
+	virtual ~TimeWrapper();
 
 	long convertToSecondsGMT(long seconds);
 	long stringToSecondsGMT(const std::string time);
@@ -47,12 +47,16 @@ public:
 	static TimeZoneEnum timeZoneEnum(std::string & TZ);
 	static std::string timeZoneStr(TimeZoneEnum);
 
+	static std::string getLocalDateTime();
+	static std::string getISOLocalDateTime();
+
+
 	long getSecondsGMT();
 
 
 private:
-	static TimeZone * instance_;
-	TimeZone();
+	static TimeWrapper * instance_;
+	TimeWrapper();
 
 	TimeZoneEnum timeZone_;
 	static long offset_;

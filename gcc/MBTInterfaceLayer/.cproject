@@ -28,6 +28,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MBTInterfaceLayer/CornerTurn}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/Util}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/MySQLLayer}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1533220190" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -50,9 +51,10 @@
 					</folderInfo>
 					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.703706677.1616162148" name="/" resourcePath="Strategy">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.1325171186" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug" unusedChildren="">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.446821659" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1367911905"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1229570756" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1111389215">
-								<option id="gnu.cpp.compiler.option.include.paths.1997634513" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.cpp.compiler.option.include.paths.1997634513" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/DataTypes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MBTInterfaceLayer/CornerTurn}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>

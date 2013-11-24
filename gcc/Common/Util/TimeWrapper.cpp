@@ -5,7 +5,7 @@
 #include <strstream>
 #include <iomanip>
 
-#include "TimeZone.h"
+#include "TimeWrapper.h"
 #include <time.h>
 #include <sys/timeb.h>
 
@@ -19,25 +19,25 @@ using namespace boost::posix_time;
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-TimeZone * TimeZone::instance_ = 0;
-long TimeZone::offset_ = 0;
+TimeWrapper * TimeWrapper::instance_ = 0;
+long TimeWrapper::offset_ = 0;
 
-TimeZone::TimeZone()
+TimeWrapper::TimeWrapper()
 {
 	timeZone_ = EST;
 }
 
 
-TimeZone::~TimeZone()
+TimeWrapper::~TimeWrapper()
 {
 
 }
 
-TimeZone * TimeZone::instance()
+TimeWrapper * TimeWrapper::instance()
 {
 	if(0 == instance_)
 	{
-		instance_ = new TimeZone();
+		instance_ = new TimeWrapper();
 
 	    typedef boost::date_time::c_local_adjustor<ptime> local_adj;
 
@@ -51,7 +51,7 @@ TimeZone * TimeZone::instance()
 }
 
 
-std::string TimeZone::formatTZ(long seconds)
+std::string TimeWrapper::formatTZ(long seconds)
 {
 	int hours = 0;
 	int minutes = 0;
@@ -85,7 +85,7 @@ std::string TimeZone::formatTZ(long seconds)
 	return ret;
 }
 
-long TimeZone::convertToSecondsGMT(long seconds)
+long TimeWrapper::convertToSecondsGMT(long seconds)
 {
 	seconds += (offset_ * 3600);
 	if(seconds >= 86400)
@@ -100,7 +100,7 @@ long TimeZone::convertToSecondsGMT(long seconds)
 }
 
 // Input time - since epoch
-long TimeZone::getSecondsGMT(double time)
+long TimeWrapper::getSecondsGMT(double time)
 {
     using boost::date_time::c_local_adjustor;
     using boost::posix_time::from_time_t;
@@ -110,7 +110,7 @@ long TimeZone::getSecondsGMT(double time)
     return timeVal.time_of_day().total_seconds();
 }
 
-long TimeZone::getSecondsGMT()
+long TimeWrapper::getSecondsGMT()
 {
 	time_t ltime;
 	time(&ltime);
@@ -123,30 +123,30 @@ long TimeZone::getSecondsGMT()
 	return (hours * 3600) + (minutes * 60) + seconds;
 }
 
-bool TimeZone::isFriday(std::string & date)
+bool TimeWrapper::isFriday(std::string & date)
 {
 	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
 	return datetime.day_of_week() == boost::gregorian::Friday;
 }
 
-bool TimeZone::isSaturday(std::string & date)
+bool TimeWrapper::isSaturday(std::string & date)
 {
 	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
 	return datetime.day_of_week() == boost::gregorian::Saturday;
 }
 
-bool TimeZone::isSunday(std::string & date)
+bool TimeWrapper::isSunday(std::string & date)
 {
 	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
 	return datetime.day_of_week() == boost::gregorian::Sunday;
 }
-bool TimeZone::isMonday(std::string & date)
+bool TimeWrapper::isMonday(std::string & date)
 {
 	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
 	return datetime.day_of_week() == boost::gregorian::Monday;
 }
 
-long TimeZone::getSecondsLocal()
+long TimeWrapper::getSecondsLocal()
 {
 	time_t ltime;
 	time(&ltime);
@@ -159,13 +159,13 @@ long TimeZone::getSecondsLocal()
 	return (hours * 3600) + (minutes * 60) + seconds;
 }
 
-double TimeZone::getUSecondsLocal()
+double TimeWrapper::getUSecondsLocal()
 {
     return boost::posix_time::second_clock::local_time().time_of_day().fractional_seconds();
 }
 
 // local time Julian Date
-long TimeZone::getCurrentJDate()
+long TimeWrapper::getCurrentJDate()
 {
 	boost::gregorian::date datetime(boost::gregorian::day_clock::local_day());
 
@@ -175,14 +175,14 @@ long TimeZone::getCurrentJDate()
 	return jDate;
 }
 
-std::string TimeZone::getDate(double date)
+std::string TimeWrapper::getDate(double date)
 {
 	long jDate = getJDate(date);
 	return getDateStr(jDate);
 }
 
 // Input date - since epoch
-long TimeZone::getJDate(double date)
+long TimeWrapper::getJDate(double date)
 {
    using boost::date_time::c_local_adjustor;
    using boost::posix_time::from_time_t;
@@ -194,7 +194,7 @@ long TimeZone::getJDate(double date)
 }
 
 
-long TimeZone::getJDate(std::string & dateStr)
+long TimeWrapper::getJDate(std::string & dateStr)
 {
 	long day = 0;
 	size_t pos = 0;
@@ -287,7 +287,7 @@ long TimeZone::getJDate(std::string & dateStr)
 	return jDate;
 }
 
-std::string TimeZone::getDateStr(long jDate)
+std::string TimeWrapper::getDateStr(long jDate)
 {
 	long year = jDate/1000;
 	long days = jDate - (year * 1000);
@@ -371,7 +371,7 @@ std::string TimeZone::getDateStr(long jDate)
 	return date;
 }
 
-std::string TimeZone::formatDateTZ(std::string & date, long seconds)
+std::string TimeWrapper::formatDateTZ(std::string & date, long seconds)
 {
 	long jDate = getJDate(date);
 
@@ -401,7 +401,7 @@ std::string TimeZone::formatDateTZ(std::string & date, long seconds)
 
 
 
-TimeZone::TimeZoneEnum TimeZone::timeZoneEnum(std::string & TZ)
+TimeWrapper::TimeZoneEnum TimeWrapper::timeZoneEnum(std::string & TZ)
 {
 	if(TZ == "CET")
 	{
@@ -414,7 +414,7 @@ TimeZone::TimeZoneEnum TimeZone::timeZoneEnum(std::string & TZ)
 	return GMT;
 }
 
-std::string TimeZone::timeZoneStr(TimeZoneEnum TZ)
+std::string TimeWrapper::timeZoneStr(TimeZoneEnum TZ)
 {
 	if(TZ == CET)
 	{
@@ -428,7 +428,7 @@ std::string TimeZone::timeZoneStr(TimeZoneEnum TZ)
 }
 
 
-long TimeZone::stringToSecondsGMT(const std::string time)
+long TimeWrapper::stringToSecondsGMT(const std::string time)
 {
 	size_t pos = 0;
 
@@ -444,3 +444,14 @@ long TimeZone::stringToSecondsGMT(const std::string time)
 	return convertToSecondsGMT(seconds);
 }
 
+std::string TimeWrapper::getLocalDateTime()
+{
+    boost::posix_time::ptime now = boost::posix_time::second_clock::local_time();
+    return boost::posix_time::to_simple_string(now).c_str();
+ }
+
+std::string TimeWrapper::getISOLocalDateTime()
+{
+    boost::posix_time::ptime now = boost::posix_time::second_clock::local_time();
+    return boost::posix_time::to_iso_string(now).c_str();
+ }

@@ -1,33 +1,21 @@
-#include "StdAfx.h"
 #include "MessageLogger.h"
 #include "CornerTurnConfig.h"
 #include <time.h>
 #include <sys/timeb.h>
 #include <string>
+#include "TimeWrapper.h"
 
 MessageLogger::MessageLogger(void)
 {
-    _tzset();
-
     // Display operating system-style date and time. 
-	std::string timeStr;
-	std::string dateStr;
-	std::string msStr;
+	std::string dateTimeStr;
 
-	getLocalTime(dateStr,timeStr, msStr);
-	size_t pos = timeStr.find(':');
-	timeStr.erase(pos,1);
-	pos = timeStr.find(':');
-	timeStr.erase(pos,1);
+	dateTimeStr = TimeWrapper::instance()->getISOLocalDateTime();
 
-	pos = dateStr.find('/');
-	dateStr.erase(pos,1);
-	pos = dateStr.find('/');
-	dateStr.erase(pos,1);
-
+	dateTimeStr.replace(',', '.');
 	std::string fileName = CornerTurnConfig::instance()->getLogPath();
 	fileName += "\\logs\\";
-	fileName += dateStr + timeStr + ".log";
+	fileName += dateTimeStr + ".log";
 	
 	debugLog_.open(fileName.c_str());
 }
@@ -35,23 +23,6 @@ MessageLogger::MessageLogger(void)
 MessageLogger::~MessageLogger(void)
 {
 }
-
-void MessageLogger::getLocalTime(std::string & dateStr, std::string & timeStr, std::string & ms)
-{
-	char tmpbuf[128];
-    struct _timeb tstruct;
-
-	_strtime_s( tmpbuf, 128 );
-	timeStr = tmpbuf;
-
-    _strdate_s( tmpbuf, 128 );
-	dateStr = tmpbuf;
-
-    _ftime_s( &tstruct ); 
-
-	sprintf_s( tmpbuf,"%u", tstruct.millitm );
-	ms = tmpbuf;
- }
 
 void MessageLogger::logMsgCB(const CornerTurnConst::MessageType msgType, const std::string & source, const std::string messageText)
 {
@@ -74,12 +45,11 @@ void MessageLogger::logMsgCB(const CornerTurnConst::MessageType msgType, const s
 		msgTypeStr = "FATAL ERROR";
 		break;
 	};
-	std::string timeStr;
-	std::string dateStr;
-	std::string msStr;
 
-	getLocalTime(dateStr,timeStr, msStr);
+	std::string dateTimeStr;
 
-	debugLog_ << "[" << dateStr << " " << timeStr << "." << msStr << "] ";
+	dateTimeStr = TimeWrapper::instance()->getLocalDateTime();
+
+	debugLog_ << "[" << dateTimeStr << "] ";
 	debugLog_ << "Type: " << msgTypeStr << ", Source: " << source << " \"" << messageText << "\"" << std::endl;
 }

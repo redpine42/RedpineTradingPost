@@ -1,26 +1,11 @@
 // DataLoggerClient.cpp : Defines the entry point for the console application.
 //
-
-#include "stdafx.h"
-
 #include "MessageLogger.h"
 #include "MsgConsumer.h"
 
 
-BOOL WINAPI ConsoleHandler(DWORD CEvent);
-
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc AMQCPP_UNUSED, char* argv[] AMQCPP_UNUSED)
 {
-if (SetConsoleCtrlHandler(
-    (PHANDLER_ROUTINE)ConsoleHandler,TRUE)==FALSE)
-{
-    // unable to install handler... 
-
-    // display message to the user
-
-    printf("Unable to install handler!\n");
-    return -1;
-}
 	MessageLogger msgLogger;
 	MsgConsumer msgConsumer(&msgLogger);
 
@@ -36,7 +21,3 @@ if (SetConsoleCtrlHandler(
 	return 0;
 }
 
-BOOL WINAPI ConsoleHandler(DWORD CEvent)
-{
-	return TRUE;
-}

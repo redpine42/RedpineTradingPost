@@ -17,14 +17,13 @@ class MessageLogger : public MsgInterface
 {
 public:
 	MessageLogger(void);
-	~MessageLogger(void);
+	virtual ~MessageLogger(void);
 
 	void logMsgCB(const CornerTurnConst::MessageType msgType, const std::string & source, const std::string messageText);
 
 private:
 	std::ofstream debugLog_;
 
-	void getLocalTime(std::string & date, std::string & time, std::string & ms);
 
 
 };
