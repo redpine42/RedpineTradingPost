@@ -2,6 +2,7 @@
 #include "CornerTurnConfig.h"
 #include "CornerTurnConst.h"
 #include "PositionManager.h"
+#include <stdio.h>
 
 OrderStatusMessage::OrderStatusMessage(PositionManager * cb)
 	: cb_(cb),

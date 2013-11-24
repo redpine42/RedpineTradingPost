@@ -3,6 +3,7 @@
 #include "CornerTurnConst.h"
 #include "PositionManager.h"
 #include "PurchaseData.h"
+#include <stdio.h>
 
 TradeTrigger::TradeTrigger(PositionManager * cb)
 	: cb_(cb),

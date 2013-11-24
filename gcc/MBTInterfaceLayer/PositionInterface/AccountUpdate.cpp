@@ -3,6 +3,7 @@
 #include "CornerTurnConst.h"
 #include "PositionManager.h"
 #include "AccountData.h"
+#include <stdio.h>
 
 AccountUpdate::AccountUpdate(PositionManager * cb)
 	: cb_(cb),

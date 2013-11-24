@@ -3,6 +3,7 @@
 #include "CornerTurnConst.h"
 #include "PositionManager.h"
 #include "PositionData.h"
+#include <stdio.h>
 
 PositionUpdate::PositionUpdate(PositionManager * cb)
 	: cb_(cb),

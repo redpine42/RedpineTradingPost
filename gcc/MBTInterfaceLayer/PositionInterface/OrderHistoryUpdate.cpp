@@ -3,6 +3,7 @@
 #include "CornerTurnConst.h"
 #include "PositionManager.h"
 #include "OrderHistoryData.h"
+#include <stdio.h>
 
 OrderHistoryUpdate::OrderHistoryUpdate(PositionManager * cb)
 	: cb_(cb),

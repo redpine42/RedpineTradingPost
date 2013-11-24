@@ -3,6 +3,7 @@
 #include "CornerTurnConst.h"
 #include "PositionManager.h"
 #include "OpenOrderData.h"
+#include <stdio.h>
 
 OrderUpdate::OrderUpdate(PositionManager * cb)
 	: cb_(cb),
