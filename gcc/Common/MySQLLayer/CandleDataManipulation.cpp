@@ -5,7 +5,7 @@
 #include "L1Data.h"
 #include "SymbolHelper.h"
 #include "CandleDataHelper.h"
-#include "TimeZone.h"
+#include "TimeWrapper.h"
 
 #include <iostream>
 #include <strstream>
@@ -364,7 +364,7 @@ bool CandleDataManipulation::getFileRow(std::ifstream & istrm, CandleData *& dat
 		dateStr += '/';	
 		dateStr += year;
 
-		jDate = TimeZone::instance()->getJDate(dateStr);
+		jDate = TimeWrapper::instance()->getJDate(dateStr);
 
 		int openTime = (atoi(hour) *3600) + (atoi(minute) * 60); 
 

@@ -4,7 +4,7 @@
 #include "Conversions.h"
 #include "L2Data.h"
 #include "DataEnums.h"
-#include "TimeZone.h"
+#include "TimeWrapper.h"
 
 #include <stdlib.h>
 
@@ -31,9 +31,9 @@ L2DataManipulation::L2DataManipulation()
 					DataEnums::ASK,
 					0.0,
 					0,
-					TimeZone::instance()->getSecondsGMT(),
-					TimeZone::instance()->getCurrentJDate(),
-					TimeZone::instance()->getUSecondsLocal(),
+					TimeWrapper::instance()->getSecondsGMT(),
+					TimeWrapper::instance()->getCurrentJDate(),
+					TimeWrapper::instance()->getUSecondsLocal(),
 					false,
 					0);
 	saveL2Data(data);

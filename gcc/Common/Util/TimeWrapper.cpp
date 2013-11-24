@@ -450,7 +450,7 @@ std::string TimeWrapper::getLocalDateTime()
     return boost::posix_time::to_simple_string(now).c_str();
  }
 
-std::string TimeWrapper::getISOLocalDateTime()
+std::string TimeWrapper::getLocalISODateTime()
 {
     boost::posix_time::ptime now = boost::posix_time::second_clock::local_time();
     return boost::posix_time::to_iso_string(now).c_str();

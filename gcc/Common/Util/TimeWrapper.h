@@ -48,7 +48,7 @@ public:
 	static std::string timeZoneStr(TimeZoneEnum);
 
 	static std::string getLocalDateTime();
-	static std::string getISOLocalDateTime();
+	static std::string getLocalISODateTime();
 
 
 	long getSecondsGMT();

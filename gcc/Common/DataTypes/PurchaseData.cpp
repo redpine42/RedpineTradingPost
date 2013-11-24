@@ -1,5 +1,5 @@
 #include "PurchaseData.h"
-#include "TimeZone.h"
+#include "TimeWrapper.h"
 #include <iostream>
 
 std::ostream & operator<<(std::ostream& ostrm, const PurchaseData& data)
@@ -14,7 +14,7 @@ std::ostream & operator<<(std::ostream& ostrm, const PurchaseData& data)
 	ostrm << "\tStop Lower Price: " << data.stopLowerPrice_<< std::endl;
 	ostrm << "\tStop Upper Price: " << data.stopUpperPrice_<< std::endl;
 
-    ostrm << "\tTime Placed: " << TimeZone::instance()->formatTZ(data.timePlaced_)<< std::endl;
+    ostrm << "\tTime Placed: " << TimeWrapper::instance()->formatTZ(data.timePlaced_)<< std::endl;
 	ostrm << "\tTime Filled: " << data.timeFilled_<< std::endl;
 	ostrm << "\tDate: " << data.date_<< std::endl;
 

@@ -8,11 +8,9 @@
 MessageLogger::MessageLogger(void)
 {
     // Display operating system-style date and time. 
-	std::string dateTimeStr;
+	std::string dateTimeStr = TimeWrapper::instance()->getLocalISODateTime();
 
-	dateTimeStr = TimeWrapper::instance()->getISOLocalDateTime();
-
-	dateTimeStr.replace(',', '.');
+	dateTimeStr.replace(dateTimeStr.begin(),dateTimeStr.end(),',', '.');
 	std::string fileName = CornerTurnConfig::instance()->getLogPath();
 	fileName += "\\logs\\";
 	fileName += dateTimeStr + ".log";
