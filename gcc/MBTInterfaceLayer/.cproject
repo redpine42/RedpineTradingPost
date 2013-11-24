@@ -49,30 +49,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.703706677.1616162148" name="/" resourcePath="Strategy">
-						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.1325171186" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug" unusedChildren="">
-							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
-							<tool id="cdt.managedbuild.tool.gnu.archiver.base.446821659" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.1367911905"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1229570756" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.1111389215">
-								<option id="gnu.cpp.compiler.option.include.paths.1997634513" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/DataTypes}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MBTInterfaceLayer/CornerTurn}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/Util}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Common/Metrics}&quot;"/>
-								</option>
-								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.585005087" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
-							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.592605222" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1927193393">
-								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1828864594" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
-							</tool>
-							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.377151379" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug.2074133232"/>
-							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.671586297" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.556430941"/>
-							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1238015205" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug.967711233">
-								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1093561163" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
-							</tool>
-						</toolChain>
-					</folderInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

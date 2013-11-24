@@ -6,7 +6,7 @@
 #include "PositionManager.h"
 #include "SymbolData.h"
 #include "SymbolDataList.h"
-#include "TimeZone.h"
+#include "TimeWrapper.h"
 #include "PurchaseData.h"
 
 PositionMonitorManager* PositionMonitorManager::instance_ = 0;
@@ -145,7 +145,7 @@ void PositionMonitorManager::updateOrder(OrderData& pOrd)
 				data->typeTrade_ = pOrd.buySell_;
 				data->executionType_ = pOrd.execType_;
 				data->timeFilled_ = pOrd.time_;
-				data->date_ = TimeZone::instance()->getDateStr(TimeZone::instance()->getCurrentJDate());
+				data->date_ = TimeWrapper::instance()->getDateStr(TimeWrapper::instance()->getCurrentJDate());
 			}
 			stock->openData(data);
 
@@ -179,8 +179,8 @@ void PositionMonitorManager::recreatePosition(std::string & symbol, long quantit
 	}
 	if(date.empty())
 	{
-		date = TimeZone::instance()->getDateStr(TimeZone::instance()->getCurrentJDate());
-		time = TimeZone::instance()->getSecondsGMT();
+		date = TimeWrapper::instance()->getDateStr(TimeWrapper::instance()->getCurrentJDate());
+		time = TimeWrapper::instance()->getSecondsGMT();
 	}
     PurchaseData * openData  = new PurchaseData();
 	openData->symbol_ = symbol;

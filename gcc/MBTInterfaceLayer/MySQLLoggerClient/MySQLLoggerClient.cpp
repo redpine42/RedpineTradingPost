@@ -1,8 +1,6 @@
 // MySQLLoggerClient.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-
 #include "DataStore.h"
 #include "CandleDataConsumer.h"
 #include "L1DataConsumer.h"
@@ -14,21 +12,8 @@
 #include "L2DataManipulation.h"
 #include "CandleDataManipulation.h"
 
-
-BOOL WINAPI ConsoleHandler(DWORD CEvent);
-
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
-if (SetConsoleCtrlHandler(
-    (PHANDLER_ROUTINE)ConsoleHandler,TRUE)==FALSE)
-{
-    // unable to install handler... 
-
-    // display message to the user
-
-    printf("Unable to install handler!\n");
-    return -1;
-}
 	DataStore dataStore;
 	DataStore l2DataStore;
 	DataStore tsdataStore;
@@ -60,14 +45,4 @@ if (SetConsoleCtrlHandler(
 	timeSalesDataConsumerThread.join();
 
 	return 0;
-}
-
-BOOL WINAPI ConsoleHandler(DWORD CEvent)
-{
-	TimeSalesDataManipulation::instance()->bulkDataFlush();
-	L1DataManipulation::instance()->bulkDataFlush();
-	L2DataManipulation::instance()->bulkDataFlush();
-	CandleDataManipulation::instance()->bulkDataFlush();
-
-    return TRUE;
 }

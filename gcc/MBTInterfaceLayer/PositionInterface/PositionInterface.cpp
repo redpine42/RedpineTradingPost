@@ -11,7 +11,7 @@
 #include "SymbolDataList.h"
 #include "SymbolData.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	SymbolDataList::instance()->addSymbolData(new SymbolData("AUD/CAD"));
 	SymbolDataList::instance()->addSymbolData(new SymbolData("AUD/JPY"));

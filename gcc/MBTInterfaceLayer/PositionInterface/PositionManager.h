@@ -42,4 +42,6 @@ private:
 	typedef PositionSet::iterator PositionSetIter;
 
 	PositionSet openPositions_;
+	pthread_mutex_t mutex_;
+
 };

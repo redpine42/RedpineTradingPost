@@ -26,7 +26,7 @@ class DataStore : public L1DataInterface, public L2DataInterface, public TimeSal
 {
 public:
 	DataStore(void);
-	~DataStore(void);
+	virtual ~DataStore(void);
 
 	void logL1DataCB(const L1Data* data);
 	void logTimeSalesDataCB(const TimeSalesData* data);
@@ -34,8 +34,8 @@ public:
 	void logL2DataCB(const L2Data* data);
 
 private:
-	static HANDLE l1Mutex; 
-	static HANDLE l2Mutex; 
-	static HANDLE tsMutex; 
-	static HANDLE cdMutex; 
+	static pthread_mutex_t l1Mutex;
+	static pthread_mutex_t l2Mutex;
+	static pthread_mutex_t tsMutex;
+	static pthread_mutex_t cdMutex;
 };

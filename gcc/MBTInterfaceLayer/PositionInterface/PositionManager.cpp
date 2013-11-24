@@ -11,12 +11,10 @@
 #include "SymbolData.h"
 #include "SymbolDataList.h"
 #include "PositionMonitorManager.h"
-#include "TimeZone.h"
+#include "TimeWrapper.h"
+#include <pthread.h>
 
 PositionManager * PositionManager::instance_ = 0;
-HANDLE mutex_ = CreateMutex (NULL,    // no security attributes 
-										   FALSE,   // initially not owned 
-										   "MutexToProtectCriticalSection");    // name of mutex 
 
 
 PositionManager * PositionManager::instance()
@@ -37,9 +35,7 @@ PositionManager::~PositionManager(void)
 
 void PositionManager::historyUpdate(OrderHistoryData * pHist)
 {
-    DWORD dwWaitResult; 
-    dwWaitResult = WaitForSingleObject(mutex_,                 // handle of mutex
-                                       5000L);                 // five-second time-out interval
+	pthread_mutex_lock(&mutex_);
 
 	PositionMonitorManager::OrderData orderData;
 	orderData.symbol_ = pHist->symbol_;
@@ -49,7 +45,7 @@ void PositionManager::historyUpdate(OrderHistoryData * pHist)
 	orderData.status_ = pHist->event_;
 	orderData.orderNumber_ = pHist->orderNumber_;
 	orderData.eventName_ = pHist->eventType_;
-	orderData.time_ = TimeZone::instance()->stringToSecondsGMT(pHist->time_);
+	orderData.time_ = TimeWrapper::instance()->stringToSecondsGMT(pHist->time_);
 
 	std::string buySell = pHist->buySell_;
 	if(buySell == "BUY")
@@ -75,14 +71,13 @@ void PositionManager::historyUpdate(OrderHistoryData * pHist)
 
 	PositionMonitorManager::instance()->updateOrder(orderData);
 
-	ReleaseMutex(mutex_);
+	pthread_mutex_unlock(&mutex_);
+
 }
 
 void PositionManager::orderUpdate(OpenOrderData *data)
 {
-    DWORD dwWaitResult; 
-    dwWaitResult = WaitForSingleObject(mutex_,                 // handle of mutex
-                                       5000L);                 // five-second time-out interval
+	pthread_mutex_lock(&mutex_);
 
 	PositionMonitorManager::OrderData orderData;
 	orderData.symbol_ = data->symbol_;
@@ -92,7 +87,7 @@ void PositionManager::orderUpdate(OpenOrderData *data)
 	orderData.status_ = data->currentEvent_;
 	orderData.orderNumber_ = data->orderNumber_;
 	orderData.eventName_ = data->eventType_;
-	orderData.time_ = TimeZone::instance()->stringToSecondsGMT(data->time_);
+	orderData.time_ = TimeWrapper::instance()->stringToSecondsGMT(data->time_);
 
 	std::string buySell = data->buySell_;
 	if(buySell == "BUY")
@@ -113,7 +108,7 @@ void PositionManager::orderUpdate(OpenOrderData *data)
 	}
 	PositionMonitorManager::instance()->updateOrder(orderData);
 
-	ReleaseMutex(mutex_);
+	pthread_mutex_unlock(&mutex_);
 }
 
 void PositionManager::positionUpdate(PositionData *data)
@@ -126,27 +121,25 @@ void PositionManager::accountUpdate(AccountData * data)
 
 void PositionManager::purchaseUpdate(PurchaseData *data)
 {
-    DWORD dwWaitResult; 
-    dwWaitResult = WaitForSingleObject(mutex_,                 // handle of mutex
-                                       5000L);                 // five-second time-out interval
+	pthread_mutex_lock(&mutex_);
 
 	PurchaseManager::instance()->trade(data);
 	openPositions_.insert(data->symbol_);
 
-	ReleaseMutex(mutex_);
+	pthread_mutex_unlock(&mutex_);
+
 }
 
 void PositionManager::l1DataUpdate(L1Data * data)
 {
-    DWORD dwWaitResult; 
-    dwWaitResult = WaitForSingleObject(mutex_,                 // handle of mutex
-                                       5000L);                 // five-second time-out interval
+	pthread_mutex_lock(&mutex_);
 
 	SymbolData * symbolData = SymbolDataList::instance()->getSymbolData(data->symbol_);
 	symbolData->updateLevel1(data);
     PositionMonitorManager::instance()->checkPosition(data->symbol_);
 
-	ReleaseMutex(mutex_);
+	pthread_mutex_unlock(&mutex_);
+
 }
 
 bool PositionManager::positionExists(std::string & symbol)
