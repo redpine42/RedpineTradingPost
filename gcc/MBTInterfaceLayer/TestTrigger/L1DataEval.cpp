@@ -4,6 +4,7 @@
 #include "L1Data.h"
 
 #include "Trigger.h"
+#include <stdio.h>
 
 L1DataEval::L1DataEval(Trigger * cb)
 	: cb_(cb),

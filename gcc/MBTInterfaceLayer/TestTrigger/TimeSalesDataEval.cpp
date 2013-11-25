@@ -4,6 +4,7 @@
 #include "TimeSalesData.h"
 
 #include "Trigger.h"
+#include <stdio.h>
 
 TimeSalesDataEval::TimeSalesDataEval(Trigger * cb)
 	: cb_(cb),

@@ -2,7 +2,7 @@
 #include "Trigger.h"
 #include "L1DataEval.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	std::string symbol("EUR/USD");
 
