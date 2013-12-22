@@ -1,0 +1,21 @@
+// NullMonitorOpenOrder.cpp: implementation of the NullMonitorOpenOrder class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#include "NullMonitorOpenOrder.h"
+
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+
+NullMonitorOpenOrder::NullMonitorOpenOrder(SymbolData * stock)
+	: MonitorOpenOrder(stock)
+
+{
+
+}
+
+NullMonitorOpenOrder::~NullMonitorOpenOrder()
+{
+
+}

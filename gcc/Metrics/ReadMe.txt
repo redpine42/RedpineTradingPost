@@ -1,0 +1,1 @@
+Built against Ta_lib 0.4.0
