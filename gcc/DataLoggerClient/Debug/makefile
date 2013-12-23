@@ -43,7 +43,7 @@ all: DataLoggerClient
 DataLoggerClient: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn/Debug" -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/Util/Debug" -L/usr/local/lib -o "DataLoggerClient" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn/Debug" -L/usr/lib64/boost -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/Util/Debug" -L/usr/local/lib -o "DataLoggerClient" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

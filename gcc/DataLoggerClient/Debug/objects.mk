@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lCornerTurn -lUtil -lactivemq-cpp
+LIBS := -lCornerTurn -lboost_date_time -lUtil -lactivemq-cpp
 
