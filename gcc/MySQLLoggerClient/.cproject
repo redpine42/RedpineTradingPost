@@ -39,10 +39,24 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1616981528" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1446126117" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.1279289421" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;${workspace_loc:/CornerTurn/Debug/libCornerTurn.so}&quot;"/>
+									<listOptionValue builtIn="false" value="CornerTurn"/>
+									<listOptionValue builtIn="false" value="mysqlclient"/>
+									<listOptionValue builtIn="false" value="Metrics"/>
+									<listOptionValue builtIn="false" value="DataTypes"/>
+									<listOptionValue builtIn="false" value="MySQLLayer"/>
+									<listOptionValue builtIn="false" value="activemq-cpp"/>
+									<listOptionValue builtIn="false" value="Util"/>
+									<listOptionValue builtIn="false" value="boost_date_time"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.226318464" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Metrics/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/lib64/mysql"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/MySQLLayer/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/lib"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Util/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/lib64"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1704875065" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

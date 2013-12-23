@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -l""
+LIBS := -lCornerTurn -lmysqlclient -lMetrics -lDataTypes -lMySQLLayer -lactivemq-cpp -lUtil -lboost_date_time
 

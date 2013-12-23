@@ -43,7 +43,7 @@ all: MySQLclient
 MySQLclient: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn/Debug" -o "MySQLclient" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++ -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn/Debug" -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/Metrics/Debug" -L/usr/lib64/mysql -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/DataTypes/Debug" -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/MySQLLayer/Debug" -L/usr/local/lib -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/Util/Debug" -L/usr/lib64 -o "MySQLclient" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
