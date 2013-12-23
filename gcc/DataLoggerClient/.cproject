@@ -39,13 +39,11 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1541977009" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.138326741" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="CornerTurn"/>
-									<listOptionValue builtIn="false" value="boost_date_time"/>
 									<listOptionValue builtIn="false" value="Util"/>
 									<listOptionValue builtIn="false" value="activemq-cpp"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.850605978" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn/Debug}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/lib64/boost"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Util/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib"/>
 								</option>
