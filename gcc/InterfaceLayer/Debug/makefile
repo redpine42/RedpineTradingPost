@@ -37,19 +37,19 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: MySQLclient
+all: InterfaceLayer
 
 # Tool invocations
-MySQLclient: $(OBJS) $(USER_OBJS)
+InterfaceLayer: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GCC C++ Linker'
-	g++ -L"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn/Debug" -o "MySQLclient" $(OBJS) $(USER_OBJS) $(LIBS)
+	g++  -o "InterfaceLayer" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) MySQLclient
+	-$(RM) $(OBJS)$(C++_DEPS)$(C_DEPS)$(CC_DEPS)$(CPP_DEPS)$(EXECUTABLES)$(CXX_DEPS)$(C_UPPER_DEPS) InterfaceLayer
 	-@echo ' '
 
 .PHONY: all clean dependents
