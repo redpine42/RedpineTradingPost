@@ -16,7 +16,7 @@
 #define VALUE_AGENCY 10020
 
 OrderManager * OrderManager::instance_ = 0;
-OrderManager * OrderManager::createInstance(IMbtOrderClientPtr orders)
+OrderManager * OrderManager::createInstance(IOrderClient * orders)
 {
     if(0 == instance_)
     {
@@ -35,10 +35,10 @@ OrderManager * OrderManager::instance()
     return instance_;
 }
 
-OrderManager::OrderManager(IMbtOrderClientPtr orders)
-    : orders_(orders)
+OrderManager::OrderManager(IOrderClient * orders)
+    : orderClient_(orders)
 {
-    orders_.AddRef();
+    // TODO: orders_.AddRef();
 	
 }
 
@@ -52,9 +52,9 @@ OrderManager::~OrderManager()
     //Need to clean up any orders.  Leave nothing open.
 	closeOut();
 
-    orders_->Disconnect();
-    orders_.Release();
-    orders_.Detach();
+	orderClient_->Disconnect();
+	orderClient_.Release();
+	orderClient_.Detach();
     MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ORDERMANAGER, "OrderManager Destoryed" );
 }
 
@@ -65,13 +65,13 @@ void OrderManager::closeOut()
 
 bool OrderManager::checkOrderServer()
 {
-	DWORD sleepTime = 1000;
+	int sleepTime = 1000;
 	bool status = true;
-	if(!orders_->IsConnected())
+	if(!orderClient_->IsConnected())
 	{
 		TradeManager::instance()->reconnect();
 
-		orders_->Connect();
+		orderClient_->Connect();
 		status = false;
 		std::string msg = "Order Server is not connected.  Attempting to reconnect!";
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Error, CornerTurnConst::ORDERMANAGER, msg);
@@ -79,16 +79,16 @@ bool OrderManager::checkOrderServer()
 		int cnt = 0;
 		while ( cnt < 10)
 		{
-			if(orders_->IsConnected())
+			if(orderClient_->IsConnected())
 			{
 			    IMbtAccountsPtr accounts;
-		        accounts = orders_->Accounts;
+		        accounts = orderClient_->Accounts;
 				accounts->LoadAll();
 				status = true;
-				Sleep(sleepTime);
+				sleep(sleepTime);
 				break;
 			}
-			Sleep(sleepTime);
+			sleep(sleepTime);
 			++cnt;
 		}
 	}
@@ -153,7 +153,7 @@ void OrderManager::makeOrder(const PurchaseData * data)
 
     if(data->typeTrade_ == PurchaseData::Buy)
     {
-	   success = orders_->Submit(VALUE_BUY,
+	   success = orderClient_->Submit(VALUE_BUY,
                                  data->size_,
                                  _bstr_t(sSym),
                                  data->price_,
@@ -174,7 +174,7 @@ void OrderManager::makeOrder(const PurchaseData * data)
     }
     else if(data->typeTrade_== PurchaseData::SellShort)
     {
-        success = orders_->Submit(VALUE_SELLSHT,
+        success = orderClient_->Submit(VALUE_SELLSHT,
                                   data->size_,
                                   _bstr_t(sSym),
                                   data->price_,
@@ -194,7 +194,7 @@ void OrderManager::makeOrder(const PurchaseData * data)
     }
     else if(data->typeTrade_== PurchaseData::Sell)
     {
-        success = orders_->Submit(VALUE_SELL,
+        success = orderClient_->Submit(VALUE_SELL,
                                   data->size_,
                                   _bstr_t(sSym),
                                   data->price_,
@@ -214,7 +214,7 @@ void OrderManager::makeOrder(const PurchaseData * data)
     }
     else if(data->typeTrade_== PurchaseData::BuyToCover)
     {
-        success = orders_->Submit(VALUE_BUY,
+        success = orderClient_->Submit(VALUE_BUY,
                                   data->size_,
                                   _bstr_t(sSym),
                                   data->price_,
@@ -264,7 +264,7 @@ void OrderManager::cancelOrder(const std::string & symbol, const std::string & o
 	}
     BSTR bstrRetMsg = NULL; 
 
-	short success = orders_->Cancel(orderNumber.c_str(), &bstrRetMsg);
+	short success = orderClient_->Cancel(orderNumber.c_str(), &bstrRetMsg);
         
 	_bstr_t bstr_t(bstrRetMsg);
 	std::string msg(bstr_t);

@@ -23,9 +23,13 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.613432214" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug">
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1662139753" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1090996143" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
-								<option id="gnu.cpp.compiler.option.other.pic.1619716093" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
-								<option id="gnu.cpp.compiler.option.include.paths.1796464239" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.cpp.compiler.option.other.pic.1619716093" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
+								<option id="gnu.cpp.compiler.option.include.paths.1796464239" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceWrappers}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceStubs}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1147183402" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -46,6 +50,18 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1351108779.1186202641" name="MBTInterfaceLayer.cpp" rcbsApplicability="disable" resourcePath="MBTInterfaceLayer.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.613432214.1537533395">
+						<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.613432214.1537533395" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.613432214">
+							<option id="gnu.cpp.compiler.option.include.paths.1179861528" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceWrappers}&quot;"/>
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+								<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
+								<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceStubs}&quot;"/>
+							</option>
+							<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1618868258" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+						</tool>
+					</fileInfo>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -72,9 +88,13 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release.275071418" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.release">
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1817934368" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.1676988984" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
-								<option id="gnu.cpp.compiler.option.other.pic.1341118559" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
-								<option id="gnu.cpp.compiler.option.include.paths.739758178" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+								<option id="gnu.cpp.compiler.option.other.pic.1341118559" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
+								<option id="gnu.cpp.compiler.option.include.paths.739758178" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceWrappers}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceStubs}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.879845026" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

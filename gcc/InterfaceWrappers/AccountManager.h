@@ -1,23 +1,23 @@
 #ifndef AccountManager_h
 #define AccountManager_h
 
-#ifndef stdafx_h
-#include "stdafx.h"
+#ifndef IOrderClient_h
+#include "IOrderClient.h"
 #endif
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
+#ifndef IAccount_h
+#include "IAccount.h"
+#endif
 
 class AccountManager
 {
 public:
-    static AccountManager * createInstance(IMbtOrderClientPtr orders);
+    static AccountManager * createInstance(IOrderClient* orders);
     static AccountManager * instance();
     static void removeInstance();
 
-    IMbtAccountPtr getAccount();
-	void setAccount(IMbtAccountPtr account){myAccount_ = account;}
+    IAccount * getAccount();
+	void setAccount(IAccount* account){myAccount_ = account;}
 	void updateBP(double BP, double profitLoss);
 
 	double getEquity();
@@ -26,11 +26,11 @@ public:
 
 	bool checkAccountStatus();
 private:
-    void getDefaultAccount(IMbtOrderClientPtr orders);
+    void getDefaultAccount(IOrderClient* orders);
     ~AccountManager();
-    AccountManager(IMbtOrderClientPtr orders);
+    AccountManager(IOrderClient * orders);
 
-    IMbtAccountPtr myAccount_;
+    IAccount* myAccount_;
 	double BP_;
 	double dailyPL_;
 	double mornOvernightBP_;

@@ -1,10 +1,6 @@
 #ifndef QuotesManager_h
 #define QuotesManager_h
 
-#ifndef stdafx_h
-#include "stdafx.h"
-#endif
-
 #ifndef string_h
 #include <string>
 #define string_h
@@ -27,29 +23,30 @@
 
 class MBQuotes_i;
 class StockWatch;
+class IQuotes;
 
 class QuotesManager
 {
 public:
     static QuotesManager * instance();
-    static QuotesManager * createInstance(IMbtQuotesPtr pQuotes, 
+    static QuotesManager * createInstance(IQuotes * pQuotes,
                                           MBQuotes_i * quotesCB);
     static void removeInstance();
 	bool addSymbols(std::vector<std::string> quotesList);
     
-    // IMbtQuotesNotify callbacks required by CMbtQuotesNotify sink
-    HRESULT OnQuoteData(QUOTERECORD* pRec);
-    HRESULT OnLevel2Data(LEVEL2RECORD* pRec);
-    HRESULT OnTSData(TSRECORD* pRec);
-    HRESULT OnOptionsData(OPTIONSRECORD* pRec);
+    // FIX Type data
+    bool OnQuoteData(std::string pRec);
+    bool OnLevel2Data(std::string pRec);
+    bool OnTSData(std::string pRec);
+    bool OnOptionsData(std::string pRec);
     
-	static HANDLE hMutex; 
+	// TODO static mutex hMutex;
 private:
-    QuotesManager(IMbtQuotesPtr pQuotes, 
+    QuotesManager(IQuotes * pQuotes,
                   MBQuotes_i *quotesCB);
      ~QuotesManager();
    
-    IMbtQuotesPtr pQuotes_;	
+    IQuotes * pQuotes_;
     MBQuotes_i * quotes_;
     
     static QuotesManager *instance_;

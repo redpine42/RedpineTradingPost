@@ -29,7 +29,10 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1808037456" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1213964267" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1804228770" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceStubs}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.427869272" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -86,6 +89,8 @@
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.1267063524" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1839686862" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceStubs}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.92142908" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

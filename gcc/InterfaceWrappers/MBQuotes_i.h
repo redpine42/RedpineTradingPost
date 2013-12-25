@@ -4,14 +4,6 @@
 #ifndef MBQuotes_ih
 #define MBQuotes_ih
 
-#if _MSC_VER > 1000
-#pragma once
-#endif // _MSC_VER > 1000
-
-#ifndef stdafx_h
-#include "stdafx.h"
-#endif
-
 #ifndef string_h
 #include <string>
 #define string_h

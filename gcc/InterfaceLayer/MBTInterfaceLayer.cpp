@@ -1,7 +1,6 @@
 // MBTInterfaceLayer.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "TradeManager.h"
 #include "QuotesManager.h"
 #include "CandleManager.h"
@@ -10,11 +9,12 @@
 #include "OrderMessageHandler.h"
 #include "CreateOrderConsumer.h"
 #include "CancelOrderConsumer.h"
+#include <decaf/lang/Thread.h>
 
 #include <string>
 #include <vector>
 
-int _tmain(int argc, _TCHAR* argv[])
+int  main(int argc, char* argv[])
 {
 //	ShowWindow( GetConsoleWindow(), SW_HIDE );
 	TradeManager::instance();
@@ -52,7 +52,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	while(!QuotesManager::instance()->addSymbols(symbols))
 	{
 		std::cerr << "Can't set up quotes!!!" << std::endl;
-		Sleep(10000);
+		sleep(10000);
 	}
 	CandleManager::instance()->getCandleData(symbols);
 //	CandleHistMaker::instance()->getCandleHistory(symbols);
@@ -70,16 +70,9 @@ int _tmain(int argc, _TCHAR* argv[])
     Thread cancelOrderConsumerThread( &cancelOrderConsumer );
     cancelOrderConsumerThread.start();
 	cancelOrderConsumer.waitUntilReady();
-	cancelOrderConsumerThread.run();
-	createOrderConsumerThread.run();
+	cancelOrderConsumerThread.join();
+	createOrderConsumerThread.join();
 
-
-	MSG msg;
-	while( GetMessage( &msg, NULL, 0, 0 ) )
-	{
-		TranslateMessage( &msg );
-		DispatchMessage( &msg );
-	}
 	MsgProducer::removeInstance();
 	return 0;
 }

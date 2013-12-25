@@ -8,10 +8,13 @@ class CComSink;
 class COrderSink;
 class CHistSink;
 
-#ifndef map_h
+class IHistMgr;
+class IPositions;
+class MBQuotes_i;
+class IComMgr;
+class IOrderClient;
+
 #include <map>
-#define map_h
-#endif
 
 
 class TradeManager
@@ -26,22 +29,22 @@ private:
     TradeManager();
     ~TradeManager();
     static TradeManager * instance_;
-	IMbtOrderClientPtr m_pOrders;
-	IMbtHistMgrPtr m_pHistMgr;
-	IMbtPositionsPtr m_pPositions;
+	IOrderClient* m_pOrders;
+	IHistMgr * m_pHistMgr;
+	IPositions * m_pPositions;
     MBQuotes_i * quotes_;
-    IMbtComMgrPtr m_pComMgr;
+    IComMgr * m_pComMgr;
 
     OrderManager * orderManager_;
     AccountManager * accountManager_;
 
-	LPUNKNOWN pUnk;
+	// TODO LPUNKNOWN pUnk;
 
 	CComSink*  m_pComSink;
 	COrderSink* m_pSink;
 	CHistSink * m_pHistSink;
-	DWORD m_dwCookie;
-	DWORD m_dwhCookie;
+	double m_dwCookie;
+	double m_dwhCookie;
 
 	bool bOLEinited_;
 };

@@ -10,6 +10,10 @@
 #define string_h
 #endif
 
+#ifndef IHistMinBar_h
+#include "IHistMinBar.h"
+#endif
+
 struct HistQuery
 {
 	double timeStart_;
@@ -17,7 +21,7 @@ struct HistQuery
 	std::string symbol_;
 	CandleData::CandleTimeType timeType_;
 
-	IMbtHistMinBarPtr hist_;
+	IHistMinBar * hist_;
 	HistoryObserver * observer_;
 	int numCandles_;
 	long requestId_;
@@ -34,3 +38,5 @@ struct HistQuery
 	{}
 };
 #endif
+
+

@@ -1,12 +1,16 @@
+#include "IAccount.h"
+
 #include "AccountManager.h"
 #include "OrderManager.h"
 #include "TradeManager.h"
 #include "MsgProducer.h"
+#include "IOrderClient.h"
+#include "IAccounts.h"
 
 AccountManager * AccountManager::instance_ = 0;
 
 
-AccountManager * AccountManager::createInstance(IMbtOrderClientPtr orders)
+AccountManager * AccountManager::createInstance(IOrderClient * orders)
 {
 	if(0 == instance_)
 	{
@@ -30,10 +34,11 @@ AccountManager * AccountManager::instance()
     return instance_;
 }
 
-AccountManager::AccountManager(IMbtOrderClientPtr orderClient)
+AccountManager::AccountManager(IOrderClient * orderClient)
     : myAccount_(0),
-	  mornOvernightBP_(0.0),
-	  BP_(0.0)
+	  BP_(0.0),
+	  mornOvernightBP_(0.0)
+
 {
 	getDefaultAccount(orderClient);
 
@@ -57,7 +62,7 @@ AccountManager::AccountManager(IMbtOrderClientPtr orderClient)
 		ConfigurationData::instance()->equityAcct(true);
 	}
 */
-		mornOvernightBP_ = myAccount_->CurrentEquity * myAccount_->MMRMultiplier;
+		mornOvernightBP_ = myAccount_->currentEquity() * myAccount_->MMRMultiplier();
 		BP_ = mornOvernightBP_;
 	}
 }
@@ -68,7 +73,7 @@ AccountManager::~AccountManager()
 }
 
 
-IMbtAccountPtr AccountManager::getAccount()
+IAccount* AccountManager::getAccount()
 {
 	if(0 == myAccount_)
 	{
@@ -85,7 +90,7 @@ void AccountManager::updateBP(double BP,  double profitLoss)
 
 double AccountManager::getEquity()
 {
-	return myAccount_->CurrentEquity;
+	return myAccount_->currentEquity();
 }
 
 bool AccountManager::checkAccountStatus()
@@ -95,34 +100,35 @@ bool AccountManager::checkAccountStatus()
 	{
 		getDefaultAccount(OrderManager::instance()->orderClient());
 	}
-	if(myAccount_->State == asLoaded)
+	AccountState accountState = myAccount_->accountState();
+	if(accountState == asLoaded)
 	{
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, "Account Status Ok");
 		return true;
 	}
-	else if(myAccount_->State == asUnloaded)
+	else if(accountState == asUnloaded)
 	{
-		myAccount_->Load();
+		myAccount_->load();
 
 		std::string msg = "MBTAccount is not loaded.  Attempting to load account.";
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, msg);
 		status = false;
 	}
-	else if(myAccount_->State == asLoading)
+	else if(accountState == asLoading)
 	{
 		std::string msg = "MBTAccount is loading.";
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, msg);
 		status = false;
 	}
-	else if(myAccount_->State == asReloading)
+	else if(accountState == asReloading)
 	{
 		std::string msg = "MBTAccount is reloading.";
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, msg);
 		status = false;
 	}
-	else if(myAccount_->State == asUnavailable)
+	else if(accountState == asUnavailable)
 	{
-		myAccount_->Load();
+		myAccount_->load();
 
 		std::string msg = "MBTAccount is not loaded(Unavailable).  Will attempt to Load at next check!";
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, msg);
@@ -131,43 +137,39 @@ bool AccountManager::checkAccountStatus()
 	int cnt = 0;
 	while(cnt < 20)
 	{
-		if(myAccount_->State == asLoaded)
+		if(accountState == asLoaded)
 		{
 			status = true;
 			break;
 		}
 		++cnt;
-		DWORD waitTime = 1000;
-		Sleep(waitTime);
+		sleep(1000);
 	}
 	return status;
 }
 
-void AccountManager::getDefaultAccount(IMbtOrderClientPtr orderClient)
+void AccountManager::getDefaultAccount(IOrderClient* orderClient)
 {
 	if( orderClient == NULL )
     {
 		std::string msg = "Could not set OrderClient ! ";
-		msg += MB_ICONINFORMATION;
 		MsgProducer::instance()->sendTextMessage(CornerTurnConst::Error, CornerTurnConst::ACCOUNTMANAGER, msg);
     }
     else
     {
-        CString sMsg;
-
-        orderClient->SilentMode = false;
+// TODO:        orderClient->SilentMode = false;
         
-        IMbtAccountsPtr m_pAccounts = orderClient->Accounts;
-		m_pAccounts->LoadAll();
-        int iCount = m_pAccounts->Count;
+        IAccounts * m_pAccounts = orderClient->accounts();
+		m_pAccounts->loadAll();
+        int iCount = m_pAccounts->numAccounts();
         if(iCount > 0)
         {
-            myAccount_ = m_pAccounts->Item[0];
+            myAccount_ = m_pAccounts->getAccount(0);
 			MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, "First Account Loaded");
         }
         try
 		{
-			myAccount_->Load();
+			myAccount_->load();
 			MsgProducer::instance()->sendTextMessage(CornerTurnConst::Info, CornerTurnConst::ACCOUNTMANAGER, "No Accounts, trying Default Account");
 		}
 		catch(...)

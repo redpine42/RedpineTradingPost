@@ -3,13 +3,12 @@
 
 class HistoryObserver;
 
-#ifndef stdafx_h
-#include "stdafx.h"
-#define stdafx_h
-#endif
 
 class CHistSink;
 struct HistQuery;
+
+class IComMgr;
+class ItHistMgr;
 
 #ifndef CandleData_h
 #include "CandleData.h"
@@ -34,22 +33,22 @@ struct HistQuery;
 class CandleManager
 {
 public:
-	static CandleManager * createInstance(IMbtComMgrPtr pComMgr);
+	static CandleManager * createInstance(IComMgr * pComMgr);
 	static CandleManager * instance();
 
 	void getCandleData(std::vector<std::string> & symbols);
 	unsigned long getHist(HistQuery * request);
-	void finishHist(unsigned long requestId, DATE lastDate, int numCandles);
+	void finishHist(unsigned long requestId, std::string lastDate, int numCandles);
 
 	void addCandle(CandleData & data, long requestId);
 
 
 private:
 	static CandleManager * instance_;
-	CandleManager(IMbtComMgrPtr pComMgr);
+	CandleManager(IComMgr * pComMgr);
 
 	CHistSink* histSink_;
-	IMbtHistMgrPtr histMgr_;
+	ItHistMgr * histMgr_;
 
 	typedef std::map<int, HistQuery*> HistMap;
 	typedef HistMap::iterator HistIter;
