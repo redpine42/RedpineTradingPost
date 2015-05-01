@@ -26,7 +26,7 @@
 								<option id="gnu.cpp.compiler.option.include.paths.2062821075" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Util}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
+									<listOptionValue builtIn="false" value="/usr/include/activemq-cpp-3.8.2"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.759743962" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -48,6 +48,7 @@
 									<listOptionValue builtIn="false" value="/usr/lib64/bind"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Util/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/lib"/>
+									<listOptionValue builtIn="false" value="/usr/lib64"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1320335088" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

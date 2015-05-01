@@ -5,11 +5,10 @@
 #include "HistQuery.h"
 #include "CandleData.h"
 #include "MsgProducer.h"
-#include <windows.h>
 
 CandleManager * CandleManager::instance_ = 0;
 
-CandleManager * CandleManager::createInstance(IMbtComMgrPtr pComMgr)
+CandleManager * CandleManager::createInstance(IComMgr * pComMgr)
 {
 	if(0 == instance_)
 	{
@@ -28,7 +27,7 @@ CandleManager * CandleManager::instance()
 	return instance_;
 }
 
-CandleManager::CandleManager(IMbtComMgrPtr pComMgr)
+CandleManager::CandleManager(IComMgr * pComMgr)
 {
 	DWORD cookie;
 	histSink_ = new CHistSink();
