@@ -21,7 +21,13 @@
 			<version>2.5</version>
 		</dependency>
 
-        <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
+	 <dependency>
+    	<groupId>kpavlov.fixio</groupId>
+    	<artifactId>core</artifactId>
+    	<version>1.1-SNAPSHOT</version>
+	</dependency>
+	
+       <!-- Hibernate uses slf4j for logging, for our purposes here use the simple backend -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
