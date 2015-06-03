@@ -29,8 +29,8 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.80481455" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.532010945" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.528943263" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/include/activemq-cpp-3.8.2"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.pic.259023844" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.673954960" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -89,7 +89,6 @@
 								<option id="gnu.cpp.compiler.option.include.paths.1520603262" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
-									<listOptionValue builtIn="false" value="/usr/include/activemq-cpp-3.8.2"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.127827146" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>

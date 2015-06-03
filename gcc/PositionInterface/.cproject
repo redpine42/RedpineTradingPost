@@ -30,10 +30,10 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1833313665" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1524014454" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Strategy}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Util}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/include/activemq-cpp-3.8.2"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.pic.1709023220" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.601390680" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -91,10 +91,10 @@
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.760207595" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.9759556" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Strategy}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Util}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/include/activemq-cpp-3.8.2"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.other.pic.1759174698" name="Position Independent Code (-fPIC)" superClass="gnu.cpp.compiler.option.other.pic" value="true" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.475702445" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>

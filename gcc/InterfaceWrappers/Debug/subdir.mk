@@ -35,7 +35,7 @@ CPP_DEPS += \
 %.o: ../%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/home/dbrown/workspace/git/RedpineTradingPost/gcc/InterfaceStubs" -I"/home/dbrown/workspace/git/RedpineTradingPost/gcc/DataTypes" -I"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn" -I/usr/include/activemq-cpp-3.8.2 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	g++ -I"/home/dbrown/workspace/git/RedpineTradingPost/gcc/InterfaceStubs" -I"/home/dbrown/workspace/git/RedpineTradingPost/gcc/DataTypes" -I"/home/dbrown/workspace/git/RedpineTradingPost/gcc/CornerTurn" -I/usr/local/include/activemq-cpp-3.8.1 -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

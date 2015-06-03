@@ -32,7 +32,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/InterfaceStubs}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DataTypes}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CornerTurn}&quot;"/>
-									<listOptionValue builtIn="false" value="/usr/include/activemq-cpp-3.8.2"/>
+									<listOptionValue builtIn="false" value="/usr/local/include/activemq-cpp-3.8.1"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.427869272" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
