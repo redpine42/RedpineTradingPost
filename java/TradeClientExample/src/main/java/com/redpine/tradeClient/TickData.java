@@ -1,4 +1,4 @@
-package com.redpine.TradeClient;
+package com.redpine.tradeClient;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -26,28 +26,51 @@ import com.redpine.TradeMessageConsumer.L1Data;
 import com.redpine.TradeMessageConsumer.L1DataObserver;
 import com.redpine.TradeMessageConsumer.TradeMessageConsumer;
 
+/**
+ * @author dbrown
+ *
+ */
 public class TickData extends JFrame implements ActionListener, L1DataObserver
 {
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
-    private ArrayBlockingQueue<Double> queue;
-    private int maxQueueSize = 1000;
-    private String symbol;
-    private JFreeChart chart = null;
+
+    /**
+     * 
+     */
+    private final ArrayBlockingQueue<Double> queue;
+
+    /**
+     * 
+     */
+    private final static int maxQueueSize = 1000;
+
+    /**
+     * 
+     */
+    private static String symbol;
+
+    /**
+     * 
+     */
+    private static JFreeChart chart = null;
     
+    /**
+     * 
+     */
     public TickData()
     {
-	super("Tick Data");
+    	super("Tick Data");
 	
-	queue = new ArrayBlockingQueue<Double>(maxQueueSize);
+    	queue = new ArrayBlockingQueue<Double>(maxQueueSize);
 
-	GridBagConstraints c = new GridBagConstraints();
-	getContentPane().setLayout(new GridBagLayout());
+    	final GridBagConstraints constraint = new GridBagConstraints();
+    	getContentPane().setLayout(new GridBagLayout());
 	
-	String[] symbols = Configuration.getInstance().getSymbols();
-        JComboBox symbolList = new JComboBox(symbols);
+    	String[] symbols = Configuration.getInstance().getSymbols();
+        JComboBox<String> symbolList = new JComboBox<String>(symbols);
         symbolList.setSelectedIndex(0);
         symbolList.addActionListener(this);
         symbolList.setSize(100, 100);
@@ -56,25 +79,25 @@ public class TickData extends JFrame implements ActionListener, L1DataObserver
         pane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         pane.add(symbolList);
         
-	c.fill = GridBagConstraints.HORIZONTAL;
-	c.gridx = 0;
-	c.gridy = 0;
+        constraint.fill = GridBagConstraints.HORIZONTAL;
+        constraint.gridx = 0;
+        constraint.gridy = 0;
 
         //Lay out the demo.
-        add(pane, c);
+        add(pane, constraint);
 
         ChartPanel chartPanel = (ChartPanel) createDemoPanel();
         chartPanel.setPreferredSize(new java.awt.Dimension(1900, 500));
-	c.fill = GridBagConstraints.CENTER;
-	c.gridx = 0;
-	c.gridy = 1;
+        constraint.fill = GridBagConstraints.CENTER;
+        constraint.gridx = 0;
+        constraint.gridy = 1;
 
-       add(chartPanel, c);
+        add(chartPanel, constraint);
 
         
         // Display the window.
-	pack();
-	setVisible(true);
+        pack();
+        setVisible(true);
     }
     
     /** Listens to the combo box. */

@@ -1,4 +1,4 @@
-package com.redpine.TradeClient;
+package com.redpine.tradeClient;
 
 public class Configuration
 {

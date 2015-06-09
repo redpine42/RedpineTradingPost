@@ -1,4 +1,4 @@
-package com.redpine.TradeClient;
+package com.redpine.tradeClient;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
