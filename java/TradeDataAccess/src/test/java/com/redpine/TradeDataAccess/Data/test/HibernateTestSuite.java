@@ -28,7 +28,7 @@ public class HibernateTestSuite {
 	    public static ExternalResource testRule = new ExternalResource(){
 	        @Override
 	        protected void before() throws Throwable{
-	        	logger.info("Inside RuleSuite::ExternalResource::before.");
+	        	logger.info("Create Hibernate Util (Session Factory)");
 	            util = new HibernateUtil();
 	        };
 

@@ -5,6 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <runSuite>**/HibernateTestSuite.class</runSuite>
   </properties>
   
   <dependencies>
@@ -61,6 +62,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.18.1</version>
         <configuration>
+          <includes>
+              <include>${runSuite}</include>
+          </includes>
           <parallel>methods</parallel>
           <threadCount>10</threadCount>
         </configuration>
