@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.redpine.TradeDataAccess.Data;
+package com.redpine.TradeDataAccess.Data.test;
 
 import static org.junit.Assert.*;
 
