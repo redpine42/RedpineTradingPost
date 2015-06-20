@@ -5,7 +5,9 @@ package com.redpine.TradeDataAccess.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -35,6 +37,15 @@ public class Timesalesdata implements java.io.Serializable {
 	public Timesalesdata() {
 	}
 
+	/**
+	 * @param symbol
+	 * @param sizeVal
+	 * @param price
+	 * @param timeVal
+	 * @param jdate
+	 * @param tsstatus
+	 * @param tstype
+	 */
 	public Timesalesdata(String symbol, int sizeVal, double price, int timeVal,
 			int jdate, int tsstatus, int tstype) {
 		this.symbol = symbol;
@@ -46,6 +57,9 @@ public class Timesalesdata implements java.io.Serializable {
 		this.tstype = tstype;
 	}
 
+	/**
+	 * @return
+	 */
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "seq", unique = true, nullable = false)
@@ -53,79 +67,135 @@ public class Timesalesdata implements java.io.Serializable {
 		return this.seq;
 	}
 
-	public void setSeq(Integer seq) {
+	/**
+	 * @param seq
+	 */
+	@SuppressWarnings("unused")
+	private void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "timeStamp", precision = 22, scale = 0)
 	public Double getTimeStamp() {
 		return this.timeStamp;
 	}
 
+	/**
+	 * @param timeStamp
+	 */
 	public void setTimeStamp(Double timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "symbol", nullable = false, length = 7)
 	public String getSymbol() {
 		return this.symbol;
 	}
 
-	public void setSymbol(String symbol) {
+	/**
+	 * @param symbol
+	 */
+	@SuppressWarnings("unused")
+	private void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "sizeVal", nullable = false)
 	public int getSizeVal() {
 		return this.sizeVal;
 	}
 
-	public void setSizeVal(int sizeVal) {
+	/**
+	 * @param sizeVal
+	 */
+	@SuppressWarnings("unused")
+	private void setSizeVal(int sizeVal) {
 		this.sizeVal = sizeVal;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "price", nullable = false, precision = 22, scale = 0)
 	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(double price) {
+	@SuppressWarnings("unused")
+	private void setPrice(double price) {
 		this.price = price;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "timeVal", nullable = false)
 	public int getTimeVal() {
 		return this.timeVal;
 	}
 
-	public void setTimeVal(int timeVal) {
+	/**
+	 * @param timeVal
+	 */
+	@SuppressWarnings("unused")
+	private void setTimeVal(int timeVal) {
 		this.timeVal = timeVal;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "jdate", nullable = false)
 	public int getJdate() {
 		return this.jdate;
 	}
 
-	public void setJdate(int jdate) {
+	/**
+	 * @param jdate
+	 */
+	@SuppressWarnings("unused")
+	private void setJdate(int jdate) {
 		this.jdate = jdate;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "tsstatus", nullable = false)
 	public int getTsstatus() {
 		return this.tsstatus;
 	}
 
-	public void setTsstatus(int tsstatus) {
+	/**
+	 * @param tsstatus
+	 */
+	@SuppressWarnings("unused")
+	private void setTsstatus(int tsstatus) {
 		this.tsstatus = tsstatus;
 	}
 
+	/**
+	 * @return
+	 */
 	@Column(name = "tstype", nullable = false)
 	public int getTstype() {
 		return this.tstype;
 	}
 
-	public void setTstype(int tstype) {
+	/**
+	 * @param tstype
+	 */
+	@SuppressWarnings("unused")
+	private void setTstype(int tstype) {
 		this.tstype = tstype;
 	}
 

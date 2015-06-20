@@ -3,10 +3,12 @@ package com.redpine.TradeDataAccess.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Version;
+
 
 
 /**
@@ -78,7 +80,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param seq
 	 */
-	public void setSeq(Integer seq) {
+	@SuppressWarnings("unused")
+	private void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 
@@ -112,7 +115,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param symbol
 	 */
-	public void setSymbol(String symbol) {
+	@SuppressWarnings("unused")
+	private void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
 
@@ -129,7 +133,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param mmid
 	 */
-	public void setMmid(String mmid) {
+	@SuppressWarnings("unused")
+	private void setMmid(String mmid) {
 		this.mmid = mmid;
 	}
 
@@ -146,7 +151,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param source
 	 */
-	public void setSource(String source) {
+	@SuppressWarnings("unused")
+	private void setSource(String source) {
 		this.source = source;
 	}
 
@@ -163,7 +169,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param marketside
 	 */
-	public void setMarketside(byte marketside) {
+	@SuppressWarnings("unused")
+	private void setMarketside(byte marketside) {
 		this.marketside = marketside;
 	}
 
@@ -180,7 +187,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param price
 	 */
-	public void setPrice(double price) {
+	@SuppressWarnings("unused")
+	private void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -197,7 +205,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param size
 	 */
-	public void setSize(int size) {
+	@SuppressWarnings("unused")
+	private void setSize(int size) {
 		this.size = size;
 	}
 
@@ -214,7 +223,8 @@ public class L2data implements java.io.Serializable {
 	/**
 	 * @param jdate
 	 */
-	public void setJdate(int jdate) {
+	@SuppressWarnings("unused")
+	private void setJdate(int jdate) {
 		this.jdate = jdate;
 	}
 
@@ -226,7 +236,11 @@ public class L2data implements java.io.Serializable {
 		return this.time;
 	}
 
-	public void setTime(int time) {
+	/**
+	 * @param time
+	 */
+	@SuppressWarnings("unused")
+	private void setTime(int time) {
 		this.time = time;
 	}
 

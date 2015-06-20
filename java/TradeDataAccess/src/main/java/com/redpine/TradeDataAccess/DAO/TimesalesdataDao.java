@@ -2,15 +2,13 @@ package com.redpine.TradeDataAccess.DAO;
 
 import com.redpine.TradeDataAccess.model.Timesalesdata;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.mapping.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,7 +90,6 @@ public class TimesalesdataDao {
 	      public void update(Timesalesdata entity) {
 	          getCurrentSession().update(entity);
 	      }
-
 
 	      public Timesalesdata findById(Integer id) {
 	    	  Timesalesdata tsData = null;

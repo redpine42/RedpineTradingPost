@@ -18,54 +18,54 @@ public class TimesalesdataTest {
 	static final Logger logger = LoggerFactory
 			.getLogger(TimesalesdataTest.class);
 
-	private static Integer tSeq = 0;
-	private static Double tTimeStamp = 67435.5;
-	private static String tSymbol = "TEST";
-	private static int tSizeVal = 1234567;
-	private static double tPrice = 123.45;
-	private static int tTimeVal = 82828;
-	private static int tJdate = 2014199;
-	private static int tTsstatus = 0;
-	private static int tTstype = 2;
+	private static Integer seq = 0;
+	private static Double timeStamp = 67435.5;
+	private static String symbol = "TEST";
+	private static int sizeVal = 1234567;
+	private static double price = 123.45;
+	private static int timeVal = 82828;
+	private static int jdate = 2014199;
+	private static int tsstatus = 0;
+	private static int tstype = 2;
 
 	private static TimesalesdataDao tsDao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		Timesalesdata data = new Timesalesdata(tSymbol, tSizeVal, tPrice,
-				tTimeVal, tJdate, tTsstatus, tTstype);
-		data.setTimeStamp(tTimeStamp);
+		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
+				timeVal, jdate, tsstatus, tstype);
+		data.setTimeStamp(timeStamp);
 		tsDao = new TimesalesdataDao();
 		Session session = tsDao.openCurrentSession();
 		Transaction transaction = session.beginTransaction();
 		tsDao.persist(data);
 		transaction.commit();
 
-		tSeq = data.getSeq();
+		seq = data.getSeq();
 
-		logger.info("Finish setUpBeforeClass. seq = " + tSeq.toString());
+		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		Session session = tsDao.getCurrentSession();
 		Transaction transaction = session.beginTransaction();
-		Timesalesdata entity = tsDao.findById(tSeq);
+		Timesalesdata entity = tsDao.findById(seq);
 		tsDao.delete(entity);
 		transaction.commit();
 		session.close();
-		logger.info("Finish setUpAfterClass. seq = " + tSeq.toString());
+		logger.info("Finish setUpAfterClass. seq = " + seq.toString());
 	}
 
 	@Test
 	public void testGetSeq() {
 		logger.info("Enter TimesalesdataTest.testGetSeq");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tSeq != tsData.getSeq()) {
+		} else if (seq != tsData.getSeq()) {
 			fail("Timesalesdata.seq data doesn't match.");
 		}
 	}
@@ -74,74 +74,49 @@ public class TimesalesdataTest {
 	public void testGetTimeStamp() {
 		logger.info("Enter TimesalesdataTest.testGetTimeStamp");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tTimeStamp != tsData.getTimeStamp()) {
+		} else if (timeStamp != tsData.getTimeStamp()) {
 			fail("Timesalesdata.TimeStamp data doesn't match.");
 		}
 	}
-
+	
 	@Test
 	public void testSetTimeStamp() {
 		logger.info("Enter TimesalesdataTest.testSetTimeStamp");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
 		} else {
-			++tTimeStamp;
-			tsData.setTimeStamp(tTimeStamp);
+			++timeStamp;
+			tsData.setTimeStamp(timeStamp);
 			Session session = tsDao.getCurrentSession();
 			Transaction transaction = session.beginTransaction();
 			tsDao.update(tsData);
 			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
+			Timesalesdata updatedData = tsDao.findById(seq);
+
 			if (null == updatedData) {
 				fail("Data not retrieved.");
-			} else if (tTimeStamp != updatedData.getTimeStamp()) {
-				fail("Timesalesdata.TimeStamp data doesn't match.");
+			} else if (timeStamp != tsData.getTimeStamp()) {
+				fail("Timesalesdata.timestamp data doesn't match.");
 			}
 		}
 	}
-
 	@Test
 	public void testGetSymbol() {
 		logger.info("Enter TimesalesdataTest.testGetSymbol");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tSymbol != tsData.getSymbol()) {
+		} else if (symbol != tsData.getSymbol()) {
 			fail("Timesalesdata.Symbol data doesn't match.");
-		}
-	}
-
-	@Test
-	public void testSetSymbol() {
-		logger.info("Enter TimesalesdataTest.testGetSizeVal");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			tSymbol = "TEST1";
-			tsData.setSymbol(tSymbol);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tSymbol != tsData.getSymbol()) {
-				fail("Timesalesdata.Symbol data doesn't match.");
-			}
 		}
 	}
 
@@ -149,37 +124,12 @@ public class TimesalesdataTest {
 	public void testGetSizeVal() {
 		logger.info("Enter TimesalesdataTest.testGetSizeVal");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tSizeVal != tsData.getSizeVal()) {
+		} else if (sizeVal != tsData.getSizeVal()) {
 			fail("Timesalesdata.sizeVal data doesn't match.");
-		}
-	}
-
-	@Test
-	public void testSetSizeVal() {
-		logger.info("Enter TimesalesdataTest.testSetSizeVal");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++tSizeVal;
-			tsData.setSizeVal(tSizeVal);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tSizeVal != tsData.getSizeVal()) {
-				fail("Timesalesdata.sizeVal data doesn't match.");
-			}
 		}
 	}
 
@@ -187,37 +137,12 @@ public class TimesalesdataTest {
 	public void testGetPrice() {
 		logger.info("Enter TimesalesdataTest.testGetPrice");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tPrice != tsData.getPrice()) {
+		} else if (price != tsData.getPrice()) {
 			fail("Timesalesdata.price data doesn't match.");
-		}
-	}
-
-	@Test
-	public void testSetPrice() {
-		logger.info("Enter TimesalesdataTest.testSetPrice");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++tPrice;
-			tsData.setPrice(tPrice);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tPrice != tsData.getPrice()) {
-				fail("Timesalesdata.price data doesn't match.");
-			}
 		}
 	}
 
@@ -225,37 +150,12 @@ public class TimesalesdataTest {
 	public void testGetTimeVal() {
 		logger.info("Enter TimesalesdataTest.testGetTimeVal");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tTimeVal != tsData.getTimeVal()) {
+		} else if (timeVal != tsData.getTimeVal()) {
 			fail("Timesalesdata.timeVal data doesn't match.");
-		}
-	}
-
-	@Test
-	public void testSetTimeVal() {
-		logger.info("Enter TimesalesdataTest.testSetTimeVal");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++tTimeVal;
-			tsData.setTimeVal(tTimeVal);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tTimeVal != tsData.getTimeVal()) {
-				fail("Timesalesdata.timeVal data doesn't match.");
-			}
 		}
 	}
 
@@ -263,37 +163,12 @@ public class TimesalesdataTest {
 	public void testGetJdate() {
 		logger.info("Enter TimesalesdataTest.testGetJdate");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tJdate != tsData.getJdate()) {
+		} else if (jdate != tsData.getJdate()) {
 			fail("Timesalesdata.jdate data doesn't match.");
-		}
-	}
-
-	@Test
-	public void testSetJdate() {
-		logger.info("Enter TimesalesdataTest.testSetJdate");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++tJdate;
-			tsData.setJdate(tJdate);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tJdate != tsData.getJdate()) {
-				fail("Timesalesdata.jdate data doesn't match.");
-			}
 		}
 	}
 
@@ -301,75 +176,26 @@ public class TimesalesdataTest {
 	public void testGetTsstatus() {
 		logger.info("Enter TimesalesdataTest.testGetTsstatus");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tTsstatus != tsData.getTsstatus()) {
+		} else if (tsstatus != tsData.getTsstatus()) {
 			fail("Timesalesdata.tsstatus data doesn't match.");
 		}
 	}
 
-	@Test
-	public void testSetTsstatus() {
-		logger.info("Enter TimesalesdataTest.testSetTsstatus");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++tTsstatus;
-			tsData.setTsstatus(tTsstatus);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tTsstatus != tsData.getTsstatus()) {
-				fail("Timesalesdata.tsstatus data doesn't match.");
-			}
-		}
-	}
 
 	@Test
 	public void testGetTstype() {
 		logger.info("Enter TimesalesdataTest.testGetTstype");
 
-		Timesalesdata tsData = tsDao.findById(tSeq);
+		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (tTstype != tsData.getTstype()) {
+		} else if (tstype != tsData.getTstype()) {
 			fail("Timesalesdata.tstype data doesn't match.");
-		}
-	}
-
-	@Test
-	public void testSetTstype() {
-		logger.info("Enter TimesalesdataTest.testSetTstype");
-
-		Timesalesdata tsData = tsDao.findById(tSeq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++tTstype;
-			tsData.setTstype(tTstype);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(tSeq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (tTstype != tsData.getTstype()) {
-				fail("Timesalesdata.tstype data doesn't match.");
-			}
 		}
 	}
 }

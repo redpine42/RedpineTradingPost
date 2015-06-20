@@ -5,76 +5,118 @@ package com.redpine.TradeDataAccess.model.test;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.redpine.TradeDataAccess.DAO.L1dataDao;
+import com.redpine.TradeDataAccess.model.L1data;
 
 /**
  * @author dbrown
  *
  */
 public class L1dataTest {
+	
+	static final Logger logger = LoggerFactory.getLogger(L1dataTest.class);
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
+	private static Integer seq = 0;
+	private static double timeStamp = 67435.5;
+	private static String symbol = "TEST";
+	private static int size = 100000;
+	private static double price = 123.45;
+	private static int time = 82828;
+	private static int jdate = 2014199;
+	private static double bid = 123.44;
+	private static double ask = 123.45;
+	private static int bidsize = 100;
+	private static int asksize = 200;
+	private static int volume = 500;
+	
+	
+	private static L1dataDao l1Dao;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		L1data data = new L1data(symbol, size, price, time, jdate,
+				bid, ask, bidsize, asksize, volume);
+		data.setTimeStamp(timeStamp);
+		l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		l1Dao.persist(data);
+		transaction.commit();
+
+		seq = data.getSeq();
+
+		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		Session session = l1Dao.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		L1data entity = l1Dao.findById(seq);
+		l1Dao.delete(entity);
+		transaction.commit();
+		session.close();
+		logger.info("Finish setUpAfterClass. seq = " + seq.toString());
 	}
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#L1data()}.
-	 */
-	@Test
-	public void testL1data() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#L1data(java.lang.String, int, double, int, int, double, double, int, int, int)}.
-	 */
-	@Test
-	public void testL1dataStringIntDoubleIntIntDoubleDoubleIntIntInt() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getSeq()}.
-	 */
 	@Test
 	public void testGetSeq() {
-		fail("Not yet implemented");
+		logger.info("Enter L1dataTest.testGetSeq");
+
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (seq != l1Data.getSeq()) {
+			fail("L1dataTest.seq data doesn't match.");
+		}
 	}
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setSeq(java.lang.Integer)}.
-	 */
-	@Test
-	public void testSetSeq() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getTimeStamp()}.
-	 */
-	@Test
-	public void testGetTimeStamp() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setTimeStamp(float)}.
-	 */
 	@Test
 	public void testSetTimeStamp() {
-		fail("Not yet implemented");
+		logger.info("Enter L1dataTest.testSetTimeStamp");
+
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else {
+			++timeStamp;
+			l1Data.setTimeStamp(timeStamp);
+			Session session = l1Dao.getCurrentSession();
+			Transaction transaction = session.beginTransaction();
+			l1Dao.update(l1Data);
+			transaction.commit();
+			L1data updatedData = l1Dao.findById(seq);
+
+			if (null == updatedData) {
+				fail("Data not retrieved.");
+			} else if (timeStamp != l1Data.getTimeStamp()) {
+				fail("L2data.timestamp data doesn't match.");
+			}
+		}
+	}
+
+
+	@Test
+	public void testGetTimeStamp() {
+		logger.info("Enter L1dataTest.testGetTimeStamp");
+
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (timeStamp != l1Data.getTimeStamp()) {
+			fail("L1dataTest.timeStamp data doesn't match.");
+		}
 	}
 
 	/**
@@ -82,15 +124,15 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetSymbol() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetSymbol");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setSymbol(java.lang.String)}.
-	 */
-	@Test
-	public void testSetSymbol() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (symbol != l1Data.getSymbol()) {
+			fail("L1dataTest.symbol data doesn't match.");
+		}
 	}
 
 	/**
@@ -98,15 +140,15 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetSize() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetSize");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setSize(int)}.
-	 */
-	@Test
-	public void testSetSize() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (size != l1Data.getSize()) {
+			fail("L1dataTest.size data doesn't match.");
+		}
 	}
 
 	/**
@@ -114,31 +156,32 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetPrice() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetPrice");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setPrice(double)}.
-	 */
-	@Test
-	public void testSetPrice() {
-		fail("Not yet implemented");
-	}
+		L1data l1Data = l1Dao.findById(seq);
 
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (price != l1Data.getPrice()) {
+			fail("L1dataTest.price data doesn't match.");
+		}
+	}
+	
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getTime()}.
 	 */
 	@Test
 	public void testGetTime() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetTime");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setTime(int)}.
-	 */
-	@Test
-	public void testSetTime() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (time != l1Data.getTime()) {
+			fail("L1dataTest.time data doesn't match.");
+		}
+
 	}
 
 	/**
@@ -146,15 +189,16 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetJdate() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetJdate");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setJdate(int)}.
-	 */
-	@Test
-	public void testSetJdate() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (jdate != l1Data.getJdate()) {
+			fail("L1dataTest.jdate data doesn't match.");
+		}
+
 	}
 
 	/**
@@ -162,15 +206,16 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetBid() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetBid");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setBid(double)}.
-	 */
-	@Test
-	public void testSetBid() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (bid != l1Data.getBid()) {
+			fail("L1dataTest.bid data doesn't match.");
+		}
+
 	}
 
 	/**
@@ -178,15 +223,16 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetAsk() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetAsk");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setAsk(double)}.
-	 */
-	@Test
-	public void testSetAsk() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (ask != l1Data.getAsk()) {
+			fail("L1dataTest.ask data doesn't match.");
+		}
+
 	}
 
 	/**
@@ -194,15 +240,16 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetBidsize() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetBidsize");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setBidsize(int)}.
-	 */
-	@Test
-	public void testSetBidsize() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (bidsize != l1Data.getBidsize()) {
+			fail("L1dataTest.bidSize data doesn't match.");
+		}
+
 	}
 
 	/**
@@ -210,15 +257,16 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetAsksize() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetAsksize");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setAsksize(int)}.
-	 */
-	@Test
-	public void testSetAsksize() {
-		fail("Not yet implemented");
+		L1data l1Data = l1Dao.findById(seq);
+
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (asksize != l1Data.getAsksize()) {
+			fail("L1dataTest.askSize data doesn't match.");
+		}
+
 	}
 
 	/**
@@ -226,15 +274,15 @@ public class L1dataTest {
 	 */
 	@Test
 	public void testGetVolume() {
-		fail("Not yet implemented");
-	}
+		logger.info("Enter L1dataTest.testGetVolume");
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setVolume(int)}.
-	 */
-	@Test
-	public void testSetVolume() {
-		fail("Not yet implemented");
-	}
+		L1data l1Data = l1Dao.findById(seq);
 
+		if (null == l1Data) {
+			fail("Data not retrieved.");
+		} else if (volume != l1Data.getVolume()) {
+			fail("L1dataTest.volume data doesn't match.");
+		}
+
+	}
 }
