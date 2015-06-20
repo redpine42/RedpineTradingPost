@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.redpine.TradeDataAccess.Data.test;
+package com.redpine.TradeDataAccess.model.test;
 
 import static org.junit.Assert.*;
 
@@ -30,7 +30,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#L1data()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#L1data()}.
 	 */
 	@Test
 	public void testL1data() {
@@ -38,7 +38,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#L1data(java.lang.String, int, double, int, int, double, double, int, int, int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#L1data(java.lang.String, int, double, int, int, double, double, int, int, int)}.
 	 */
 	@Test
 	public void testL1dataStringIntDoubleIntIntDoubleDoubleIntIntInt() {
@@ -46,7 +46,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getSeq()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getSeq()}.
 	 */
 	@Test
 	public void testGetSeq() {
@@ -54,7 +54,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setSeq(java.lang.Integer)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setSeq(java.lang.Integer)}.
 	 */
 	@Test
 	public void testSetSeq() {
@@ -62,7 +62,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getTimeStamp()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getTimeStamp()}.
 	 */
 	@Test
 	public void testGetTimeStamp() {
@@ -70,7 +70,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setTimeStamp(float)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setTimeStamp(float)}.
 	 */
 	@Test
 	public void testSetTimeStamp() {
@@ -78,7 +78,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getSymbol()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getSymbol()}.
 	 */
 	@Test
 	public void testGetSymbol() {
@@ -86,7 +86,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setSymbol(java.lang.String)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setSymbol(java.lang.String)}.
 	 */
 	@Test
 	public void testSetSymbol() {
@@ -94,7 +94,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getSize()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getSize()}.
 	 */
 	@Test
 	public void testGetSize() {
@@ -102,7 +102,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setSize(int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setSize(int)}.
 	 */
 	@Test
 	public void testSetSize() {
@@ -110,7 +110,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getPrice()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getPrice()}.
 	 */
 	@Test
 	public void testGetPrice() {
@@ -118,7 +118,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setPrice(double)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setPrice(double)}.
 	 */
 	@Test
 	public void testSetPrice() {
@@ -126,7 +126,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getTime()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getTime()}.
 	 */
 	@Test
 	public void testGetTime() {
@@ -134,7 +134,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setTime(int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setTime(int)}.
 	 */
 	@Test
 	public void testSetTime() {
@@ -142,7 +142,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getJdate()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getJdate()}.
 	 */
 	@Test
 	public void testGetJdate() {
@@ -150,7 +150,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setJdate(int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setJdate(int)}.
 	 */
 	@Test
 	public void testSetJdate() {
@@ -158,7 +158,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getBid()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getBid()}.
 	 */
 	@Test
 	public void testGetBid() {
@@ -166,7 +166,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setBid(double)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setBid(double)}.
 	 */
 	@Test
 	public void testSetBid() {
@@ -174,7 +174,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getAsk()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getAsk()}.
 	 */
 	@Test
 	public void testGetAsk() {
@@ -182,7 +182,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setAsk(double)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setAsk(double)}.
 	 */
 	@Test
 	public void testSetAsk() {
@@ -190,7 +190,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getBidsize()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getBidsize()}.
 	 */
 	@Test
 	public void testGetBidsize() {
@@ -198,7 +198,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setBidsize(int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setBidsize(int)}.
 	 */
 	@Test
 	public void testSetBidsize() {
@@ -206,7 +206,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getAsksize()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getAsksize()}.
 	 */
 	@Test
 	public void testGetAsksize() {
@@ -214,7 +214,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setAsksize(int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setAsksize(int)}.
 	 */
 	@Test
 	public void testSetAsksize() {
@@ -222,7 +222,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#getVolume()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getVolume()}.
 	 */
 	@Test
 	public void testGetVolume() {
@@ -230,7 +230,7 @@ public class L1dataTest {
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.Data.L1data#setVolume(int)}.
+	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#setVolume(int)}.
 	 */
 	@Test
 	public void testSetVolume() {

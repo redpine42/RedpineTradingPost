@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.Data.test;
+package com.redpine.TradeDataAccess.model.test;
 
 import static org.junit.Assert.*;
 

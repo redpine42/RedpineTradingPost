@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.Data;
+package com.redpine.TradeDataAccess.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Version;
  *
  */
 @Entity
-@Table(name = "l2data", catalog = "backtest")
+@Table(name = "l2data")
 public class L2data implements java.io.Serializable {
 
 	/**
@@ -87,7 +87,6 @@ public class L2data implements java.io.Serializable {
 	 * 
 	 * @return double
 	 */
-	@Version
 	@Column(name = "timeStamp", nullable = false, precision = 22, scale = 0)
 	public double getTimeStamp() {
 		return this.timeStamp;

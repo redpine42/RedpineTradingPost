@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.Data;
+package com.redpine.TradeDataAccess.model;
 
 
 
@@ -8,13 +8,13 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Version;
+
 
 /**
  * 
  */
 @Entity
-@Table(name = "timesalesdata", catalog = "backtest")
+@Table(name = "timesalesdata")
 public class Timesalesdata implements java.io.Serializable {
 
 	/**
@@ -57,7 +57,6 @@ public class Timesalesdata implements java.io.Serializable {
 		this.seq = seq;
 	}
 
-	@Version
 	@Column(name = "timeStamp", precision = 22, scale = 0)
 	public Double getTimeStamp() {
 		return this.timeStamp;

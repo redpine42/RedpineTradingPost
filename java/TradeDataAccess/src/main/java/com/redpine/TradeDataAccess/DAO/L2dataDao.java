@@ -1,27 +1,28 @@
-package com.redpine.TradeDataAccess.Data;
+package com.redpine.TradeDataAccess.DAO;
 
-import com.redpine.TradeDataAccess.Data.L1data;
+import com.redpine.TradeDataAccess.model.L2data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 /**
- * DAO for class L1data.
- * @see com.redpine.TradeDataAccess.Data.L1data
+ * DAO for class L2data.
+ * @see com.redpine.TradeDataAccess.model.L2data
  * @author dbrown
  */
-public class L1dataDao {
+public class L2dataDao {
 
-	private static final Logger log = LoggerFactory.getLogger(L1dataDao.class);
+	private static final Logger log = LoggerFactory.getLogger(L2dataDao.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(L1data transientInstance) {
-		log.debug("persisting L1data instance");
+	public void persist(L2data transientInstance) {
+		log.debug("persisting L2data instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -31,8 +32,8 @@ public class L1dataDao {
 		}
 	}
 
-	public void remove(L1data persistentInstance) {
-		log.debug("removing L1data instance");
+	public void remove(L2data persistentInstance) {
+		log.debug("removing L2data instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -42,10 +43,10 @@ public class L1dataDao {
 		}
 	}
 
-	public L1data merge(L1data detachedInstance) {
-		log.debug("merging L1data instance");
+	public L2data merge(L2data detachedInstance) {
+		log.debug("merging L2data instance");
 		try {
-			L1data result = entityManager.merge(detachedInstance);
+			L2data result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -54,10 +55,10 @@ public class L1dataDao {
 		}
 	}
 
-	public L1data findById(long id) {
-		log.debug("getting L1data instance with id: " + id);
+	public L2data findById(Integer id) {
+		log.debug("getting L2data instance with id: " + id);
 		try {
-			L1data instance = entityManager.find(L1data.class, id);
+			L2data instance = entityManager.find(L2data.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

@@ -1,7 +1,9 @@
 package com.redpine.TradeDataAccess.Util;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
@@ -10,7 +12,16 @@ public class HibernateUtil {
 	    private static SessionFactory buildSessionFactory() {
 	        try {
 	            // Create the SessionFactory from hibernate.cfg.xml
-	            return new Configuration().configure().buildSessionFactory();
+	            Configuration configuration = new Configuration();
+	            configuration.configure("hibernate.cfg.xml");
+	            System.out.println("Hibernate Annotation Configuration loaded");
+	             
+	            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+	            System.out.println("Hibernate Annotation serviceRegistry created");
+	             
+	            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+	             
+	            return sessionFactory;
 	        }
 	        catch (Throwable ex) {
 	            // Make sure you log the exception, as it might be swallowed
@@ -18,6 +29,7 @@ public class HibernateUtil {
 	            throw new ExceptionInInitializerError(ex);
 	        }
 	    }
+	 
 
 	    public static SessionFactory getSessionFactory() {
 	        return sessionFactory;
