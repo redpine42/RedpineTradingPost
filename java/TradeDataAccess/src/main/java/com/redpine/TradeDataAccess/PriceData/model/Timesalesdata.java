@@ -6,12 +6,17 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.redpine.TradeDataAccess.Util.DataEnums.TickStatus;
+import com.redpine.TradeDataAccess.Util.DataEnums.TickType;
 
 
 /**
@@ -32,8 +37,8 @@ public class Timesalesdata implements java.io.Serializable {
 	private int sizeVal;
 	private double price;
 	private Timestamp recordTime;
-	private int tsstatus;
-	private int tstype;
+	private TickStatus tsstatus;
+	private TickType tstype;
 
 	public Timesalesdata() {
 	}
@@ -48,7 +53,7 @@ public class Timesalesdata implements java.io.Serializable {
 	 * @param tstype
 	 */
 	public Timesalesdata(String symbol, int sizeVal, double price, Timestamp recordTime,
-			int tsstatus, int tstype) {
+			TickStatus tsstatus, TickType tstype) {
 		this.symbol = symbol;
 		this.sizeVal = sizeVal;
 		this.price = price;
@@ -155,8 +160,9 @@ public class Timesalesdata implements java.io.Serializable {
 	/**
 	 * @return
 	 */
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "tsstatus", nullable = false)
-	public int getTsstatus() {
+	public TickStatus getTsstatus() {
 		return this.tsstatus;
 	}
 
@@ -164,15 +170,16 @@ public class Timesalesdata implements java.io.Serializable {
 	 * @param tsstatus
 	 */
 	@SuppressWarnings("unused")
-	private void setTsstatus(int tsstatus) {
+	private void setTsstatus(TickStatus tsstatus) {
 		this.tsstatus = tsstatus;
 	}
 
 	/**
 	 * @return
 	 */
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "tstype", nullable = false)
-	public int getTstype() {
+	public TickType getTstype() {
 		return this.tstype;
 	}
 
@@ -180,7 +187,7 @@ public class Timesalesdata implements java.io.Serializable {
 	 * @param tstype
 	 */
 	@SuppressWarnings("unused")
-	private void setTstype(int tstype) {
+	private void setTstype(TickType tstype) {
 		this.tstype = tstype;
 	}
 

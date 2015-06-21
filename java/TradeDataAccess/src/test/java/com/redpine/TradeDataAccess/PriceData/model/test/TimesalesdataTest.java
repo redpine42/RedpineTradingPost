@@ -5,6 +5,8 @@ import java.util.Date;
 
 import com.redpine.TradeDataAccess.PriceData.DAO.TimesalesdataDao;
 import com.redpine.TradeDataAccess.PriceData.model.Timesalesdata;
+import com.redpine.TradeDataAccess.Util.DataEnums.TickStatus;
+import com.redpine.TradeDataAccess.Util.DataEnums.TickType;
 
 import static org.junit.Assert.*;
 
@@ -26,8 +28,8 @@ public class TimesalesdataTest {
 	private static int sizeVal = 1234567;
 	private static double price = 123.45;
 	private static Timestamp recordTime = new Timestamp(new Date().getTime());
-	private static int tsstatus = 0;
-	private static int tstype = 2;
+	private static TickStatus tsstatus = TickStatus.NORMAL;
+	private static TickType tstype = TickType.ASK_TICK;
 
 	private static TimesalesdataDao tsDao;
 

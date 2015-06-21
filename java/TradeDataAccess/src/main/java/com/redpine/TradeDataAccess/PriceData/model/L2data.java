@@ -4,12 +4,16 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.redpine.TradeDataAccess.Util.DataEnums.OrderSide;
 
 
 
@@ -33,7 +37,7 @@ public class L2data implements java.io.Serializable {
 	private String symbol;
 	private String mmid;
 	private String source;
-	private byte marketside;
+	private OrderSide marketside;
 	private double price;
 	private int size;
 	private Timestamp recordTime;
@@ -53,7 +57,7 @@ public class L2data implements java.io.Serializable {
 	 * @param time
 	 * @param closed
 	 */
-	public L2data(String symbol, String mmid, String source, byte marketside,
+	public L2data(String symbol, String mmid, String source, OrderSide marketside,
 			double price, int size, Timestamp recordTime, byte closed) {
 		this.symbol = symbol;
 		this.mmid = mmid;
@@ -158,8 +162,9 @@ public class L2data implements java.io.Serializable {
 	 * 
 	 * @return byte
 	 */
+	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "marketside", nullable = false)
-	public byte getMarketside() {
+	public OrderSide getMarketside() {
 		return this.marketside;
 	}
 
@@ -167,7 +172,7 @@ public class L2data implements java.io.Serializable {
 	 * @param marketside
 	 */
 	@SuppressWarnings("unused")
-	private void setMarketside(byte marketside) {
+	private void setMarketside(OrderSide marketside) {
 		this.marketside = marketside;
 	}
 

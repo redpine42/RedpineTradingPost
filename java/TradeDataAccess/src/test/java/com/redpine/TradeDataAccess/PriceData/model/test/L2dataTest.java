@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.redpine.TradeDataAccess.PriceData.DAO.L2dataDao;
 import com.redpine.TradeDataAccess.PriceData.model.L2data;
+import com.redpine.TradeDataAccess.Util.DataEnums.OrderSide;
 
 public class L2dataTest {
 
@@ -24,7 +25,7 @@ public class L2dataTest {
 	private static String symbol = "TEST";
 	private static String mmid = "MMID";
 	private static String source = "ABCDE";
-	private static byte marketside = 0;
+	private static OrderSide marketside = OrderSide.ASK;
 	private static double price = 123456.78;
 	private static int size = 100000;
 	private static Timestamp recordTime = new Timestamp(new Date().getTime());
