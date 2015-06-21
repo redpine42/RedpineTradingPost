@@ -38,15 +38,14 @@ public class L2dataDaoTest {
 	private static Timestamp recordTime = new Timestamp(new Date().getTime());
 	private static byte closed = 0;
 
-	private static L2dataDao l2Dao;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		recordTime.setNanos(0); // MySQL does not save milliseconds
 		
 		L2data data = new L2data(symbol, mmid, source, marketside, price, size,
 			 recordTime, closed);
-		l2Dao = new L2dataDao();
+
+		L2dataDao l2Dao = new L2dataDao();
 		Session session = l2Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
@@ -61,13 +60,16 @@ public class L2dataDaoTest {
 
 		seq = data.getSeq();
 		session.clear();
+		session.close();
 		
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Session session = l2Dao.getCurrentSession();
+
+		L2dataDao l2Dao = new L2dataDao();
+		Session session = l2Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -92,7 +94,9 @@ public class L2dataDaoTest {
 		logger.info("L2dataDaoTest:testPersist");
 		L2data data = new L2data(symbol, mmid, source, marketside, price, size,
 				 recordTime, closed);
-		Session session = l2Dao.getCurrentSession();
+
+		L2dataDao l2Dao = new L2dataDao();
+		Session session = l2Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -134,6 +138,7 @@ public class L2dataDaoTest {
 		
 		}
 		session.clear();
+		session.close();
 	
 		logger.info("Finish testPersist");
 	}
@@ -144,7 +149,9 @@ public class L2dataDaoTest {
 	@Test
 	public void testFindById() {
 		logger.info("L2dataDaoTest:testFindById");
-		Session session = l2Dao.getCurrentSession();
+
+		L2dataDao l2Dao = new L2dataDao();
+		Session session = l2Dao.openCurrentSession();
 
 		L2data data = l2Dao.findById(seq);
 		
@@ -159,6 +166,7 @@ public class L2dataDaoTest {
 		assertEquals("Failed L2DataDao.testFindById - value closed", closed, data.getClosed());
 			
 		session.clear();
+		session.close();
 	
 		logger.info("Finish testFindById.");
 	}
@@ -171,7 +179,9 @@ public class L2dataDaoTest {
 		logger.info("L2dataDaoTest:testDelete");
 		L2data data = new L2data(symbol, mmid, source, marketside, price, size,
 				 recordTime, closed);
-		Session session = l2Dao.getCurrentSession();
+
+		L2dataDao l2Dao = new L2dataDao();
+		Session session = l2Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -211,5 +221,6 @@ public class L2dataDaoTest {
 		assertNull("Failed L2DataDao.testDelete - delete", data);
 
 		session.clear();
+		session.close();
 	}
 }

@@ -39,8 +39,6 @@ public class L1dataDaoTest {
 	private static int volume = 500;
 	
 	
-	private static L1dataDao l1Dao;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		logger.info("L1dataDaoTest:setUpBeforeClass");
@@ -48,7 +46,7 @@ public class L1dataDaoTest {
 		
 		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
-		l1Dao = new L1dataDao();
+		L1dataDao l1Dao = new L1dataDao();
 		Session session = l1Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
@@ -65,6 +63,7 @@ public class L1dataDaoTest {
 		
 		seq = data.getSeq();
 		session.clear();
+		session.close();
 		
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
@@ -72,7 +71,9 @@ public class L1dataDaoTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		logger.info("L1dataDaoTest:tearDownAfterClass:");
-		Session session = l1Dao.getCurrentSession();
+
+		L1dataDao l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -97,7 +98,9 @@ public class L1dataDaoTest {
 		logger.info("L1dataDaoTest:testPersist");
 		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
-		Session session = l1Dao.getCurrentSession();
+
+		L1dataDao l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -140,7 +143,8 @@ public class L1dataDaoTest {
 		
 		}
 		session.clear();
-	
+		session.close();
+		
 		logger.info("Finish testPersist");
 	}
 
@@ -151,7 +155,8 @@ public class L1dataDaoTest {
 	@Test
 	public void testFindById() {
 		logger.info("L1dataDaoTest:testFindById");
-		Session session = l1Dao.getCurrentSession();
+		L1dataDao l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
 
 		L1data data = l1Dao.findById(seq);
 		
@@ -167,7 +172,8 @@ public class L1dataDaoTest {
 		assertEquals("Failed L1DataDao.testFindById - value volume", volume, data.getVolume());
 			
 		session.clear();
-	
+		session.close();
+		
 		logger.info("Finish testFindById.");
 	}
 
@@ -179,8 +185,11 @@ public class L1dataDaoTest {
 		logger.info("L1dataDaoTest:testDelete");
 		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
-		Session session = l1Dao.getCurrentSession();
+
+		L1dataDao l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
 		Transaction transaction = null;
+
 		try {
 			transaction = session.beginTransaction();
 			l1Dao.persist(data);
@@ -219,5 +228,6 @@ public class L1dataDaoTest {
 		assertNull("Failed L1DataDao.testDelete - delete", data);
 
 		session.clear();
+		session.close();
 	}
 }

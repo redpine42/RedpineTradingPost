@@ -38,15 +38,13 @@ public class TimesalesdataDaoTest {
 	private static TickStatus tsstatus = TickStatus.NORMAL;
 	private static TickType tstype = TickType.ASK_TICK;
 
-	private static TimesalesdataDao tsDao;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		recordTime.setNanos(0); // MySQL does not save milliseconds
 		
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
 				recordTime, tsstatus, tstype);
-		tsDao = new TimesalesdataDao();
+		TimesalesdataDao tsDao = new TimesalesdataDao();
 		Session session = tsDao.openCurrentSession();
 		Transaction transaction = null;
 		try {
@@ -62,12 +60,14 @@ public class TimesalesdataDaoTest {
 		seq = data.getSeq();
 
 		session.clear();
+		session.close();
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Session session = tsDao.getCurrentSession();
+		TimesalesdataDao tsDao = new TimesalesdataDao();
+		Session session = tsDao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -94,7 +94,9 @@ public class TimesalesdataDaoTest {
 		logger.info("TimesalesdataDaoTest:testPersist");
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
 				recordTime, tsstatus, tstype);
-		Session session = tsDao.getCurrentSession();
+
+		TimesalesdataDao tsDao = new TimesalesdataDao();
+		Session session = tsDao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -134,6 +136,7 @@ public class TimesalesdataDaoTest {
 		
 		}
 		session.clear();
+		session.close();
 	
 		logger.info("Finish testPersist");
 	}
@@ -144,7 +147,9 @@ public class TimesalesdataDaoTest {
 	@Test
 	public void testFindById() {
 		logger.info("TimesalesdataDaoTest:testFindById");
-		Session session = tsDao.getCurrentSession();
+
+		TimesalesdataDao tsDao = new TimesalesdataDao();
+		Session session = tsDao.openCurrentSession();
 
 		Timesalesdata data = tsDao.findById(seq);
 		
@@ -158,6 +163,7 @@ public class TimesalesdataDaoTest {
 
 			
 		session.clear();
+		session.close();
 	
 		logger.info("Finish testFindById.");
 	}
@@ -170,7 +176,9 @@ public class TimesalesdataDaoTest {
 		logger.info("TimesalesdataDaoTest:testDelete");
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
 				recordTime, tsstatus, tstype);
-		Session session = tsDao.getCurrentSession();
+
+		TimesalesdataDao tsDao = new TimesalesdataDao();
+		Session session = tsDao.openCurrentSession();
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -210,5 +218,6 @@ public class TimesalesdataDaoTest {
 		assertNull("Failed TimesalesdataDao.testDelete - delete", data);
 
 		session.clear();	
+		session.close();
 	}
 }
