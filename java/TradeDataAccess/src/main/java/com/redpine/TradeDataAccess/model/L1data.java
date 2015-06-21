@@ -1,6 +1,8 @@
 package com.redpine.TradeDataAccess.model;
 
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +25,11 @@ public class L1data implements java.io.Serializable {
 	private static final long serialVersionUID = 5629249431166308720L;
 	
 	private Integer seq;
-	private double timeStamp;
+	private Timestamp timeStamp;
 	private String symbol;
 	private int size;
 	private double price;
-	private int time;
-	private int jdate;
+	private Timestamp recordTime;
 	private double bid;
 	private double ask;
 	private int bidsize;
@@ -41,13 +42,12 @@ public class L1data implements java.io.Serializable {
 	public L1data() {
 	}
 
-	public L1data(String symbol, int size, double price, int time, int jdate,
+	public L1data(String symbol, int size, double price, Timestamp recordTime,
 			double bid, double ask, int bidsize, int asksize, int volume) {
 		this.symbol = symbol;
 		this.size = size;
 		this.price = price;
-		this.time = time;
-		this.jdate = jdate;
+		this.recordTime = recordTime;
 		this.bid = bid;
 		this.ask = ask;
 		this.bidsize = bidsize;
@@ -76,15 +76,16 @@ public class L1data implements java.io.Serializable {
 	/**
 	 * @return
 	 */
-	@Column(name = "timeStamp", nullable = false, precision = 22, scale = 0)
-	public double getTimeStamp() {
+	@Column(name = "timeStamp")
+	public Timestamp getTimeStamp() {
 		return this.timeStamp;
 	}
 
 	/**
 	 * @param timeStamp
 	 */
-	public void setTimeStamp(double timeStamp) {
+	@SuppressWarnings("unused")
+	private void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
@@ -139,33 +140,17 @@ public class L1data implements java.io.Serializable {
 	/**
 	 * @return
 	 */
-	@Column(name = "time", nullable = false)
-	public int getTime() {
-		return this.time;
+	@Column(name = "recordTime", nullable = false)
+	public Timestamp getRecordTime() {
+		return this.recordTime;
 	}
 
 	/**
 	 * @param time
 	 */
 	@SuppressWarnings("unused")
-	private void setTime(int time) {
-		this.time = time;
-	}
-
-	/**
-	 * @return
-	 */
-	@Column(name = "jdate", nullable = false)
-	public int getJdate() {
-		return this.jdate;
-	}
-
-	/**
-	 * @param jdate
-	 */
-	@SuppressWarnings("unused")
-	private void setJdate(int jdate) {
-		this.jdate = jdate;
+	private void setRecordTime(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 	/**

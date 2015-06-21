@@ -1,5 +1,7 @@
 package com.redpine.TradeDataAccess.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,15 +29,14 @@ public class L2data implements java.io.Serializable {
 	private static final long serialVersionUID = -7611100195402650868L;
 	
 	private Integer seq;
-	private double timeStamp;
+	private Timestamp timeStamp;
 	private String symbol;
 	private String mmid;
 	private String source;
 	private byte marketside;
 	private double price;
 	private int size;
-	private int jdate;
-	private int time;
+	private Timestamp recordTime;
 	private byte closed;
 
 	public L2data() {
@@ -53,15 +54,14 @@ public class L2data implements java.io.Serializable {
 	 * @param closed
 	 */
 	public L2data(String symbol, String mmid, String source, byte marketside,
-			double price, int size, int jdate, int time, byte closed) {
+			double price, int size, Timestamp recordTime, byte closed) {
 		this.symbol = symbol;
 		this.mmid = mmid;
 		this.source = source;
 		this.marketside = marketside;
 		this.price = price;
 		this.size = size;
-		this.jdate = jdate;
-		this.time = time;
+		this.recordTime = recordTime;
 		this.closed = closed;
 	}
 
@@ -90,18 +90,15 @@ public class L2data implements java.io.Serializable {
 	 * 
 	 * @return double
 	 */
-	@Column(name = "timeStamp", nullable = false, precision = 22, scale = 0)
-	public double getTimeStamp() {
+	@Column(name = "timeStamp")
+	public Timestamp getTimeStamp() {
 		return this.timeStamp;
 	}
 
-	/**
-	 * @param timeStamp
-	 */
-	public void setTimeStamp(double timeStamp) {
+	@SuppressWarnings("unused")
+	private void setTimeStamp(Timestamp timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-
 	/**
 	 * Returns the Symbol for this row.
 	 * 
@@ -211,37 +208,19 @@ public class L2data implements java.io.Serializable {
 	}
 
 	/**
-	 * Integer day and year of quote.
-	 * 
 	 * @return int
 	 */
-	@Column(name = "jdate", nullable = false)
-	public int getJdate() {
-		return this.jdate;
-	}
-
-	/**
-	 * @param jdate
-	 */
-	@SuppressWarnings("unused")
-	private void setJdate(int jdate) {
-		this.jdate = jdate;
-	}
-
-	/**
-	 * @return int
-	 */
-	@Column(name = "time", nullable = false)
-	public int getTime() {
-		return this.time;
+	@Column(name = "recordTime", nullable = false)
+	public Timestamp getRecordTime() {
+		return this.recordTime;
 	}
 
 	/**
 	 * @param time
 	 */
 	@SuppressWarnings("unused")
-	private void setTime(int time) {
-		this.time = time;
+	private void setRecordTime(Timestamp recordTime) {
+		this.recordTime = recordTime;
 	}
 
 	/**

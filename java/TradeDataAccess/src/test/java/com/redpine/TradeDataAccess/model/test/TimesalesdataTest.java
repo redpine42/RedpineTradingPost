@@ -1,5 +1,8 @@
 package com.redpine.TradeDataAccess.model.test;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import com.redpine.TradeDataAccess.DAO.TimesalesdataDao;
 import com.redpine.TradeDataAccess.model.Timesalesdata;
 
@@ -19,12 +22,10 @@ public class TimesalesdataTest {
 			.getLogger(TimesalesdataTest.class);
 
 	private static Integer seq = 0;
-	private static Double timeStamp = 67435.5;
 	private static String symbol = "TEST";
 	private static int sizeVal = 1234567;
 	private static double price = 123.45;
-	private static int timeVal = 82828;
-	private static int jdate = 2014199;
+	private static Timestamp recordTime = new Timestamp(new Date().getTime());
 	private static int tsstatus = 0;
 	private static int tstype = 2;
 
@@ -33,8 +34,7 @@ public class TimesalesdataTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
-				timeVal, jdate, tsstatus, tstype);
-		data.setTimeStamp(timeStamp);
+				recordTime, tsstatus, tstype);
 		tsDao = new TimesalesdataDao();
 		Session session = tsDao.openCurrentSession();
 		Transaction transaction = session.beginTransaction();
@@ -43,6 +43,7 @@ public class TimesalesdataTest {
 
 		seq = data.getSeq();
 
+		session.clear();
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
@@ -67,46 +68,24 @@ public class TimesalesdataTest {
 			fail("Data not retrieved.");
 		} else if (seq != tsData.getSeq()) {
 			fail("Timesalesdata.seq data doesn't match.");
-		}
+		} 
 	}
 
 	@Test
 	public void testGetTimeStamp() {
-		logger.info("Enter TimesalesdataTest.testGetTimeStamp");
+		logger.info("Enter L1dataTest.testGetTimeStamp");
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (timeStamp != tsData.getTimeStamp()) {
-			fail("Timesalesdata.TimeStamp data doesn't match.");
+		} else if (tsData.getTimeStamp() == null) {
+			fail("TimesalesdataTest.timeStamp data doesn't match.");
+		} else	{
+			logger.info("Creation Date:" + tsData.getTimeStamp().toString());
 		}
 	}
 	
-	@Test
-	public void testSetTimeStamp() {
-		logger.info("Enter TimesalesdataTest.testSetTimeStamp");
-
-		Timesalesdata tsData = tsDao.findById(seq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else {
-			++timeStamp;
-			tsData.setTimeStamp(timeStamp);
-			Session session = tsDao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			tsDao.update(tsData);
-			transaction.commit();
-			Timesalesdata updatedData = tsDao.findById(seq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (timeStamp != tsData.getTimeStamp()) {
-				fail("Timesalesdata.timestamp data doesn't match.");
-			}
-		}
-	}
 	@Test
 	public void testGetSymbol() {
 		logger.info("Enter TimesalesdataTest.testGetSymbol");
@@ -115,7 +94,7 @@ public class TimesalesdataTest {
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (symbol != tsData.getSymbol()) {
+		} else if (!symbol.equals(tsData.getSymbol())) {
 			fail("Timesalesdata.Symbol data doesn't match.");
 		}
 	}
@@ -147,29 +126,20 @@ public class TimesalesdataTest {
 	}
 
 	@Test
-	public void testGetTimeVal() {
-		logger.info("Enter TimesalesdataTest.testGetTimeVal");
+	public void testGetRecordTime() {
+		logger.info("Enter TimesalesdataTest.testGetRecordTimel");
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
 		if (null == tsData) {
 			fail("Data not retrieved.");
-		} else if (timeVal != tsData.getTimeVal()) {
-			fail("Timesalesdata.timeVal data doesn't match.");
+		} else if (recordTime.equals(tsData.getRecordTime())) {
+			fail("Timesalesdata.recordTime data doesn't match.");
+		} else	{
+			logger.info("Record Date:" + tsData.getRecordTime().toString());
 		}
-	}
 
-	@Test
-	public void testGetJdate() {
-		logger.info("Enter TimesalesdataTest.testGetJdate");
-
-		Timesalesdata tsData = tsDao.findById(seq);
-
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (jdate != tsData.getJdate()) {
-			fail("Timesalesdata.jdate data doesn't match.");
-		}
+			
 	}
 
 	@Test

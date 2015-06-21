@@ -5,6 +5,9 @@ package com.redpine.TradeDataAccess.model.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.AfterClass;
@@ -25,12 +28,10 @@ public class L1dataTest {
 	static final Logger logger = LoggerFactory.getLogger(L1dataTest.class);
 
 	private static Integer seq = 0;
-	private static double timeStamp = 67435.5;
 	private static String symbol = "TEST";
 	private static int size = 100000;
 	private static double price = 123.45;
-	private static int time = 82828;
-	private static int jdate = 2014199;
+	private static Timestamp recordTime = new Timestamp(new Date().getTime());
 	private static double bid = 123.44;
 	private static double ask = 123.45;
 	private static int bidsize = 100;
@@ -42,9 +43,8 @@ public class L1dataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		L1data data = new L1data(symbol, size, price, time, jdate,
+		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
-		data.setTimeStamp(timeStamp);
 		l1Dao = new L1dataDao();
 		Session session = l1Dao.openCurrentSession();
 		Transaction transaction = session.beginTransaction();
@@ -52,7 +52,8 @@ public class L1dataTest {
 		transaction.commit();
 
 		seq = data.getSeq();
-
+		session.clear();
+		
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
@@ -81,32 +82,6 @@ public class L1dataTest {
 	}
 
 	@Test
-	public void testSetTimeStamp() {
-		logger.info("Enter L1dataTest.testSetTimeStamp");
-
-		L1data l1Data = l1Dao.findById(seq);
-
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else {
-			++timeStamp;
-			l1Data.setTimeStamp(timeStamp);
-			Session session = l1Dao.getCurrentSession();
-			Transaction transaction = session.beginTransaction();
-			l1Dao.update(l1Data);
-			transaction.commit();
-			L1data updatedData = l1Dao.findById(seq);
-
-			if (null == updatedData) {
-				fail("Data not retrieved.");
-			} else if (timeStamp != l1Data.getTimeStamp()) {
-				fail("L2data.timestamp data doesn't match.");
-			}
-		}
-	}
-
-
-	@Test
 	public void testGetTimeStamp() {
 		logger.info("Enter L1dataTest.testGetTimeStamp");
 
@@ -114,8 +89,10 @@ public class L1dataTest {
 
 		if (null == l1Data) {
 			fail("Data not retrieved.");
-		} else if (timeStamp != l1Data.getTimeStamp()) {
+		} else if (l1Data.getTimeStamp() == null) {
 			fail("L1dataTest.timeStamp data doesn't match.");
+		} else	{
+			logger.info("Creation Date: " + l1Data.getTimeStamp().toString());
 		}
 	}
 
@@ -130,7 +107,7 @@ public class L1dataTest {
 
 		if (null == l1Data) {
 			fail("Data not retrieved.");
-		} else if (symbol != l1Data.getSymbol()) {
+		} else if (!symbol.equals(l1Data.getSymbol())) {
 			fail("L1dataTest.symbol data doesn't match.");
 		}
 	}
@@ -171,35 +148,19 @@ public class L1dataTest {
 	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getTime()}.
 	 */
 	@Test
-	public void testGetTime() {
-		logger.info("Enter L1dataTest.testGetTime");
+	public void testGetRecordTime() {
+		logger.info("Enter L1dataTest.testGetRecordTime");
 
 		L1data l1Data = l1Dao.findById(seq);
 
 		if (null == l1Data) {
 			fail("Data not retrieved.");
-		} else if (time != l1Data.getTime()) {
+		} else if (recordTime.equals(l1Data.getRecordTime())) {
 			fail("L1dataTest.time data doesn't match.");
 		}
 
 	}
 
-	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getJdate()}.
-	 */
-	@Test
-	public void testGetJdate() {
-		logger.info("Enter L1dataTest.testGetJdate");
-
-		L1data l1Data = l1Dao.findById(seq);
-
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (jdate != l1Data.getJdate()) {
-			fail("L1dataTest.jdate data doesn't match.");
-		}
-
-	}
 
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getBid()}.
