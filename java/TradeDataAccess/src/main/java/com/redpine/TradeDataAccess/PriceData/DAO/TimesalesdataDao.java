@@ -1,12 +1,11 @@
 package com.redpine.TradeDataAccess.PriceData.DAO;
 
 import com.redpine.TradeDataAccess.PriceData.model.Timesalesdata;
+import com.redpine.TradeDataAccess.Util.HibernateUtil;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,14 +50,9 @@ public class TimesalesdataDao {
 	       
 
 	      private static SessionFactory getSessionFactory() {
-
-	          Configuration configuration = new Configuration().configure();
-	          StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-	                  .applySettings(configuration.getProperties());
-	          SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-	          return sessionFactory;
+	          return HibernateUtil.getSessionFactory();
 	      }
-	   
+
 
 	      public Session getCurrentSession() {
 
@@ -85,9 +79,9 @@ public class TimesalesdataDao {
 	    	  getCurrentSession().save(entity);
 	      }
 	   
-	      public void update(Timesalesdata entity) {
-	          getCurrentSession().update(entity);
-	      }
+//	      public void update(Timesalesdata entity) {
+//	          getCurrentSession().update(entity);
+//	      }
 
 	      public Timesalesdata findById(Integer id) {
 	    	  Timesalesdata tsData = null;
