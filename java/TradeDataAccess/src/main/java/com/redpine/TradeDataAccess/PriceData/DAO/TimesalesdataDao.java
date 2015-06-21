@@ -1,21 +1,19 @@
-package com.redpine.TradeDataAccess.DAO;
+package com.redpine.TradeDataAccess.PriceData.DAO;
 
-import com.redpine.TradeDataAccess.model.Timesalesdata;
-
+import com.redpine.TradeDataAccess.PriceData.model.Timesalesdata;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 /**
  * Home object for domain model class Timesalesdata.
- * @see com.redpine.TradeDataAccess.model.Timesalesdata
+ * @see com.redpine.TradeDataAccess.PriceData.model.Timesalesdata
  * @author Hibernate Tools
  */
 //@Stateless

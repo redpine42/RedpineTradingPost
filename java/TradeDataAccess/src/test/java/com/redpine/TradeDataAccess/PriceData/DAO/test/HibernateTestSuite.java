@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.model.test;
+package com.redpine.TradeDataAccess.PriceData.DAO.test;
 
 
 import org.slf4j.Logger;
@@ -13,7 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import com.redpine.TradeDataAccess.Util.HibernateUtil;
 
 @RunWith(Suite.class)
-@SuiteClasses({ L1dataTest.class, L2dataTest.class, TimesalesdataTest.class })
+@SuiteClasses({ L1dataDaoTest.class, L2dataDaoTest.class, TimesalesdataDaoTest.class })
 public class HibernateTestSuite {
 
     static HibernateUtil util;

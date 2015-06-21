@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.model;
+package com.redpine.TradeDataAccess.PriceData.model;
 
 
 

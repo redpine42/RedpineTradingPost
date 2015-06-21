@@ -1,10 +1,10 @@
-package com.redpine.TradeDataAccess.model.test;
+package com.redpine.TradeDataAccess.PriceData.model.test;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-import com.redpine.TradeDataAccess.DAO.TimesalesdataDao;
-import com.redpine.TradeDataAccess.model.Timesalesdata;
+import com.redpine.TradeDataAccess.PriceData.DAO.TimesalesdataDao;
+import com.redpine.TradeDataAccess.PriceData.model.Timesalesdata;
 
 import static org.junit.Assert.*;
 
@@ -33,6 +33,8 @@ public class TimesalesdataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		recordTime.setNanos(0); // MySQL does not save milliseconds
+		
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
 				recordTime, tsstatus, tstype);
 		tsDao = new TimesalesdataDao();
@@ -64,11 +66,8 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (seq != tsData.getSeq()) {
-			fail("Timesalesdata.seq data doesn't match.");
-		} 
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.seq data doesn't match.", seq, tsData.getSeq());
 	}
 
 	@Test
@@ -77,13 +76,9 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (tsData.getTimeStamp() == null) {
-			fail("TimesalesdataTest.timeStamp data doesn't match.");
-		} else	{
-			logger.info("Creation Date:" + tsData.getTimeStamp().toString());
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertNotNull("TimesalesdataTest.timeStamp data doesn't match.", tsData.getTimeStamp());
+		logger.info("Creation Date:" + tsData.getTimeStamp().toString());
 	}
 	
 	@Test
@@ -92,11 +87,8 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (!symbol.equals(tsData.getSymbol())) {
-			fail("Timesalesdata.Symbol data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.Symbol data doesn't match.", symbol, tsData.getSymbol());
 	}
 
 	@Test
@@ -105,11 +97,8 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (sizeVal != tsData.getSizeVal()) {
-			fail("Timesalesdata.sizeVal data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.sizeVal data doesn't match.", sizeVal, tsData.getSizeVal());
 	}
 
 	@Test
@@ -118,11 +107,8 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (price != tsData.getPrice()) {
-			fail("Timesalesdata.price data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.price data doesn't match.", price, tsData.getPrice(), .01);
 	}
 
 	@Test
@@ -131,15 +117,10 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (recordTime.equals(tsData.getRecordTime())) {
-			fail("Timesalesdata.recordTime data doesn't match.");
-		} else	{
-			logger.info("Record Date:" + tsData.getRecordTime().toString());
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.recordTime data doesn't match.", recordTime, tsData.getRecordTime());
 
-			
+		logger.info("Record Date:" + tsData.getRecordTime().toString());
 	}
 
 	@Test
@@ -148,11 +129,8 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (tsstatus != tsData.getTsstatus()) {
-			fail("Timesalesdata.tsstatus data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.tsstatus data doesn't match.", tsstatus, tsData.getTsstatus());
 	}
 
 
@@ -162,10 +140,7 @@ public class TimesalesdataTest {
 
 		Timesalesdata tsData = tsDao.findById(seq);
 
-		if (null == tsData) {
-			fail("Data not retrieved.");
-		} else if (tstype != tsData.getTstype()) {
-			fail("Timesalesdata.tstype data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", tsData);
+		assertEquals("Timesalesdata.tstype data doesn't match.", tstype, tsData.getTstype());
 	}
 }

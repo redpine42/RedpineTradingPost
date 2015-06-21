@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.redpine.TradeDataAccess.model.test;
+package com.redpine.TradeDataAccess.PriceData.model.test;
 
 import static org.junit.Assert.*;
 
@@ -16,8 +16,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.redpine.TradeDataAccess.DAO.L1dataDao;
-import com.redpine.TradeDataAccess.model.L1data;
+import com.redpine.TradeDataAccess.PriceData.DAO.L1dataDao;
+import com.redpine.TradeDataAccess.PriceData.model.L1data;
 
 /**
  * @author dbrown
@@ -43,6 +43,8 @@ public class L1dataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		recordTime.setNanos(0);  // MySQL does not save milliseconds
+		
 		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
 		l1Dao = new L1dataDao();
@@ -74,11 +76,8 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (seq != l1Data.getSeq()) {
-			fail("L1dataTest.seq data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.seq data doesn't match.", seq, l1Data.getSeq());
 	}
 
 	@Test
@@ -87,17 +86,13 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (l1Data.getTimeStamp() == null) {
-			fail("L1dataTest.timeStamp data doesn't match.");
-		} else	{
-			logger.info("Creation Date: " + l1Data.getTimeStamp().toString());
-		}
+		assertNotNull("Data not retrieved.", l1Data);
+		assertNotNull("L1dataTest.timeStamp data doesn't match.", l1Data.getTimeStamp());
+		logger.info("Creation Date: " + l1Data.getTimeStamp().toString());
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getSymbol()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getSymbol()}.
 	 */
 	@Test
 	public void testGetSymbol() {
@@ -105,15 +100,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (!symbol.equals(l1Data.getSymbol())) {
-			fail("L1dataTest.symbol data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.symbol data doesn't match.", symbol, l1Data.getSymbol());
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getSize()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getSize()}.
 	 */
 	@Test
 	public void testGetSize() {
@@ -121,15 +113,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (size != l1Data.getSize()) {
-			fail("L1dataTest.size data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.size data doesn't match.", size, l1Data.getSize());
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getPrice()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getPrice()}.
 	 */
 	@Test
 	public void testGetPrice() {
@@ -137,15 +126,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (price != l1Data.getPrice()) {
-			fail("L1dataTest.price data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.price data doesn't match.", price, l1Data.getPrice(), .01);
 	}
 	
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getTime()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getRecordTime()}.
 	 */
 	@Test
 	public void testGetRecordTime() {
@@ -153,17 +139,13 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (recordTime.equals(l1Data.getRecordTime())) {
-			fail("L1dataTest.time data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.recordtime data doesn't match.", recordTime, l1Data.getRecordTime());
 	}
 
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getBid()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getBid()}.
 	 */
 	@Test
 	public void testGetBid() {
@@ -171,16 +153,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (bid != l1Data.getBid()) {
-			fail("L1dataTest.bid data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.bid data doesn't match.", bid, l1Data.getBid(), .01);
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getAsk()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getAsk()}.
 	 */
 	@Test
 	public void testGetAsk() {
@@ -188,16 +166,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (ask != l1Data.getAsk()) {
-			fail("L1dataTest.ask data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.ask data doesn't match.", ask, l1Data.getAsk(), .01);
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getBidsize()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getBidsize()}.
 	 */
 	@Test
 	public void testGetBidsize() {
@@ -205,16 +179,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (bidsize != l1Data.getBidsize()) {
-			fail("L1dataTest.bidSize data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.bidSize data doesn't match.", bidsize, l1Data.getBidsize());
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getAsksize()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getAsksize()}.
 	 */
 	@Test
 	public void testGetAsksize() {
@@ -222,16 +192,12 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (asksize != l1Data.getAsksize()) {
-			fail("L1dataTest.askSize data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.askSize data doesn't match.", asksize, l1Data.getAsksize());
 	}
 
 	/**
-	 * Test method for {@link com.redpine.TradeDataAccess.model.L1data#getVolume()}.
+	 * Test method for {@link com.redpine.TradeDataAccess.PriceData.model.L1data#getVolume()}.
 	 */
 	@Test
 	public void testGetVolume() {
@@ -239,11 +205,7 @@ public class L1dataTest {
 
 		L1data l1Data = l1Dao.findById(seq);
 
-		if (null == l1Data) {
-			fail("Data not retrieved.");
-		} else if (volume != l1Data.getVolume()) {
-			fail("L1dataTest.volume data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l1Data);
+		assertEquals("L1dataTest.volume data doesn't match.", volume, l1Data.getVolume());
 	}
 }

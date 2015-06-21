@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.model;
+package com.redpine.TradeDataAccess.PriceData.model;
 
 
 import java.sql.Timestamp;
@@ -149,8 +149,8 @@ public class L1data implements java.io.Serializable {
 	 * @param time
 	 */
 	@SuppressWarnings("unused")
-	private void setRecordTime(Timestamp timeStamp) {
-		this.timeStamp = timeStamp;
+	private void setRecordTime(Timestamp recordTime) {
+		this.recordTime = recordTime;
 	}
 
 	/**

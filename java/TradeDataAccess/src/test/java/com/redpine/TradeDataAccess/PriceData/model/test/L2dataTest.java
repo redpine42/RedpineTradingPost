@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.model.test;
+package com.redpine.TradeDataAccess.PriceData.model.test;
 
 import static org.junit.Assert.*;
 
@@ -13,8 +13,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.redpine.TradeDataAccess.DAO.L2dataDao;
-import com.redpine.TradeDataAccess.model.L2data;
+import com.redpine.TradeDataAccess.PriceData.DAO.L2dataDao;
+import com.redpine.TradeDataAccess.PriceData.model.L2data;
 
 public class L2dataTest {
 
@@ -34,6 +34,8 @@ public class L2dataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		recordTime.setNanos(0); // MySQL does not save milliseconds
+		
 		L2data data = new L2data(symbol, mmid, source, marketside, price, size,
 			 recordTime, closed);
 		l2Dao = new L2dataDao();
@@ -65,11 +67,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (seq != l2Data.getSeq()) {
-			fail("L2dataTest.seq data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.seq data doesn't match.", seq, l2Data.getSeq());
 	}
 
 	@Test
@@ -78,13 +77,9 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (l2Data.getTimeStamp() == null) {
-			fail("L2dataTest.timeStamp data doesn't match.");
-		} else	{
-			logger.info("Creation Date: " + l2Data.getTimeStamp().toString());
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertNotNull("L2dataTest.timeStamp data doesn't match.", l2Data.getTimeStamp());
+		logger.info("Creation Date: " + l2Data.getTimeStamp().toString());
 	}
 
 
@@ -94,11 +89,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (!symbol.equals(l2Data.getSymbol())) {
-			fail("L2dataTest.symbol data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.symbol data doesn't match.", symbol, l2Data.getSymbol());
 	}
 
 	@Test
@@ -107,11 +99,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (!mmid.equals(l2Data.getMmid())) {
-			fail("L2dataTest.mmid data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.mmid data doesn't match.", mmid, l2Data.getMmid());
 	}
 
 	@Test
@@ -120,11 +109,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (!source.equals(l2Data.getSource())) {
-			fail("L2dataTest.source data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+			assertEquals("L2dataTest.source data doesn't match.", source, l2Data.getSource());
 	}
 
 	@Test
@@ -133,11 +119,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (marketside != l2Data.getMarketside()) {
-			fail("L2dataTest.marketside data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.marketside data doesn't match.", marketside, l2Data.getMarketside());
 	}
 
 	@Test
@@ -146,11 +129,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (price != l2Data.getPrice()) {
-			fail("L2dataTest.price data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.price data doesn't match.", price, l2Data.getPrice(), .01);
 	}
 
 	@Test
@@ -159,11 +139,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (size != l2Data.getSize()) {
-			fail("L2dataTest.size data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.size data doesn't match.", size, l2Data.getSize());
 	}
 
 	@Test
@@ -172,11 +149,8 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (recordTime.equals(l2Data.getRecordTime())) {
-			fail("L2dataTest.time data doesn't match.");
-		}
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.time data doesn't match.", recordTime, l2Data.getRecordTime());
 	}
 
 	@Test
@@ -185,11 +159,7 @@ public class L2dataTest {
 
 		L2data l2Data = l2Dao.findById(seq);
 
-		if (null == l2Data) {
-			fail("Data not retrieved.");
-		} else if (closed != l2Data.getClosed()) {
-			fail("L2dataTest.closed data doesn't match.");
-		}
-
+		assertNotNull("Data not retrieved.", l2Data);
+		assertEquals("L2dataTest.closed data doesn't match.", closed, l2Data.getClosed());
 	}
 }

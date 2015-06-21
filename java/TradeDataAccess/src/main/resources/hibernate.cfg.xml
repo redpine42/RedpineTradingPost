@@ -20,8 +20,8 @@
   <property name="hibernate.current_session_context_class">thread</property>
 
   <!-- Mapping with model class containing annotations -->
-  <mapping class="com.redpine.TradeDataAccess.model.Timesalesdata"/>
- <mapping class="com.redpine.TradeDataAccess.model.L1data"/>
-  <mapping class="com.redpine.TradeDataAccess.model.L2data"/>
+  <mapping class="com.redpine.TradeDataAccess.PriceData.model.Timesalesdata"/>
+ <mapping class="com.redpine.TradeDataAccess.PriceData.model.L1data"/>
+  <mapping class="com.redpine.TradeDataAccess.PriceData.model.L2data"/>
  </session-factory>
 </hibernate-configuration>

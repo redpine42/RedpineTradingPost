@@ -1,6 +1,6 @@
-package com.redpine.TradeDataAccess.DAO;
+package com.redpine.TradeDataAccess.PriceData.DAO;
 
-import com.redpine.TradeDataAccess.model.L2data;
+import com.redpine.TradeDataAccess.PriceData.model.L2data;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 /**
  * DAO for class L2data.
  * 
- * @see com.redpine.TradeDataAccess.model.L2data
+ * @see com.redpine.TradeDataAccess.PriceData.model.L2data
  * @author dbrown
  */
 public class L2dataDao {
