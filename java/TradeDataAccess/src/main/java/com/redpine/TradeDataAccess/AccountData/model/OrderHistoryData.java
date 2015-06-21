@@ -1,8 +1,10 @@
-package com.redpine.TradeDataAccess.AccounData.model;
+package com.redpine.TradeDataAccess.AccountData.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +44,8 @@ public class OrderHistoryData {
 	/**
 	 * @return the accountId
 	 */
+	@Id
+	@Column(name = "accountId", unique = true, nullable = false)
 	public String getAccountId() {
 		return accountId;
 	}

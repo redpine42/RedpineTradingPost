@@ -1,4 +1,4 @@
-package com.redpine.TradeDataAccess.AccounData.model;
+package com.redpine.TradeDataAccess.AccountData.model;
 
 import java.sql.Time;
 import java.util.Date;
@@ -7,7 +7,9 @@ import com.redpine.TradeDataAccess.Util.DataEnums.ExecutionType;
 import com.redpine.TradeDataAccess.Util.DataEnums.TradeStatus;
 import com.redpine.TradeDataAccess.Util.DataEnums.TradeType;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -42,6 +44,8 @@ public class PurchaseData {
 	/**
 	 * @return the accountId
 	 */
+	@Id
+	@Column(name = "accountId", unique = true, nullable = false)
 	public String getAccountId() {
 		return accountId;
 	}

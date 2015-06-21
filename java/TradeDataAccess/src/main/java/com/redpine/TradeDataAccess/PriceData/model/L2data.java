@@ -94,7 +94,9 @@ public class L2data implements java.io.Serializable {
 	 * 
 	 * @return double
 	 */
-	@Column(name = "timeStamp")
+	@Column(name = "timeStamp", 
+	        updatable = false,
+	        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	public Timestamp getTimeStamp() {
 		return this.timeStamp;
 	}

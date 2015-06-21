@@ -1,9 +1,12 @@
-package com.redpine.TradeDataAccess.AccounData.model;
+package com.redpine.TradeDataAccess.AccountData.model;
+
 
 import java.sql.Time;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +39,8 @@ public class OpenOrderData {
 	/**
 	 * @return the accountId
 	 */
+	@Id
+	@Column(name = "accountId", unique = true, nullable = false)
 	public String getAccountId() {
 		return accountId;
 	}
@@ -48,6 +53,7 @@ public class OpenOrderData {
 	/**
 	 * @return the eventType
 	 */
+	@Column(name = "eventType", nullable = false, length = 64)
 	public String getEventType() {
 		return eventType;
 	}
@@ -60,6 +66,7 @@ public class OpenOrderData {
 	/**
 	 * @return the account
 	 */
+	@Column(name = "account", nullable = false, length = 64)
 	public String getAccount() {
 		return account;
 	}
@@ -72,6 +79,7 @@ public class OpenOrderData {
 	/**
 	 * @return the customer
 	 */
+	@Column(name = "customer", nullable = false, length = 128)
 	public String getCustomer() {
 		return customer;
 	}

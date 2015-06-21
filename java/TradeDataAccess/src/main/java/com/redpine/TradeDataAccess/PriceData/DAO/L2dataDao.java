@@ -1,11 +1,8 @@
 package com.redpine.TradeDataAccess.PriceData.DAO;
 
+import com.redpine.TradeDataAccess.DAO.CommonDao;
 import com.redpine.TradeDataAccess.PriceData.model.L2data;
-import com.redpine.TradeDataAccess.Util.HibernateUtil;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,54 +12,11 @@ import org.slf4j.LoggerFactory;
  * @see com.redpine.TradeDataAccess.PriceData.model.L2data
  * @author dbrown
  */
-public class L2dataDao {
+public class L2dataDao extends CommonDao {
 
 	private static final Logger log = LoggerFactory.getLogger(L2dataDao.class);
 
-	private Session currentSession;
-	private Transaction currentTransaction;
-
 	public L2dataDao() {
-	}
-
-	public Session openCurrentSession() {
-		currentSession = getSessionFactory().openSession();
-		return currentSession;
-	}
-
-	public Session openCurrentSessionwithTransaction() {
-		currentSession = getSessionFactory().openSession();
-		currentTransaction = currentSession.beginTransaction();
-		return currentSession;
-	}
-
-	public void closeCurrentSession() {
-		currentSession.close();
-	}
-
-	public void closeCurrentSessionwithTransaction() {
-		currentTransaction.commit();
-		currentSession.close();
-	}
-
-   private static SessionFactory getSessionFactory() {
-        return HibernateUtil.getSessionFactory();
-    }
-
-	public Session getCurrentSession() {
-		return currentSession;
-	}
-
-	public void setCurrentSession(Session currentSession) {
-		this.currentSession = currentSession;
-	}
-
-	public Transaction getCurrentTransaction() {
-		return currentTransaction;
-	}
-
-	public void setCurrentTransaction(Transaction currentTransaction) {
-		this.currentTransaction = currentTransaction;
 	}
 
 	public void persist(L2data entity) {

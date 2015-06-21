@@ -1,6 +1,8 @@
-package com.redpine.TradeDataAccess.AccounData.model;
+package com.redpine.TradeDataAccess.AccountData.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -23,9 +25,12 @@ public class PositionData {
 	private String eventType;
 	private String account;
 	private String customer;
+
 	/**
 	 * @return the accountId
 	 */
+	@Id
+	@Column(name = "accountId", unique = true, nullable = false)
 	public String getAccountId() {
 		return accountId;
 	}

@@ -15,13 +15,18 @@
   <property name="hibernate.connection.password">password</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost/test</property>
   <property name="hibernate.connection.username">developer</property>
+  <property name="hibernate.hbm2ddl.auto">create</property>
 
   <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
   <property name="hibernate.current_session_context_class">thread</property>
 
   <!-- Mapping with model class containing annotations -->
   <mapping class="com.redpine.TradeDataAccess.PriceData.model.Timesalesdata"/>
- <mapping class="com.redpine.TradeDataAccess.PriceData.model.L1data"/>
+  <mapping class="com.redpine.TradeDataAccess.PriceData.model.L1data"/>
   <mapping class="com.redpine.TradeDataAccess.PriceData.model.L2data"/>
+  <mapping class="com.redpine.TradeDataAccess.AccountData.model.OpenOrderData"/>
+  <mapping class="com.redpine.TradeDataAccess.AccountData.model.OrderHistoryData"/>
+  <mapping class="com.redpine.TradeDataAccess.AccountData.model.PositionData"/>
+  <mapping class="com.redpine.TradeDataAccess.AccountData.model.PurchaseData"/>
  </session-factory>
 </hibernate-configuration>

@@ -83,7 +83,9 @@ public class Timesalesdata implements java.io.Serializable {
 	/**
 	 * @return
 	 */
-	@Column(name = "timeStamp")
+	@Column(name = "timeStamp", 
+	        updatable = false,
+	        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	public Timestamp getTimeStamp() {
 		return this.timeStamp;
 	}
