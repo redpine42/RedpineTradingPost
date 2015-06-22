@@ -1,0 +1,45 @@
+package com.redpine.TradeDataAccess.Util.DataEnums;
+
+public enum ExecutionType {
+    NotExecuted(0),
+	DISCRETIONARY(10043),
+	LIMIT(10030),
+	LIMIT_CLOSE(10057),
+	LIMIT_OPEN(10056),
+	LIMIT_STOPMKT(10064),
+	LIMIT_TRAIL(10054),
+	LIMIT_TTO(10050),
+	MARKET(10031),
+	MARKET_CLOSE(10039),
+	MARKET_OPEN(10038),
+	MARKET_STOP(10069),
+	MARKET_TRAIL(10055),
+	MARKET_TTO(10051),
+	PART(10046),
+	PEGGED(10062),
+	RESERVE(10040),
+	RSV_DISC(10044),
+	RSV_PEGGED(10066),
+	RSV_TTO(10052),
+	STOPLMT_STOP(10072),
+	STOPLMT_TRAIL(10068),
+	STOPLMT_TTO(10067),
+	STOP_LIMIT(10033),
+	STOP_MARKET(10032),
+	STOP_STOP(10073),
+	STOP_TRAIL(10065),
+	STOP_TTO(10053),
+	TRAILING_STOP(10034),
+	TTO_ORDER(10037),
+	VWAP(10063);
+	 
+    private final int number;
+
+	private ExecutionType(int number) {
+		this.number = number;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+}
