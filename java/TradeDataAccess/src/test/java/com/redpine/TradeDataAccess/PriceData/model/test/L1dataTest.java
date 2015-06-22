@@ -38,44 +38,80 @@ public class L1dataTest {
 	private static int asksize = 200;
 	private static int volume = 500;
 	
-	
-	private static L1dataDao l1Dao;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		recordTime.setNanos(0);  // MySQL does not save milliseconds
 		
 		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
-		l1Dao = new L1dataDao();
+		L1dataDao l1Dao = new L1dataDao();
 		Session session = l1Dao.openCurrentSession();
-		Transaction transaction = session.beginTransaction();
-		l1Dao.persist(data);
-		transaction.commit();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			l1Dao.persist(data);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpBeforeClass Runtime exception");
+		}
 
 		seq = data.getSeq();
 		session.clear();
+		session.close();
 		
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Session session = l1Dao.getCurrentSession();
-		Transaction transaction = session.beginTransaction();
-		L1data entity = l1Dao.findById(seq);
-		l1Dao.delete(entity);
-		transaction.commit();
+		L1dataDao l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			L1data entity = l1Dao.findById(seq);
+			l1Dao.delete(entity);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpAfterClass Runtime exception");
+		}
+
 		session.close();
 		logger.info("Finish setUpAfterClass. seq = " + seq.toString());
 	}
 
+	public L1data getL1Data() {
+		L1dataDao l1Dao = new L1dataDao();
+		Session session = l1Dao.openCurrentSession();
+		Transaction transaction = null;
+		L1data data = null;
+		try {
+			transaction = session.beginTransaction();
+			data = l1Dao.findById(seq);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("getL1Data Runtime exception");
+		}
+		session.close();
+		
+		return data;
+	}
+	
 	@Test
 	public void testGetSeq() {
 		logger.info("Enter L1dataTest.testGetSeq");
-
-		L1data l1Data = l1Dao.findById(seq);
-
+		
+		L1data l1Data = getL1Data();
+		
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.seq data doesn't match.", seq, l1Data.getSeq());
 	}
@@ -84,7 +120,7 @@ public class L1dataTest {
 	public void testGetTimeStamp() {
 		logger.info("Enter L1dataTest.testGetTimeStamp");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertNotNull("L1dataTest.timeStamp data doesn't match.", l1Data.getTimeStamp());
@@ -98,7 +134,7 @@ public class L1dataTest {
 	public void testGetSymbol() {
 		logger.info("Enter L1dataTest.testGetSymbol");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.symbol data doesn't match.", symbol, l1Data.getSymbol());
@@ -111,7 +147,7 @@ public class L1dataTest {
 	public void testGetSize() {
 		logger.info("Enter L1dataTest.testGetSize");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.size data doesn't match.", size, l1Data.getSize());
@@ -124,7 +160,7 @@ public class L1dataTest {
 	public void testGetPrice() {
 		logger.info("Enter L1dataTest.testGetPrice");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.price data doesn't match.", price, l1Data.getPrice(), .01);
@@ -137,7 +173,7 @@ public class L1dataTest {
 	public void testGetRecordTime() {
 		logger.info("Enter L1dataTest.testGetRecordTime");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.recordtime data doesn't match.", recordTime, l1Data.getRecordTime());
@@ -151,7 +187,7 @@ public class L1dataTest {
 	public void testGetBid() {
 		logger.info("Enter L1dataTest.testGetBid");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.bid data doesn't match.", bid, l1Data.getBid(), .01);
@@ -164,7 +200,7 @@ public class L1dataTest {
 	public void testGetAsk() {
 		logger.info("Enter L1dataTest.testGetAsk");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.ask data doesn't match.", ask, l1Data.getAsk(), .01);
@@ -177,7 +213,7 @@ public class L1dataTest {
 	public void testGetBidsize() {
 		logger.info("Enter L1dataTest.testGetBidsize");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.bidSize data doesn't match.", bidsize, l1Data.getBidsize());
@@ -190,7 +226,7 @@ public class L1dataTest {
 	public void testGetAsksize() {
 		logger.info("Enter L1dataTest.testGetAsksize");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.askSize data doesn't match.", asksize, l1Data.getAsksize());
@@ -203,7 +239,7 @@ public class L1dataTest {
 	public void testGetVolume() {
 		logger.info("Enter L1dataTest.testGetVolume");
 
-		L1data l1Data = l1Dao.findById(seq);
+		L1data l1Data = getL1Data();
 
 		assertNotNull("Data not retrieved.", l1Data);
 		assertEquals("L1dataTest.volume data doesn't match.", volume, l1Data.getVolume());

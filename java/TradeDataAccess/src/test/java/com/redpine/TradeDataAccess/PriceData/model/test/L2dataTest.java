@@ -31,42 +31,80 @@ public class L2dataTest {
 	private static Timestamp recordTime = new Timestamp(new Date().getTime());
 	private static byte closed = 0;
 
-	private static L2dataDao l2Dao;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		recordTime.setNanos(0); // MySQL does not save milliseconds
 		
 		L2data data = new L2data(symbol, mmid, source, marketside, price, size,
 			 recordTime, closed);
-		l2Dao = new L2dataDao();
+		L2dataDao l2Dao = new L2dataDao();
 		Session session = l2Dao.openCurrentSession();
-		Transaction transaction = session.beginTransaction();
-		l2Dao.persist(data);
-		transaction.commit();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			l2Dao.persist(data);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpBeforeClass Runtime exception");
+		}
 
 		seq = data.getSeq();
 		session.clear();
+		session.close();
 		
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Session session = l2Dao.getCurrentSession();
-		Transaction transaction = session.beginTransaction();
-		L2data entity = l2Dao.findById(seq);
-		l2Dao.delete(entity);
-		transaction.commit();
+		L2dataDao l2Dao = new L2dataDao();
+		Session session = l2Dao.openCurrentSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			L2data entity = l2Dao.findById(seq);
+			l2Dao.delete(entity);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpAfterClass Runtime exception");
+		}
+			
 		session.close();
 		logger.info("Finish setUpAfterClass. seq = " + seq.toString());
 	}
+
+	public L2data getL2Data() {
+		L2dataDao l2Dao = new L2dataDao();
+		Session session = l2Dao.openCurrentSession();
+		Transaction transaction = null;
+		L2data data = null;
+		try {
+			transaction = session.beginTransaction();
+			data = l2Dao.findById(seq);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("getL1Data Runtime exception");
+		}
+		session.close();
+		
+		return data;
+	}
+	
 
 	@Test
 	public void testGetSeq() {
 		logger.info("Enter L2dataTest.testGetSeq");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.seq data doesn't match.", seq, l2Data.getSeq());
@@ -76,7 +114,7 @@ public class L2dataTest {
 	public void testGetTimeStamp() {
 		logger.info("Enter L1dataTest.testGetTimeStamp");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertNotNull("L2dataTest.timeStamp data doesn't match.", l2Data.getTimeStamp());
@@ -88,7 +126,7 @@ public class L2dataTest {
 	public void testGetSymbol() {
 		logger.info("Enter L2dataTest.testGetSymbol");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.symbol data doesn't match.", symbol, l2Data.getSymbol());
@@ -98,7 +136,7 @@ public class L2dataTest {
 	public void testGetMmid() {
 		logger.info("Enter L2dataTest.testGetMmid");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.mmid data doesn't match.", mmid, l2Data.getMmid());
@@ -108,7 +146,7 @@ public class L2dataTest {
 	public void testGetSource() {
 		logger.info("Enter L2dataTest.testGetSource");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 			assertEquals("L2dataTest.source data doesn't match.", source, l2Data.getSource());
@@ -118,7 +156,7 @@ public class L2dataTest {
 	public void testGetMarketside() {
 		logger.info("Enter L2dataTest.testGetMarketside");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.marketside data doesn't match.", marketside, l2Data.getMarketside());
@@ -128,7 +166,7 @@ public class L2dataTest {
 	public void testGetPrice() {
 		logger.info("Enter L2dataTest.testGetPrice");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.price data doesn't match.", price, l2Data.getPrice(), .01);
@@ -138,7 +176,7 @@ public class L2dataTest {
 	public void testGetSize() {
 		logger.info("Enter L2dataTest.testGetSize");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.size data doesn't match.", size, l2Data.getSize());
@@ -148,7 +186,7 @@ public class L2dataTest {
 	public void testGetRecordTime() {
 		logger.info("Enter L2dataTest.testGetRecordTime");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.time data doesn't match.", recordTime, l2Data.getRecordTime());
@@ -158,7 +196,7 @@ public class L2dataTest {
 	public void testGetClosed() {
 		logger.info("Enter L2dataTest.testGetClosed");
 
-		L2data l2Data = l2Dao.findById(seq);
+		L2data l2Data = getL2Data();
 
 		assertNotNull("Data not retrieved.", l2Data);
 		assertEquals("L2dataTest.closed data doesn't match.", closed, l2Data.getClosed());

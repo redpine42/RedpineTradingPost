@@ -31,42 +31,79 @@ public class TimesalesdataTest {
 	private static TickStatus tsstatus = TickStatus.NORMAL;
 	private static TickType tstype = TickType.ASK_TICK;
 
-	private static TimesalesdataDao tsDao;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		recordTime.setNanos(0); // MySQL does not save milliseconds
 		
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
 				recordTime, tsstatus, tstype);
-		tsDao = new TimesalesdataDao();
+		TimesalesdataDao tsDao = new TimesalesdataDao();
 		Session session = tsDao.openCurrentSession();
-		Transaction transaction = session.beginTransaction();
-		tsDao.persist(data);
-		transaction.commit();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			tsDao.persist(data);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpBeforeClass Runtime exception");
+		}
 
 		seq = data.getSeq();
 
 		session.clear();
+		session.close();
 		logger.info("Finish setUpBeforeClass. seq = " + seq.toString());
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Session session = tsDao.getCurrentSession();
-		Transaction transaction = session.beginTransaction();
-		Timesalesdata entity = tsDao.findById(seq);
-		tsDao.delete(entity);
-		transaction.commit();
+		TimesalesdataDao tsDao = new TimesalesdataDao();
+		Session session = tsDao.openCurrentSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			Timesalesdata entity = tsDao.findById(seq);
+			tsDao.delete(entity);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpAfterClass Runtime exception");
+		}
+
 		session.close();
 		logger.info("Finish setUpAfterClass. seq = " + seq.toString());
+	}
+
+	public Timesalesdata getTimesalesdata() {
+		TimesalesdataDao tsDao = new TimesalesdataDao();
+		Session session = tsDao.openCurrentSession();
+		Transaction transaction = null;
+		Timesalesdata data = null;
+		try {
+			transaction = session.beginTransaction();
+			data = tsDao.findById(seq);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("getTimesalesdata Runtime exception");
+		}
+		session.close();
+		
+		return data;
 	}
 
 	@Test
 	public void testGetSeq() {
 		logger.info("Enter TimesalesdataTest.testGetSeq");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.seq data doesn't match.", seq, tsData.getSeq());
@@ -76,7 +113,7 @@ public class TimesalesdataTest {
 	public void testGetTimeStamp() {
 		logger.info("Enter L1dataTest.testGetTimeStamp");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertNotNull("TimesalesdataTest.timeStamp data doesn't match.", tsData.getTimeStamp());
@@ -87,7 +124,7 @@ public class TimesalesdataTest {
 	public void testGetSymbol() {
 		logger.info("Enter TimesalesdataTest.testGetSymbol");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.Symbol data doesn't match.", symbol, tsData.getSymbol());
@@ -97,7 +134,7 @@ public class TimesalesdataTest {
 	public void testGetSizeVal() {
 		logger.info("Enter TimesalesdataTest.testGetSizeVal");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.sizeVal data doesn't match.", sizeVal, tsData.getSizeVal());
@@ -107,7 +144,7 @@ public class TimesalesdataTest {
 	public void testGetPrice() {
 		logger.info("Enter TimesalesdataTest.testGetPrice");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.price data doesn't match.", price, tsData.getPrice(), .01);
@@ -117,7 +154,7 @@ public class TimesalesdataTest {
 	public void testGetRecordTime() {
 		logger.info("Enter TimesalesdataTest.testGetRecordTimel");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.recordTime data doesn't match.", recordTime, tsData.getRecordTime());
@@ -129,7 +166,7 @@ public class TimesalesdataTest {
 	public void testGetTsstatus() {
 		logger.info("Enter TimesalesdataTest.testGetTsstatus");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.tsstatus data doesn't match.", tsstatus, tsData.getTsstatus());
@@ -140,7 +177,7 @@ public class TimesalesdataTest {
 	public void testGetTstype() {
 		logger.info("Enter TimesalesdataTest.testGetTstype");
 
-		Timesalesdata tsData = tsDao.findById(seq);
+		Timesalesdata tsData = getTimesalesdata();
 
 		assertNotNull("Data not retrieved.", tsData);
 		assertEquals("Timesalesdata.tstype data doesn't match.", tstype, tsData.getTstype());

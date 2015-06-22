@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,6 +23,7 @@ public class OpenOrderData {
 	private Date date;
 	private String orderNumber;
 	private int orderType;
+	@GeneratedValue
 	private String prefMMID;
 	private double price;
 	private int quantity;
@@ -329,6 +331,5 @@ public class OpenOrderData {
 	public void setVolumeType(int volumeType) {
 		this.volumeType = volumeType;
 	}
-	
-	
+
 }
