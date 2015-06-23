@@ -28,5 +28,6 @@
   <mapping class="com.redpine.TradeDataAccess.AccountData.model.OrderHistoryData"/>
   <mapping class="com.redpine.TradeDataAccess.AccountData.model.PositionData"/>
   <mapping class="com.redpine.TradeDataAccess.AccountData.model.PurchaseData"/>
+  <mapping class="com.redpine.TradeDataAccess.AccountData.model.AccountData"/>
  </session-factory>
 </hibernate-configuration>
