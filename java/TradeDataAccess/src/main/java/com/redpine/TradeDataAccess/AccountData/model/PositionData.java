@@ -1,5 +1,7 @@
 package com.redpine.TradeDataAccess.AccountData.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,7 +27,8 @@ public class PositionData {
 	private String eventType;
 	private String account;
 	private String customer;
-
+	private Timestamp timestamp;
+	
 	/**
 	 * @return the accountId
 	 */
@@ -233,5 +236,16 @@ public class PositionData {
 		this.customer = customer;
 	}
 	
-	
+	/**
+	 * @return the timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 }

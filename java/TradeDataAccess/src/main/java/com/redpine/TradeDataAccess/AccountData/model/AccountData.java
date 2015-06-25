@@ -11,36 +11,106 @@ import javax.persistence.Table;
 @Table(name = "AccountData")
 public class AccountData {
 	
+	/**
+	 * @param accountId
+	 * @param eventType
+	 * @param accountName
+	 * @param accountType
+	 * @param bank
+	 * @param baseCurrency
+	 * @param branch
+	 * @param cancelsToday
+	 * @param credit
+	 * @param currentEquity
+	 * @param currentExcess
+	 * @param customer
+	 * @param dailyRealizedPL
+	 * @param mMRMultiplier
+	 * @param mMRUsed
+	 * @param morningCash
+	 * @param morningEquity
+	 * @param morningExcess
+	 * @param overnightExcess
+	 * @param permedForCADEquities
+	 * @param permedForEquities
+	 * @param permedForForex
+	 * @param permedForFutures
+	 * @param permedForOptions
+	 * @param routingId
+	 * @param semiDelimited
+	 * @param sharesToday
+	 * @param tradesToday
+	 */
+	public AccountData(String accountId, String eventType, String accountName,
+			long accountType, String bank, String baseCurrency, String branch,
+			long cancelsToday, double credit, double currentEquity,
+			double currentExcess, String customer, double dailyRealizedPL,
+			double mMRMultiplier, double mMRUsed, double morningCash,
+			double morningEquity, double morningExcess, double overnightExcess,
+			Boolean permedForCADEquities, Boolean permedForEquities,
+			Boolean permedForForex, Boolean permedForFutures,
+			Boolean permedForOptions, String routingId, String semiDelimited,
+			long sharesToday, long tradesToday) {
+		super();
+		this.accountId = accountId;
+		this.eventType = eventType;
+		this.accountName = accountName;
+		this.accountType = accountType;
+		this.bank = bank;
+		this.baseCurrency = baseCurrency;
+		this.branch = branch;
+		this.cancelsToday = cancelsToday;
+		this.credit = credit;
+		this.currentEquity = currentEquity;
+		this.currentExcess = currentExcess;
+		this.customer = customer;
+		this.dailyRealizedPL = dailyRealizedPL;
+		MMRMultiplier = mMRMultiplier;
+		MMRUsed = mMRUsed;
+		this.morningCash = morningCash;
+		this.morningEquity = morningEquity;
+		this.morningExcess = morningExcess;
+		this.overnightExcess = overnightExcess;
+		this.permedForCADEquities = permedForCADEquities;
+		this.permedForEquities = permedForEquities;
+		this.permedForForex = permedForForex;
+		this.permedForFutures = permedForFutures;
+		this.permedForOptions = permedForOptions;
+		this.routingId = routingId;
+		this.semiDelimited = semiDelimited;
+		this.sharesToday = sharesToday;
+		this.tradesToday = tradesToday;
+	}
 	private String accountId;
 
-	String eventType;
-	String accountName;
-	long accountType;
-	String bank;
-	String baseCurrency;
-	String branch;
-	long cancelsToday;
-	double credit;
-	double currentEquity;
-	double currentExcess;
-	String customer;
-	double dailyRealizedPL;
-	double MMRMultiplier;
-	double MMRUsed;
-	double morningCash;
-	double morningEquity;
-	double morningExcess;
-	double overnightExcess;
-	Boolean permedForCADEquities;
-	Boolean permedForEquities;
-	Boolean permedForForex;
-	Boolean permedForFutures;
-	Boolean permedForOptions;
-	String routingId;
-	String semiDelimited;
-	long sharesToday;
-	long tradesToday;
-	Timestamp timestamp;
+	private String eventType;
+	private String accountName;
+	private long accountType;
+	private String bank;
+	private String baseCurrency;
+	private String branch;
+	private long cancelsToday;
+	private double credit;
+	private double currentEquity;
+	private double currentExcess;
+	private String customer;
+	private double dailyRealizedPL;
+	private double MMRMultiplier;
+	private double MMRUsed;
+	private double morningCash;
+	private double morningEquity;
+	private double morningExcess;
+	private double overnightExcess;
+	private Boolean permedForCADEquities;
+	private Boolean permedForEquities;
+	private Boolean permedForForex;
+	private Boolean permedForFutures;
+	private Boolean permedForOptions;
+	private String routingId;
+	private String semiDelimited;
+	private long sharesToday;
+	private long tradesToday;
+	private Timestamp timestamp;
 	
 	/**
 	 * @return the accountId
@@ -53,7 +123,8 @@ public class AccountData {
 	/**
 	 * @param accountId the accountId to set
 	 */
-	public void setAccountId(String accountId) {
+	@SuppressWarnings("unused")
+	private void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 	/**

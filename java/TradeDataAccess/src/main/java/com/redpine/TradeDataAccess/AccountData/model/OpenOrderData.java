@@ -2,6 +2,7 @@ package com.redpine.TradeDataAccess.AccountData.model;
 
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -36,6 +37,9 @@ public class OpenOrderData {
 	private String traderId;
 	private double trailingOffset;
 	private int volumeType;
+	private Timestamp timestamp;
+
+	
 	/**
 	 * @return the accountId
 	 */
@@ -47,7 +51,8 @@ public class OpenOrderData {
 	/**
 	 * @param accountId the accountId to set
 	 */
-	public void setAccountId(String accountId) {
+	@SuppressWarnings("unused")
+	private void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 	/**
@@ -330,4 +335,17 @@ public class OpenOrderData {
 		this.volumeType = volumeType;
 	}
 
+	/**
+	 * @return the timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
+	
 }

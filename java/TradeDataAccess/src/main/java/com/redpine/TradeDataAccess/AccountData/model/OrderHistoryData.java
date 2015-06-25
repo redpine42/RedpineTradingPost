@@ -1,5 +1,6 @@
 package com.redpine.TradeDataAccess.AccountData.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -40,6 +41,7 @@ public class OrderHistoryData {
 	private String traderId;
 	private int volumeType;
 	private int execType;
+	private Timestamp timestamp;
 	
 	/**
 	 * @return the accountId
@@ -403,5 +405,16 @@ public class OrderHistoryData {
 	public void setExecType(int execType) {
 		this.execType = execType;
 	}
-
+	/**
+	 * @return the timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 }

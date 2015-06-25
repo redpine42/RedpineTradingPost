@@ -1,6 +1,7 @@
 package com.redpine.TradeDataAccess.AccountData.model;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import com.redpine.TradeDataAccess.Util.DataEnums.ExecutionType;
@@ -39,7 +40,7 @@ public class PurchaseData {
 	private String orderNumber;
 	private String errorMessage;
 	private String reason;
-	
+	private Timestamp timestamp;
 	
 	/**
 	 * @return the accountId
@@ -279,6 +280,17 @@ public class PurchaseData {
 	public void setVersion(Integer version) {
 		this.version = version;
 	}
-
+	/**
+	 * @return the timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+	/**
+	 * @param timestamp the timestamp to set
+	 */
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 	
 }

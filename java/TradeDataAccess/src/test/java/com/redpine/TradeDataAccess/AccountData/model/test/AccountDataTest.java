@@ -5,9 +5,19 @@ package com.redpine.TradeDataAccess.AccountData.model.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.redpine.TradeDataAccess.AccountData.DAO.AccountDataDao;
+import com.redpine.TradeDataAccess.AccountData.model.AccountData;
+import com.redpine.TradeDataAccess.PriceData.model.L1data;
 
 /**
  * @author dbrown
@@ -15,11 +25,72 @@ import org.junit.Test;
  */
 public class AccountDataTest {
 
+	static final Logger logger = LoggerFactory.getLogger(AccountDataTest.class);
+	private static String accountId;
+
+	private static String eventType;
+	private static String accountName;
+	private static long accountType;
+	private static String bank;
+	private static String baseCurrency;
+	private static String branch;
+	private static long cancelsToday;
+	private static double credit;
+	private static double currentEquity;
+	private static double currentExcess;
+	private static String customer;
+	private static double dailyRealizedPL;
+	private static double MMRMultiplier;
+	private static double MMRUsed;
+	private static double morningCash;
+	private static double morningEquity;
+	private static double morningExcess;
+	private static double overnightExcess;
+	private static Boolean permedForCADEquities;
+	private static Boolean permedForEquities;
+	private static Boolean permedForForex;
+	private static Boolean permedForFutures;
+	private static Boolean permedForOptions;
+	private static String routingId;
+	private static String semiDelimited;
+	private static long sharesToday;
+	private static long tradesToday;
+	private static Timestamp timestamp;
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		
+		AccountData data = new AccountData(accountId, eventType, accountName,
+				accountType, bank, baseCurrency, branch,
+				cancelsToday, credit, currentEquity,
+				currentExcess, customer, dailyRealizedPL,
+				MMRMultiplier, MMRUsed, morningCash,
+				morningEquity, morningExcess, overnightExcess,
+				permedForCADEquities, permedForEquities,
+				permedForForex, permedForFutures,
+				permedForOptions, routingId, semiDelimited,
+				sharesToday, tradesToday);
+		AccountDataDao dao = new AccountDataDao();
+		Session session = dao.openCurrentSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			dao.persist(data);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpBeforeClass Runtime exception");
+		}
+
+		session.clear();
+		session.close();
+		
+		logger.info("Finish setUpBeforeClass.");
 	}
 
 	/**
@@ -27,13 +98,62 @@ public class AccountDataTest {
 	 */
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		AccountDataDao dao = new AccountDataDao();
+		Session session = dao.openCurrentSession();
+		Transaction transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			AccountData entity = dao.findById(accountId);
+			dao.delete(entity);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("setUpAfterClass Runtime exception");
+		}
+
+		session.close();
+		logger.info("Finish setUpAfterClass");
+	}
+
+	private AccountData getAccountData() {
+		AccountDataDao dao = new AccountDataDao();
+		Session session = dao.openCurrentSession();
+		Transaction transaction = null;
+		AccountData data = null;
+		try {
+			transaction = session.beginTransaction();
+			data = dao.findById(accountId);
+			transaction.commit();
+		}
+		catch(RuntimeException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			fail("getL1Data Runtime exception");
+		}
+		session.close();
+		
+		return data;
+	}
+	/**
+	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.model.AccountData#getAccountId()}.
+	 */
+	@Test
+	public final void testGetAccountId() {
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetAccountId data doesn't match.", accountId, data.getAccountId());
 	}
 
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.model.AccountData#getAccountId()}.
 	 */
 	@Test
-	public final void testGetAccountId() {
+	private final void testSetAccountId() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -42,7 +162,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetEventType() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetEventType data doesn't match.", eventType, data.getEventType());	
 	}
 
 	/**
@@ -58,7 +183,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetAccountName() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetAccountName data doesn't match.", accountName, data.getAccountName());
 	}
 
 	/**
@@ -74,7 +204,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetAccountType() {
-		fail("Not yet implemented"); // TODO
+			logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetAccountType data doesn't match.", accountType, data.getAccountType());
 	}
 
 	/**
@@ -90,7 +225,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetBank() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetBank data doesn't match.", bank, data.getBank());
 	}
 
 	/**
@@ -106,7 +246,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetBaseCurrency() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetBaseCurrency data doesn't match.", baseCurrency, data.getBaseCurrency());
 	}
 
 	/**
@@ -122,7 +267,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetBranch() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetBranch data doesn't match.", branch, data.getBranch());
 	}
 
 	/**
@@ -138,7 +288,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetCancelsToday() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetCancelsToday data doesn't match.", cancelsToday, data.getCancelsToday());	
 	}
 
 	/**
@@ -154,7 +309,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetCredit() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetCredit data doesn't match.", credit, data.getCredit(), .01);
 	}
 
 	/**
@@ -170,7 +330,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetCurrentEquity() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetCurrentEquity data doesn't match.", currentEquity, data.getCurrentEquity(), .01);
 	}
 
 	/**
@@ -186,7 +351,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetCurrentExcess() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetCurrentExcess data doesn't match.", currentExcess, data.getCurrentExcess(), .01);
 	}
 
 	/**
@@ -202,7 +372,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetCustomer() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetCustomer data doesn't match.", customer, data.getCustomer());
 	}
 
 	/**
@@ -218,7 +393,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetDailyRealizedPL() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetDailyRealizedPL data doesn't match.", dailyRealizedPL, data.getDailyRealizedPL(), .01);
 	}
 
 	/**
@@ -234,7 +414,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetMMRMultiplier() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetMMRMultiplier data doesn't match.", MMRMultiplier, data.getMMRMultiplier(), .01);
 	}
 
 	/**
@@ -250,7 +435,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetMMRUsed() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetMMRUsed data doesn't match.", MMRUsed, data.getMMRUsed(), .01);
 	}
 
 	/**
@@ -266,7 +456,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetMorningCash() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetMorningCash data doesn't match.", morningCash, data.getMorningCash(), .01);
 	}
 
 	/**
@@ -282,7 +477,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetMorningEquity() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetMorningEquity data doesn't match.", morningEquity, data.getMorningEquity(), .01);
 	}
 
 	/**
@@ -298,7 +498,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetMorningExcess() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetMorningExcess data doesn't match.", morningExcess, data.getMorningExcess(), .01);
 	}
 
 	/**
@@ -314,7 +519,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetOvernightExcess() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetOvernightExcess data doesn't match.", overnightExcess, data.getOvernightExcess(), .01);
 	}
 
 	/**
@@ -330,7 +540,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetPermedForCADEquities() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetPermedForCADEquities data doesn't match.", permedForCADEquities, data.getPermedForCADEquities());
 	}
 
 	/**
@@ -346,7 +561,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetPermedForEquities() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetPermedForEquities data doesn't match.", permedForEquities, data.getPermedForEquities());
 	}
 
 	/**
@@ -362,7 +582,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetPermedForForex() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetPermedForForex data doesn't match.", permedForForex, data.getPermedForForex());
 	}
 
 	/**
@@ -378,7 +603,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetPermedForFutures() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetPermedForFutures data doesn't match.", permedForFutures, data.getPermedForFutures());
 	}
 
 	/**
@@ -394,7 +624,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetPermedForOptions() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetPermedForOptions data doesn't match.", permedForOptions, data.getPermedForOptions());
 	}
 
 	/**
@@ -410,7 +645,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetRoutingId() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetRoutingId data doesn't match.", routingId, data.getRoutingId());
 	}
 
 	/**
@@ -426,7 +666,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetSemiDelimited() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetSemiDelimited data doesn't match.", semiDelimited, data.getSemiDelimited());
 	}
 
 	/**
@@ -442,7 +687,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetSharesToday() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetSharesToday data doesn't match.", sharesToday, data.getSharesToday());
 	}
 
 	/**
@@ -458,7 +708,12 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetTradesToday() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetTradesToday data doesn't match.", tradesToday, data.getTradesToday());
 	}
 
 	/**
@@ -474,8 +729,14 @@ public class AccountDataTest {
 	 */
 	@Test
 	public final void testGetTimestamp() {
-		fail("Not yet implemented"); // TODO
+		logger.info("Enter AccountDataTest.");
+		
+		AccountData data = getAccountData();
+		
+		assertNotNull("Data not retrieved.", data);
+		assertEquals("AccountDataTest.testGetTimestamp data doesn't match.", timestamp, data.getTimestamp());
 	}
+	
 
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.model.AccountData#setTimestamp(java.sql.Timestamp)}.
