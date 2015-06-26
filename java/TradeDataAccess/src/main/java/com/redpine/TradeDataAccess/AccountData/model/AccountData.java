@@ -10,6 +10,38 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "AccountData")
 public class AccountData {
+
+	private String accountId;
+
+	private String eventType;
+	private String accountName;
+	private long accountType;
+	private String bank;
+	private String baseCurrency;
+	private String branch;
+	private long cancelsToday;
+	private double credit;
+	private double currentEquity;
+	private double currentExcess;
+	private String customer;
+	private double dailyRealizedPL;
+	private double MMRMultiplier;
+	private double MMRUsed;
+	private double morningCash;
+	private double morningEquity;
+	private double morningExcess;
+	private double overnightExcess;
+	private Boolean permedForCADEquities;
+	private Boolean permedForEquities;
+	private Boolean permedForForex;
+	private Boolean permedForFutures;
+	private Boolean permedForOptions;
+	private String routingId;
+	private String semiDelimited;
+	private long sharesToday;
+	private long tradesToday;
+	private Timestamp timestamp;
+	
 	
 	/**
 	 * @param accountId
@@ -81,36 +113,9 @@ public class AccountData {
 		this.sharesToday = sharesToday;
 		this.tradesToday = tradesToday;
 	}
-	private String accountId;
-
-	private String eventType;
-	private String accountName;
-	private long accountType;
-	private String bank;
-	private String baseCurrency;
-	private String branch;
-	private long cancelsToday;
-	private double credit;
-	private double currentEquity;
-	private double currentExcess;
-	private String customer;
-	private double dailyRealizedPL;
-	private double MMRMultiplier;
-	private double MMRUsed;
-	private double morningCash;
-	private double morningEquity;
-	private double morningExcess;
-	private double overnightExcess;
-	private Boolean permedForCADEquities;
-	private Boolean permedForEquities;
-	private Boolean permedForForex;
-	private Boolean permedForFutures;
-	private Boolean permedForOptions;
-	private String routingId;
-	private String semiDelimited;
-	private long sharesToday;
-	private long tradesToday;
-	private Timestamp timestamp;
+	
+	public AccountData(){
+	}
 	
 	/**
 	 * @return the accountId
@@ -454,13 +459,17 @@ public class AccountData {
 	/**
 	 * @return the timestamp
 	 */
+	@Column(name = "timeStamp", 
+	        updatable = false,
+	        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
 	/**
 	 * @param timestamp the timestamp to set
 	 */
-	public void setTimestamp(Timestamp timestamp) {
+	@SuppressWarnings("unused")
+	private void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
 }

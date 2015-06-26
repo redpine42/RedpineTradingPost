@@ -283,13 +283,17 @@ public class PurchaseData {
 	/**
 	 * @return the timestamp
 	 */
+	@Column(name = "timeStamp", 
+	        updatable = false,
+	        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
 	/**
 	 * @param timestamp the timestamp to set
 	 */
-	public void setTimestamp(Timestamp timestamp) {
+	@SuppressWarnings("unused")
+	private void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
 	
