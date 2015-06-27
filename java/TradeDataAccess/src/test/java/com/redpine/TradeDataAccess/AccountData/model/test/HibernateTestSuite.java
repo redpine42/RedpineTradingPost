@@ -13,7 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
 import com.redpine.TradeDataAccess.Util.HibernateUtil;
 
 @RunWith(Suite.class)
-@SuiteClasses({ OpenOrderDataTest.class, OrderHistoryDataTest.class, PositionDataTest.class,  PurchaseDataTest.class, AccountDataTest.class})
+@SuiteClasses({AccountDataTest.class})
 public class HibernateTestSuite {
 
     static HibernateUtil util;

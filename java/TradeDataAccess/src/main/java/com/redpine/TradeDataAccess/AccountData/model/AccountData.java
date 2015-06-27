@@ -4,13 +4,16 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "AccountData")
 public class AccountData {
 
+	@GeneratedValue
 	private String accountId;
 
 	private String eventType;
@@ -471,5 +474,16 @@ public class AccountData {
 	@SuppressWarnings("unused")
 	private void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
+	}
+	@Version
+	protected Integer version;
+
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 }
