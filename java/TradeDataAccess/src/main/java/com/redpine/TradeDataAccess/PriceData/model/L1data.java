@@ -78,7 +78,7 @@ public class L1data implements java.io.Serializable {
 	 */
 	@Column(name = "timeStamp", 
 	        updatable = false,
-	        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	        columnDefinition="TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6)")
 	public Timestamp getTimeStamp() {
 		return this.timeStamp;
 	}

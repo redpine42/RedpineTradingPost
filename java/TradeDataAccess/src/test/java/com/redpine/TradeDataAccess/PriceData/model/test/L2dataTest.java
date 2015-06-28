@@ -33,8 +33,8 @@ public class L2dataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		recordTime.setNanos(0); // MySQL does not save milliseconds
-		
+		recordTime.setNanos(0);
+
 		L2data data = new L2data(symbol, mmid, source, marketside, price, size,
 			 recordTime, closed);
 		L2dataDao l2Dao = new L2dataDao();

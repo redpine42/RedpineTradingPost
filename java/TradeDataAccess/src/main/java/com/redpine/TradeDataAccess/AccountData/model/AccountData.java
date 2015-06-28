@@ -464,7 +464,7 @@ public class AccountData {
 	 */
 	@Column(name = "timeStamp", 
 	        updatable = false,
-	        columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+	        columnDefinition="TIMESTAMP(6) DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)")
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}

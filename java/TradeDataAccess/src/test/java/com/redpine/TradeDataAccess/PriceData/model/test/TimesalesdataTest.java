@@ -33,8 +33,8 @@ public class TimesalesdataTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		recordTime.setNanos(0); // MySQL does not save milliseconds
-		
+		recordTime.setNanos(0);
+
 		Timesalesdata data = new Timesalesdata(symbol, sizeVal, price,
 				recordTime, tsstatus, tstype);
 		TimesalesdataDao tsDao = new TimesalesdataDao();

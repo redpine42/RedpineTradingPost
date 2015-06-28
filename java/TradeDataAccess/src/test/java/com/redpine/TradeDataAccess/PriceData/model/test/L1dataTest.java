@@ -40,7 +40,7 @@ public class L1dataTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		recordTime.setNanos(0);  // MySQL does not save milliseconds
+		recordTime.setNanos(0);
 		
 		L1data data = new L1data(symbol, size, price, recordTime,
 				bid, ask, bidsize, asksize, volume);
