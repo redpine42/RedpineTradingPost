@@ -1572,7 +1572,7 @@ public class AccountDataTest {
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			eventType = "eventType-2";
+			eventType = "eventType-3";
  			data.setEventType(eventType);
 			dao.update(data);
 			session.flush(); 
@@ -1583,6 +1583,7 @@ public class AccountDataTest {
 			fail("testUpdateTimestamp Runtime exception");
 		}
 
+		session.clear();
 		session.close();
 
 		data = getAccountData();
