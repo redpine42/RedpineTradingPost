@@ -1,0 +1,74 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.redpine.TradeDataMessages" />
+
+
+	<!-- =============================================== -->
+	<!-- JMS Common, Define JMS connectionFactory -->
+	<!-- =============================================== -->
+	<!-- Activemq connection factory -->
+	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- brokerURL, You may have different IP or port -->
+		<constructor-arg index="0" value="tcp://localhost:61616" />
+	</bean>
+
+	<!-- L1 Spring configured Messages -->
+	<bean id="l1Topic" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="L1Data" />
+	</bean>
+
+	<bean id="l1Listener" class="com.redpine.TradeDataMessages.PriceData.MsgConsumer.L1MsgConsumer" />
+	
+	<bean id="l1MessageListener"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="amqConnectionFactory" />
+		<property name="destination" ref="l1Topic" />
+		<property name="messageListener" ref="l1Listener" />
+		<property name="subscriptionDurable" value="true"/>
+		<property name="clientId" value="l1Client"/>
+		<property name="durableSubscriptionName" value="l1Client"/>
+	</bean>
+	
+	<!-- L2 Spring configured Messages -->
+	<bean id="l2Topic" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="L2Data" />
+	</bean>
+
+	<bean id="l2Listener" class="com.redpine.TradeDataMessages.PriceData.MsgConsumer.L2MsgConsumer" />
+	
+	<bean id="l1MessageListener"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="amqConnectionFactory" />
+		<property name="destination" ref="l2Topic" />
+		<property name="messageListener" ref="l2Listener" />
+		<property name="subscriptionDurable" value="true"/>
+		<property name="clientId" value="l2Client"/>
+		<property name="durableSubscriptionName" value="l2Client"/>
+	</bean>
+	
+	<!-- TimeSales Spring configured Messages -->
+	<bean id="timeSalesTopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg value="TimeSalesData" />
+	</bean>
+
+	<bean id="timeSalesListener" class="com.redpine.TradeDataMessages.PriceData.MsgConsumer.TimeSalesMsgConsumer" />
+	
+	<bean id="timeSalesMessageListener"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="amqConnectionFactory" />
+		<property name="destination" ref="timeSalesTopic" />
+		<property name="messageListener" ref="timeSalesListener" />
+		<property name="subscriptionDurable" value="true"/>
+		<property name="clientId" value="timeSalesClient"/>
+		<property name="durableSubscriptionName" value="timeSalesClient"/>
+	</bean>
+</beans>

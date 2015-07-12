@@ -3,4 +3,33 @@
   <groupId>com.redpine</groupId>
   <artifactId>TradeDataMessages</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
+ <properties>    
+    <!-- Spring version -->
+    <spring-framework.version>4.1.0.RELEASE</spring-framework.version>    
+    <!-- ActiveMQ version -->
+    <activemq.version>5.10.0</activemq.version>
+  </properties>
+   
+  <dependencies>    
+    <!-- Spring aritifacts -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring-framework.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jms</artifactId>
+      <version>${spring-framework.version}</version>
+    </dependency>  
+  
+    <!-- ActiveMQ Artifacts -->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-spring</artifactId>
+      <version>${activemq.version}</version>
+    </dependency>
+  </dependencies> 
+  
 </project>
