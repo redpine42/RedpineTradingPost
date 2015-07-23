@@ -16,7 +16,7 @@
 	<!-- JMS Common, Define JMS connectionFactory -->
 	<!-- =============================================== -->
 	<!-- Activemq connection factory -->
-	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+	<bean id="C" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<!-- brokerURL, You may have different IP or port -->
 		<constructor-arg index="0" value="tcp://localhost:61616" />
 	</bean>
