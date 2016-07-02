@@ -52,7 +52,7 @@ public class OpenOrderDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.OpenOrderDataDao#findById(java.lang.String)}.
 	 */
-
+	@Ignore
 	@Test
 	public final void testFindById() {
 		fail("Not yet implemented"); // TODO
