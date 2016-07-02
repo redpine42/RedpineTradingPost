@@ -34,7 +34,7 @@ public class OpenOrderDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.OpenOrderDataDao#persist(com.redpine.TradeDataAccess.AccountData.model.OpenOrderData)}.
 	 */
-	@Ignore
+
 	@Test
 	public final void testPersist() {
 		fail("Not yet implemented"); // TODO
