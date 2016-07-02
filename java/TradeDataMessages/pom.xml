@@ -2,7 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redpine</groupId>
   <artifactId>TradeDataMessages</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
 
  <properties>    
     <!-- Spring version -->
@@ -32,4 +31,10 @@
     </dependency>
   </dependencies> 
   
+  <parent>
+  	<groupId>redpine.com</groupId>
+  	<artifactId>RedpineTradingPost-parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<relativePath>../..</relativePath>
+  </parent>
 </project>

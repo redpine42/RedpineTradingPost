@@ -2,7 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redpine</groupId>
   <artifactId>TradeDataAccess</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <runSuite>**/HibernateTestSuite.class</runSuite>
@@ -56,4 +55,10 @@
       </plugin>
     </plugins>
   </build>
+  <parent>
+  	<groupId>redpine.com</groupId>
+  	<artifactId>RedpineTradingPost-parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<relativePath>../..</relativePath>
+  </parent>
 </project>
