@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -33,6 +34,7 @@ public class AccountDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.AccountDataDao#persist(com.redpine.TradeDataAccess.AccountData.model.AccountData)}.
 	 */
+	@Ignore
 	@Test
 	public final void testPersist() {
 		fail("Not yet implemented"); // TODO
@@ -41,6 +43,7 @@ public class AccountDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.AccountDataDao#update(com.redpine.TradeDataAccess.AccountData.model.AccountData)}.
 	 */
+	@Ignore
 	@Test
 	public final void testUpdate() {
 		fail("Not yet implemented"); // TODO
@@ -49,6 +52,7 @@ public class AccountDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.AccountDataDao#findById(java.lang.String)}.
 	 */
+	@Ignore
 	@Test
 	public final void testFindById() {
 		fail("Not yet implemented"); // TODO
@@ -57,6 +61,7 @@ public class AccountDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.AccountDataDao#delete(com.redpine.TradeDataAccess.AccountData.model.AccountData)}.
 	 */
+	@Ignore
 	@Test
 	public final void testDelete() {
 		fail("Not yet implemented"); // TODO
@@ -65,6 +70,7 @@ public class AccountDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.AccountDataDao#findAll()}.
 	 */
+	@Ignore
 	@Test
 	public final void testFindAll() {
 		fail("Not yet implemented"); // TODO
