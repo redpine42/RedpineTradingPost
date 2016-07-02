@@ -43,7 +43,7 @@ public class OpenOrderDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.OpenOrderDataDao#update(com.redpine.TradeDataAccess.AccountData.model.OpenOrderData)}.
 	 */
-	@Ignore
+
 	@Test
 	public final void testUpdate() {
 		fail("Not yet implemented"); // TODO
