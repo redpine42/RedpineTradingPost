@@ -61,7 +61,7 @@ public class OpenOrderDataDaoTest {
 	/**
 	 * Test method for {@link com.redpine.TradeDataAccess.AccountData.DAO.OpenOrderDataDao#delete(com.redpine.TradeDataAccess.AccountData.model.OpenOrderData)}.
 	 */
-
+	@Ignore
 	@Test
 	public final void testDelete() {
 		fail("Not yet implemented"); // TODO
