@@ -102,7 +102,7 @@ public class L1MsgConsumer implements MessageListener, ExceptionListener {
 				    message->setInt(CornerTurnConst::BIDSIZE, data.bidSize_);
 				    message->setInt(CornerTurnConst::ASKSIZE, data.askSize_);
 				    message->setInt(CornerTurnConst::VOLUME, data.volume_);	*/			
-			} catch (JMSException e) {
+				} catch (JMSException e) {
 					log.error(e.toString());
 				}
 				observer.update(data);

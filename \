@@ -1,0 +1,29 @@
+Proper Maven structure
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+Committer: dbrown <dbrown@Marvin.redpine.local>
+#
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+	new file:   TradeClientExample/.classpath
+	new file:   TradeClientExample/.project
+	new file:   TradeClientExample/.settings/org.eclipse.jdt.core.prefs
+	new file:   TradeClientExample/.settings/org.eclipse.m2e.core.prefs
+	new file:   TradeClientExample/pom.xml
+	new file:   TradeClientExample/src/main/java/com/redpine/TradeClient/Configuration.java
+	new file:   TradeClientExample/src/main/java/com/redpine/TradeClient/TickData.java
+	new file:   TradeClientExample/src/main/java/com/redpine/TradeClient/TradeClient.java
+	new file:   TradeClientExample/src/main/java/com/redpine/TradeMessageConsumer/L1Data.java
+	new file:   TradeClientExample/src/main/java/com/redpine/TradeMessageConsumer/L1DataObserver.java
+	new file:   TradeClientExample/src/main/java/com/redpine/TradeMessageConsumer/TradeMessageConsumer.java
+	new file:   TradeClientExample/target/classes/com/redpine/TradeClient/Configuration.class
+	new file:   TradeClientExample/target/classes/com/redpine/TradeClient/TickData.class
+	new file:   TradeClientExample/target/classes/com/redpine/TradeClient/TradeClient$1.class
+	new file:   TradeClientExample/target/classes/com/redpine/TradeClient/TradeClient.class
+	new file:   TradeClientExample/target/classes/com/redpine/TradeMessageConsumer/L1Data.class
+	new file:   TradeClientExample/target/classes/com/redpine/TradeMessageConsumer/L1DataObserver.class
+	new file:   TradeClientExample/target/classes/com/redpine/TradeMessageConsumer/TradeMessageConsumer.class
+
