@@ -1,59 +1,59 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.redpine</groupId>
-  <artifactId>TradeDataAccess</artifactId>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <runSuite>**/HibernateTestSuite.class</runSuite>
-  </properties>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>mysql</groupId>
-  		<artifactId>mysql-connector-java</artifactId>
-   	</dependency>
-     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-core</artifactId>
-    </dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.redpine</groupId>
+	<artifactId>TradeDataAccess</artifactId>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<runSuite>**/HibernateTestSuite.class</runSuite>
+	</properties>
 
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-     </dependency>
-    <dependency>
-	   <groupId>javassist</groupId>
-	   <artifactId>javassist</artifactId>
-	   <version>3.12.1.GA</version>
-</dependency>
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
 
-  </dependencies>
-  
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.12.1.GA</version>
+		</dependency>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <includes>
-              <include>${runSuite}</include>
-          </includes>
-<!--       	 <parallel>methods</parallel>
-         <threadCount>10</threadCount> --> 
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  <parent>
-  	<groupId>redpine.com</groupId>
-  	<artifactId>RedpineTradingPost-parent</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-  	<relativePath>../..</relativePath>
-  </parent>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>${runSuite}</include>
+					</includes>
+					<!-- <parallel>methods</parallel> <threadCount>10</threadCount> -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<parent>
+		<groupId>redpine.com</groupId>
+		<artifactId>RedpineTradingPost-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
 </project>

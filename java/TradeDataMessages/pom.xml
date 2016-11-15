@@ -1,41 +1,51 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.redpine</groupId>
-  <artifactId>TradeDataMessages</artifactId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.redpine</groupId>
+	<artifactId>TradeDataMessages</artifactId>
 
- <properties>    
-    <spring-kafka.version>1.1.1.RELEASE</spring-kafka.version>
-  </properties>
-   
-  <dependencies>    
-        <!-- ActiveMQ Artifacts -->
-    <dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-spring</artifactId>
-    </dependency>
+	<properties>
+		<spring-kafka.version>1.1.1.RELEASE</spring-kafka.version>
+	</properties>
 
-       <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>${spring-kafka.version}</version>
-        </dependency>
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>  
-        </dependency>
-     </dependencies> 
-  
-  <parent>
-  	<groupId>redpine.com</groupId>
-  	<artifactId>RedpineTradingPost-parent</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
-  	<relativePath>../..</relativePath>
-  </parent>
+	<dependencies>
+		<!-- ActiveMQ Artifacts -->
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-spring</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>${spring-kafka.version}</version>
+		</dependency>
+		<!-- Spring Boot -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<parent>
+		<groupId>redpine.com</groupId>
+		<artifactId>RedpineTradingPost-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
 </project>
