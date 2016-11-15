@@ -13,7 +13,7 @@
   <!-- Database connection properties - Driver, URL, user, password -->
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.password">password</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost/test</property>
+  <property name="hibernate.connection.url">jdbc:mysql://192.168.80.9/test</property>
   <property name="hibernate.connection.username">developer</property>
   <property name="hibernate.hbm2ddl.auto">create</property>
 
